@@ -1,30 +1,30 @@
 'use client'
 
 import { AnimatePresence, motion } from 'motion/react'
-import { ArrowRight, Boxes, Brain, Layers, Lightbulb, Target } from 'lucide-react'
+import { Brain, Target, Lightbulb, Boxes } from 'lucide-react'
 import { useState } from 'react'
-import { Reveal, Section, SectionTitle } from './primitives'
+import { Reveal, Section } from './primitives'
 
-const LAYERS = [
+const RHYTHM_STATEMENTS = [
   {
-    key: 'business',
-    label: 'Business',
-    tag: 'The why',
-    body: 'Every engagement starts with the business objective — the process to fix, the cost to cut, the growth to unlock. We translate goals and constraints into a clear problem statement before a single line of architecture is drawn.',
+    step: '01',
+    eyebrow: 'FOUNDATIONAL PRINCIPLE',
+    headline: "WE DON'T START WITH TECHNOLOGY.",
+    body: 'Too many projects fail because they start with a tool looking for a use. We invert that: we define the problem in plain business terms before any architecture is drawn.',
   },
   {
-    key: 'logic',
-    label: 'Logic',
-    tag: 'The how',
-    body: 'We shape the business intent into systems, workflows and decision rules. This is where automation, AI models and application logic are engineered to behave reliably, predictably and at scale.',
+    step: '02',
+    eyebrow: 'OPERATIONAL FOCUS',
+    headline: 'WE START WITH THE PROBLEM.',
+    body: 'We identify the friction a business actually feels — the process to fix, the cost to cut, the data to clarify, and the growth to unlock.',
   },
   {
-    key: 'data',
-    label: 'Data',
-    tag: 'The proof',
-    body: 'Solutions are grounded in data — captured from software, sensors and operations. Clean, structured data closes the loop, feeding insight back into the business so the system keeps improving over time.',
+    step: '03',
+    eyebrow: 'SYSTEM INTEGRATION',
+    headline: 'THEN ENGINEER THE ANSWER.',
+    body: 'Only when the objective and context are clear do we engineer a connected solution across software, AI, automation, IoT and robotics.',
   },
-] as const
+]
 
 const CAPABILITIES = [
   {
@@ -50,140 +50,115 @@ const CAPABILITIES = [
 ]
 
 export function WhoWeAre() {
-  const [active, setActive] = useState<number>(0)
-  const [openCap, setOpenCap] = useState<number | null>(0)
+  const [activeStep, setActiveStep] = useState(0)
+
+  const handleNextStep = () => {
+    setActiveStep((prev) => (prev + 1) % RHYTHM_STATEMENTS.length)
+  }
+
+  const current = RHYTHM_STATEMENTS[activeStep]
 
   return (
-    <Section id="who-we-are" index="02" eyebrow="Who We Are">
-      <div className="grid gap-14 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
+    <Section id="who-we-are" index="01" eyebrow="Who We Are">
+      {/* TYPOGRAPHY-LED STORYTELLING CANVAS (NO CARDS) */}
+      <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
         <div>
           <Reveal>
-            <SectionTitle>
-              Building technology for the{' '}
-              <span className="text-primary">real world</span>
-            </SectionTitle>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="mt-6 max-w-xl leading-relaxed text-muted-foreground">
-              PECSA is a practical engineering company. We combine an engineering
-              mindset with business-oriented thinking to turn operational
-              problems into working systems. Our multidisciplinary teams span
-              software, AI, automation, IoT and robotics — so a solution is
-              designed as one connected whole, not a collection of parts.
-            </p>
+            <div className="border-b border-white/10 pb-3 mb-5">
+              <span className="font-mono-tech text-xs uppercase tracking-widest text-[#8c9a72] font-semibold block mb-1">
+                PECSA PHILOSOPHY MANIFESTO
+              </span>
+              <h2 className="font-serif-editorial text-3xl sm:text-4xl md:text-5xl font-normal leading-[1.02] text-foreground">
+                Building technology for the{' '}
+                <span className="text-primary italic font-serif-editorial">real world</span>
+              </h2>
+            </div>
           </Reveal>
 
-          {/* Business -> Logic -> Data interactive system */}
+          {/* Interactive Typography Reveal Statements */}
           <Reveal delay={0.15}>
-            <div className="mt-10 rounded-2xl border border-border bg-card/40 p-5 backdrop-blur sm:p-6">
-              <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                How we think · Business → Logic → Data
-              </p>
-              <div className="flex items-center gap-2 sm:gap-3">
-                {LAYERS.map((l, i) => (
-                  <div key={l.key} className="flex flex-1 items-center gap-2 sm:gap-3">
-                    <button
-                      type="button"
-                      onClick={() => setActive(i)}
-                      aria-pressed={active === i}
-                      className={`relative flex-1 rounded-xl border px-2 py-4 text-center transition-all ${
-                        active === i
-                          ? 'border-primary/60 bg-primary/10 glow-ring'
-                          : 'border-border bg-background/40 hover:border-primary/30'
-                      }`}
-                    >
-                      <span className="block font-display text-sm font-semibold">
-                        {l.label}
-                      </span>
-                      <span className="mt-0.5 block text-[10px] uppercase tracking-wide text-muted-foreground">
-                        {l.tag}
-                      </span>
-                    </button>
-                    {i < LAYERS.length - 1 && (
-                      <ArrowRight
-                        className={`h-4 w-4 shrink-0 transition-colors ${
-                          active > i ? 'text-primary' : 'text-muted-foreground/50'
-                        }`}
-                      />
-                    )}
-                  </div>
-                ))}
+            <div className="border border-white/10 bg-[#2b211d] p-5 sm:p-8 relative shadow-2xl">
+              <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
+                <span className="font-mono-tech text-xs uppercase tracking-widest text-primary font-bold">
+                  MANIFESTO STATEMENT [{current.step} / 03]
+                </span>
+                <span className="font-mono-tech text-xs text-white/40">
+                  {current.eyebrow}
+                </span>
               </div>
+
               <AnimatePresence mode="wait">
-                <motion.p
-                  key={active}
-                  initial={{ opacity: 0, y: 8 }}
+                <motion.div
+                  key={current.step}
+                  initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.3 }}
-                  className="mt-5 text-sm leading-relaxed text-muted-foreground"
+                  exit={{ opacity: 0, y: -16 }}
+                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  className="min-h-[140px]"
                 >
-                  {LAYERS[active].body}
-                </motion.p>
+                  <h3 className="font-serif-editorial text-2xl sm:text-3xl md:text-4xl font-normal text-foreground leading-[1.05] tracking-tight">
+                    {current.headline}
+                  </h3>
+                  <p className="mt-3 font-sans text-sm sm:text-base leading-relaxed text-muted-foreground max-w-xl">
+                    {current.body}
+                  </p>
+                </motion.div>
               </AnimatePresence>
+
+              {/* Burnt Copper NEXT -> Arrow Control */}
+              <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+                <div className="flex items-center gap-1.5 font-mono-tech text-xs">
+                  {RHYTHM_STATEMENTS.map((s, idx) => (
+                    <span
+                      key={s.step}
+                      className={`h-1.5 transition-all ${
+                        activeStep === idx ? 'w-6 bg-primary' : 'w-2 bg-white/20'
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleNextStep}
+                  className="group flex items-center gap-3 border border-primary bg-primary px-6 py-2.5 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all cursor-pointer"
+                  aria-label="Advance manifesto statement"
+                >
+                  <span>NEXT →</span>
+                </button>
+              </div>
             </div>
           </Reveal>
         </div>
 
-        {/* Capabilities accordion */}
-        <div className="flex flex-col gap-3">
-          {CAPABILITIES.map((c, i) => {
-            const Icon = c.icon
-            const open = openCap === i
-            return (
-              <Reveal key={c.title} delay={i * 0.08}>
-                <button
-                  type="button"
-                  onClick={() => setOpenCap(open ? null : i)}
-                  aria-expanded={open}
-                  className={`w-full rounded-2xl border p-5 text-left transition-all sm:p-6 ${
-                    open
-                      ? 'border-primary/50 bg-card/70'
-                      : 'border-border bg-card/40 hover:border-primary/30'
-                  }`}
-                >
-                  <div className="flex items-center gap-4">
-                    <span
-                      className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-colors ${
-                        open ? 'bg-primary/20 text-primary' : 'bg-secondary text-muted-foreground'
-                      }`}
-                    >
-                      <Icon className="h-5 w-5" />
-                    </span>
-                    <span className="font-display text-lg font-medium">
-                      {c.title}
-                    </span>
-                    <ArrowRight
-                      className={`ml-auto h-4 w-4 shrink-0 text-primary transition-transform ${
-                        open ? 'rotate-90' : ''
-                      }`}
-                    />
+        {/* Spatial Principles Stream */}
+        <div className="flex flex-col gap-4 lg:pl-4">
+          <span className="font-mono-tech text-xs uppercase tracking-widest text-[#8c9a72] font-semibold">
+            CORE DISCIPLINE PRINCIPLES
+          </span>
+
+          <div className="border-t border-white/10">
+            {CAPABILITIES.map((c, i) => {
+              const Icon = c.icon
+              return (
+                <Reveal key={c.title} delay={i * 0.06}>
+                  <div className="border-b border-white/10 py-3.5">
+                    <div className="flex items-center gap-3 mb-1.5">
+                      <span className="flex h-7 w-7 items-center justify-center border border-primary/30 bg-primary/10 text-primary">
+                        <Icon className="h-3.5 w-3.5" />
+                      </span>
+                      <h4 className="font-serif-editorial text-xl font-normal text-foreground">
+                        {c.title}
+                      </h4>
+                    </div>
+                    <p className="pl-10 font-sans text-xs sm:text-sm leading-relaxed text-muted-foreground">
+                      {c.body}
+                    </p>
                   </div>
-                  <AnimatePresence initial={false}>
-                    {open && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.35, ease: 'easeInOut' }}
-                        className="overflow-hidden"
-                      >
-                        <p className="pl-15 pt-3 text-sm leading-relaxed text-muted-foreground">
-                          {c.body}
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </button>
-              </Reveal>
-            )
-          })}
-          <Reveal delay={0.4}>
-            <div className="mt-1 flex items-center gap-3 rounded-2xl border border-dashed border-border/70 px-5 py-4 text-sm text-muted-foreground">
-              <Layers className="h-4 w-4 text-primary" />
-              Disciplines combined into one connected solution.
-            </div>
-          </Reveal>
+                </Reveal>
+              )
+            })}
+          </div>
         </div>
       </div>
     </Section>

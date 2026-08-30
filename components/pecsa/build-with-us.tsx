@@ -48,61 +48,56 @@ export function BuildWithUs() {
   const [open, setOpen] = useState<number | null>(0)
 
   return (
-    <Section id="build-with-us" index="11" eyebrow="Build With Us">
+    <Section id="build-with-us" index="10" eyebrow="Build With Us">
       <Reveal>
         <SectionTitle>
-          Ways to <span className="text-primary">build with us</span>
+          Ways to <span className="text-primary italic font-serif-editorial">build with us</span>
         </SectionTitle>
       </Reveal>
       <Reveal delay={0.1}>
-        <p className="mt-6 max-w-2xl leading-relaxed text-muted-foreground">
+        <p className="mt-6 max-w-2xl font-sans text-base leading-relaxed text-muted-foreground">
           Whether you have a problem to solve, a business to grow together, or a
           career to build, there is a way to work with PECSA. Expand each option
           to see what it involves.
         </p>
       </Reveal>
 
-      <div className="mt-10 flex flex-col gap-4">
+      <div className="mt-12 flex flex-col border-t border-white/10">
         {OPPORTUNITIES.map((o, i) => {
           const Icon = o.icon
           const isOpen = open === i
           return (
             <Reveal key={o.title} delay={0.05 * i}>
-              <div
-                className={`overflow-hidden rounded-2xl border backdrop-blur transition-colors ${
-                  isOpen
-                    ? 'border-primary/50 bg-card/70'
-                    : 'border-border bg-card/40 hover:border-primary/30'
-                }`}
-              >
+              <div className="border-b border-white/10">
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? null : i)}
                   aria-expanded={isOpen}
-                  className="flex w-full items-center gap-4 p-6 text-left sm:p-7"
+                  className="flex w-full items-center justify-between py-8 text-left cursor-pointer group"
                 >
-                  <span
-                    className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-colors ${
-                      isOpen ? 'bg-primary/20 text-primary' : 'bg-primary/10 text-primary/80'
-                    }`}
-                  >
-                    <Icon className="h-6 w-6" />
-                  </span>
-                  <span className="min-w-0 flex-1">
-                    <span className="block font-display text-xl font-semibold sm:text-2xl">
-                      {o.title}
+                  <div className="flex items-center gap-5">
+                    <span
+                      className={`flex h-11 w-11 shrink-0 items-center justify-center border transition-colors ${
+                        isOpen ? 'border-primary bg-primary/20 text-primary' : 'border-white/10 bg-[#2b211d] text-muted-foreground'
+                      }`}
+                    >
+                      <Icon className="h-5 w-5" />
                     </span>
-                    <span className="mt-1 block text-sm text-muted-foreground">
-                      {o.short}
-                    </span>
-                  </span>
+                    <div>
+                      <span className="font-serif-editorial text-3xl font-normal text-foreground block group-hover:text-primary transition-colors">
+                        {o.title}
+                      </span>
+                      <span className="font-sans text-xs text-muted-foreground block mt-0.5">
+                        {o.short}
+                      </span>
+                    </div>
+                  </div>
                   <motion.span
                     animate={{ rotate: isOpen ? 90 : 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="text-primary"
-                    aria-hidden="true"
+                    transition={{ duration: 0.2 }}
+                    className="flex h-9 w-9 items-center justify-center border border-white/10 text-primary bg-[#2b211d]"
                   >
-                    <ArrowRight className="h-5 w-5" />
+                    <ArrowRight className="h-4 w-4" />
                   </motion.span>
                 </button>
 
@@ -111,22 +106,24 @@ export function BuildWithUs() {
                     <motion.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.35, ease: 'easeInOut' }}
                     >
-                      <div className="grid gap-6 border-t border-border/60 px-6 py-6 sm:px-7 lg:grid-cols-[1.4fr_1fr]">
-                        <p className="leading-relaxed text-muted-foreground">{o.body}</p>
-                        <ul className="flex flex-col gap-2.5">
-                          {o.points.map((p) => (
-                            <li key={p} className="flex items-start gap-2.5 text-sm">
-                              <span
-                                className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary"
-                                aria-hidden="true"
-                              />
-                              <span className="text-foreground/85">{p}</span>
-                            </li>
-                          ))}
-                        </ul>
+                      <div className="grid gap-8 pb-8 pt-2 pl-16 pr-4 lg:grid-cols-[1.4fr_1fr]">
+                        <p className="font-sans text-sm leading-relaxed text-muted-foreground">{o.body}</p>
+                        <div className="border-t lg:border-t-0 lg:border-l border-white/10 pt-4 lg:pt-0 lg:pl-6">
+                          <h4 className="font-mono-tech text-xs uppercase tracking-widest text-[#8c9a72] mb-3 font-semibold">
+                            Key Deliverables & Scope
+                          </h4>
+                          <ul className="flex flex-col gap-2.5 font-sans text-xs text-muted-foreground">
+                            {o.points.map((p) => (
+                              <li key={p} className="flex items-center gap-2.5">
+                                <span className="h-1.5 w-1.5 bg-primary" />
+                                <span>{p}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
                     </motion.div>
                   )}

@@ -1,13 +1,16 @@
 'use client'
 
-import { Reveal } from './primitives'
+import { ArrowUpRight } from 'lucide-react'
 
-const LINKS = [
+const NAV_COL_1 = [
   { label: 'Who We Are', href: '#who-we-are' },
   { label: 'Expertise', href: '#expertise' },
   { label: 'Innovation', href: '#innovation' },
   { label: 'Products', href: '#products' },
   { label: 'How We Work', href: '#how-we-work' },
+]
+
+const NAV_COL_2 = [
   { label: 'Verticals', href: '#verticals' },
   { label: 'Why PECSA', href: '#why-pecsa' },
   { label: 'Projects', href: '#projects' },
@@ -17,51 +20,65 @@ const LINKS = [
 ]
 
 export function Footer() {
-  const year = new Date().getFullYear()
   return (
-    <footer className="relative border-t border-border bg-card/30">
-      <div className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-8">
-        <Reveal>
-          <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
-            <div className="max-w-sm">
-              <div className="flex items-center gap-2.5">
-                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/15 font-display text-sm font-bold text-primary">
-                  P
-                </span>
-                <span className="font-display text-lg font-semibold tracking-tight">
-                  PECSA IT SOLUTIONS
-                </span>
-              </div>
-              <p className="mt-5 leading-relaxed text-muted-foreground">
-                Technology that solves real business problems. We design and
-                build practical systems across software, AI, automation, IoT and
-                robotics.
-              </p>
+    <footer className="border-t border-white/10 bg-[#211a17] text-foreground">
+      <div className="mx-auto max-w-7xl px-6 py-20 sm:px-10 md:py-28">
+        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr]">
+          <div>
+            <a href="#top" className="inline-flex items-center gap-3 font-mono-tech text-xl font-bold tracking-widest text-foreground">
+              <span className="flex h-8 w-8 items-center justify-center border border-white/20 bg-card text-sm font-bold text-white">
+                P
+              </span>
+              PECSA <span className="text-primary font-normal">// IT</span>
+            </a>
+            <p className="mt-6 max-w-md font-sans text-sm leading-relaxed text-muted-foreground">
+              Technology that solves real business problems. We design and build practical systems across software, AI, automation, IoT and robotics.
+            </p>
+            <div className="mt-8">
               <a
                 href="#connect"
-                className="mt-6 inline-flex rounded-full border border-primary/50 px-5 py-2.5 text-sm font-medium text-primary transition-colors hover:bg-primary/10"
+                className="inline-flex items-center gap-2 border border-primary bg-primary px-6 py-3 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all"
               >
-                Start a Project
+                <span>Start a Project</span>
+                <ArrowUpRight className="h-4 w-4" />
               </a>
             </div>
-
-            <nav aria-label="Footer" className="grid grid-cols-2 gap-x-10 gap-y-3 sm:grid-cols-3">
-              {LINKS.map((l) => (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  {l.label}
-                </a>
-              ))}
-            </nav>
           </div>
-        </Reveal>
 
-        <div className="mt-14 flex flex-col gap-3 border-t border-border/60 pt-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <p>&copy; {year} PECSA IT SOLUTIONS. All rights reserved.</p>
-          <p className="text-foreground/70">Engineering what&apos;s next.</p>
+          <div>
+            <span className="font-mono-tech text-xs font-semibold uppercase tracking-widest text-[#8c9a72] block mb-6">
+              Navigation Directory
+            </span>
+            <ul className="space-y-3 font-sans text-sm">
+              {NAV_COL_1.map((item) => (
+                <li key={item.href}>
+                  <a href={item.href} className="text-muted-foreground hover:text-foreground transition-colors">
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <span className="font-mono-tech text-xs font-semibold uppercase tracking-widest text-[#8c9a72] block mb-6">
+              Capabilities & Connect
+            </span>
+            <ul className="space-y-3 font-sans text-sm">
+              {NAV_COL_2.map((item) => (
+                <li key={item.href}>
+                  <a href={item.href} className="text-muted-foreground hover:text-foreground transition-colors">
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-16 flex flex-col items-center justify-between border-t border-white/10 pt-8 text-xs text-muted-foreground sm:flex-row font-mono-tech">
+          <p>© {new Date().getFullYear()} PECSA IT SOLUTIONS. All rights reserved.</p>
+          <p className="mt-4 sm:mt-0 text-foreground">Engineering what’s next.</p>
         </div>
       </div>
     </footer>

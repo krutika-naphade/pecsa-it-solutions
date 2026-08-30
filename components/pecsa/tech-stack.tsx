@@ -52,89 +52,119 @@ const CATEGORIES = [
 
 export function TechStack() {
   const [active, setActive] = useState(0)
+
+  const handleNextCategory = () => {
+    setActive((prev) => (prev + 1) % CATEGORIES.length)
+  }
+
   const cat = CATEGORIES[active]
   const Icon = cat.icon
 
   return (
-    <Section id="tech-stack" index="10" eyebrow="Technology Stack">
+    <Section id="tech-stack" index="09" eyebrow="Technology Stack">
       <Reveal>
         <SectionTitle>
-          The tools behind the <span className="text-primary">solutions</span>
+          The tools behind the <span className="text-primary italic font-serif-editorial">solutions</span>
         </SectionTitle>
       </Reveal>
       <Reveal delay={0.1}>
-        <p className="mt-6 max-w-2xl leading-relaxed text-muted-foreground">
-          Our stack is chosen to fit problems, not the other way around. Explore
-          each category to see the kinds of technologies we work with and how
-          they support the solutions we build.
+        <p className="mt-2.5 max-w-2xl font-sans text-sm sm:text-base leading-relaxed text-muted-foreground">
+          Our stack is chosen to fit problems, not the other way around. Use the arrow control to explore each living technology ecosystem category.
         </p>
       </Reveal>
 
-      {/* Category ecosystem */}
+      {/* DYNAMIC TECHNOLOGY ECOSYSTEM (COMPACT VERTICAL RHYTHM) */}
       <Reveal delay={0.15}>
-        <div className="mt-10 flex flex-wrap gap-2.5">
-          {CATEGORIES.map((c, i) => {
-            const CIcon = c.icon
-            const selected = active === i
-            return (
-              <button
-                key={c.name}
-                type="button"
-                onClick={() => setActive(i)}
-                aria-pressed={selected}
-                className={`flex items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-medium transition-all ${
-                  selected
-                    ? 'border-primary/60 bg-primary/15 text-foreground glow-ring'
-                    : 'border-border bg-card/40 text-muted-foreground hover:border-primary/40 hover:text-foreground'
-                }`}
-              >
-                <CIcon className="h-4 w-4" />
-                {c.name}
-              </button>
-            )
-          })}
-        </div>
-      </Reveal>
+        <div className="mt-5 border border-white/10 bg-[#2b211d] p-5 sm:p-8 relative shadow-2xl">
+          {/* Header */}
+          <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-5">
+            <span className="font-mono-tech text-xs uppercase tracking-widest text-[#8c9a72] font-bold">
+              TECHNICAL ECOSYSTEM [0{active + 1} / 07]
+            </span>
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={active}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -16 }}
-          transition={{ duration: 0.4 }}
-          className="mt-8 grid gap-8 rounded-2xl border border-border bg-card/50 p-6 backdrop-blur sm:p-8 lg:grid-cols-[1fr_1.2fr] lg:gap-12"
-        >
-          <div>
-            <div className="flex items-center gap-4">
-              <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/15 text-primary">
-                <Icon className="h-7 w-7" />
-              </span>
-              <h3 className="font-display text-2xl font-semibold sm:text-3xl">{cat.name}</h3>
-            </div>
-            <p className="mt-5 leading-relaxed text-muted-foreground">{cat.how}</p>
-          </div>
-
-          <div>
-            <p className="mb-4 text-xs font-medium uppercase tracking-[0.18em] text-primary/90">
-              Technologies we work with
-            </p>
-            <div className="flex flex-wrap gap-2.5">
-              {cat.tech.map((t, i) => (
-                <motion.span
-                  key={t}
-                  initial={{ opacity: 0, scale: 0.9, y: 8 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  transition={{ delay: i * 0.05, duration: 0.3 }}
-                  className="rounded-xl border border-border bg-background/50 px-4 py-2.5 text-sm text-foreground/90"
-                >
-                  {t}
-                </motion.span>
+            {/* Dots */}
+            <div className="flex items-center gap-2">
+              {CATEGORIES.map((c, index) => (
+                <button
+                  key={c.name}
+                  type="button"
+                  onClick={() => setActive(index)}
+                  className={`h-1.5 transition-all cursor-pointer ${
+                    active === index ? 'w-6 bg-primary' : 'w-2 bg-white/20 hover:bg-white/40'
+                  }`}
+                  aria-label={`Jump to ${c.name}`}
+                />
               ))}
             </div>
           </div>
-        </motion.div>
-      </AnimatePresence>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={cat.name}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:items-start min-h-[160px]"
+            >
+              <div>
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="flex h-10 w-10 items-center justify-center border border-primary/30 bg-primary/10 text-primary">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <div>
+                    <span className="font-mono-tech text-[10px] uppercase tracking-widest text-[#8c9a72] font-semibold">
+                      CATEGORY 0{active + 1}
+                    </span>
+                    <h3 className="font-serif-editorial text-2xl sm:text-3xl font-normal text-foreground">
+                      {cat.name}
+                    </h3>
+                  </div>
+                </div>
+                <p className="mt-3 font-sans text-xs sm:text-sm leading-relaxed text-muted-foreground max-w-xl">
+                  {cat.how}
+                </p>
+              </div>
+
+              {/* Technologies Reorganizing Tags */}
+              <div className="border-t lg:border-t-0 lg:border-l border-white/10 pt-5 lg:pt-0 lg:pl-8">
+                <h4 className="font-mono-tech text-xs font-semibold uppercase tracking-widest text-[#8c9a72] mb-3">
+                  Technologies We Work With
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {cat.tech.map((t) => (
+                    <motion.span
+                      key={t}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.25 }}
+                      className="border border-white/10 bg-[#211a17] px-3.5 py-2 font-mono-tech text-xs text-foreground/90 hover:border-primary transition-colors"
+                    >
+                      {t}
+                    </motion.span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Arrow Control */}
+          <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+            <span className="font-mono-tech text-xs text-white/40 uppercase tracking-widest hidden sm:inline-block">
+              Click arrow to cycle ecosystem category →
+            </span>
+
+            <button
+              type="button"
+              onClick={handleNextCategory}
+              className="group flex items-center gap-3 border border-primary bg-primary px-7 py-3 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all cursor-pointer ml-auto"
+              aria-label="Cycle to next tech category"
+            >
+              <span>NEXT →</span>
+            </button>
+          </div>
+        </div>
+      </Reveal>
     </Section>
   )
 }

@@ -11,7 +11,7 @@ import {
   Bell,
   ShieldCheck,
   ListChecks,
-  Wrench,
+  ChevronDown,
 } from 'lucide-react'
 import { useState } from 'react'
 import { Reveal, Section, SectionTitle } from './primitives'
@@ -51,185 +51,193 @@ const PRODUCTS = [
 
 export function Products() {
   const [active, setActive] = useState(0)
+  const [expandedDetails, setExpandedDetails] = useState(false)
+
+  const handleNextProduct = () => {
+    setActive((prev) => (prev + 1) % PRODUCTS.length)
+    setExpandedDetails(false)
+  }
+
   const p = PRODUCTS[active]
 
   return (
-    <Section id="products" index="05" eyebrow="Products">
+    <Section id="products" index="04" eyebrow="Flagship Products">
       <Reveal>
         <SectionTitle>
           Platforms we have built to solve{' '}
-          <span className="text-primary">real problems</span>
+          <span className="text-primary italic font-serif-editorial">real problems</span>
         </SectionTitle>
       </Reveal>
       <Reveal delay={0.1}>
-        <p className="mt-6 max-w-2xl leading-relaxed text-muted-foreground">
+        <p className="mt-1.5 sm:mt-2 max-w-2xl font-sans text-xs sm:text-sm leading-relaxed text-muted-foreground">
           These are products PECSA has designed and engineered end to end. Each
           began as a concrete operational problem and became a dependable
-          platform. Switch between them to explore what they do and how they
-          work.
+          platform. Use the arrow control to transition between products.
         </p>
       </Reveal>
 
-      {/* Tabs */}
+      {/* LARGE IMMERSIVE PRODUCT PRESENTATION (COMPACT VIEWPORT RHYTHM) */}
       <Reveal delay={0.15}>
-        <div className="mt-10 flex flex-wrap gap-2">
-          {PRODUCTS.map((prod, i) => (
-            <button
-              key={prod.id}
-              type="button"
-              onClick={() => setActive(i)}
-              aria-pressed={active === i}
-              className={`rounded-full border px-5 py-2.5 text-sm font-medium transition-all ${
-                active === i
-                  ? 'border-primary/60 bg-primary/15 text-foreground glow-ring'
-                  : 'border-border bg-card/40 text-muted-foreground hover:border-primary/40 hover:text-foreground'
-              }`}
+        <div className="mt-3 sm:mt-4 border border-white/10 bg-[#2b211d] p-4 sm:p-5 md:p-6 relative shadow-2xl">
+          {/* Header */}
+          <div className="flex items-center justify-between border-b border-white/10 pb-2.5 mb-3">
+            <span className="font-mono-tech text-xs uppercase tracking-widest text-[#8c9a72] font-bold">
+              PRODUCT PRESENTATION [{active + 1} / 02]
+            </span>
+            <span className="font-mono-tech text-xs text-white/40">
+              {p.name}
+            </span>
+          </div>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={p.id}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="grid gap-4 sm:gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start"
             >
-              {prod.name}
+              {/* Product Visual Architecture */}
+              <EvolvingProductVisual variant={p.ui} name={p.name} />
+
+              {/* Product Copy Details */}
+              <div>
+                <span className="font-mono-tech text-xs font-semibold uppercase tracking-widest text-[#8c9a72]">
+                  {p.tagline}
+                </span>
+                <h3 className="mt-1 font-serif-editorial text-2xl sm:text-3xl font-normal text-foreground">
+                  {p.name}
+                </h3>
+                <p className="mt-2 font-sans text-xs leading-relaxed text-muted-foreground">
+                  {p.purpose}
+                </p>
+
+                <h4 className="mt-3 mb-1.5 font-mono-tech text-xs font-semibold uppercase tracking-widest text-white/50">
+                  System Workflow Architecture
+                </h4>
+                <div className="grid gap-1.5 sm:grid-cols-2">
+                  {p.workflow.map((w) => {
+                    const WIcon = w.icon
+                    return (
+                      <div
+                        key={w.label}
+                        className="border border-white/10 bg-[#211a17] p-2.5 flex flex-col justify-between"
+                      >
+                        <div className="flex items-center gap-2">
+                          <span className="flex h-5 w-5 items-center justify-center border border-primary/30 bg-primary/10 text-primary">
+                            <WIcon className="h-3 w-3" />
+                          </span>
+                          <span className="font-mono-tech text-xs uppercase tracking-wider text-white font-medium">
+                            {w.label}
+                          </span>
+                        </div>
+                        <p className="mt-1 font-sans text-[11px] leading-relaxed text-muted-foreground">
+                          {w.text}
+                        </p>
+                      </div>
+                    )
+                  })}
+                </div>
+
+                <div className="mt-3 flex items-center justify-between border-t border-white/10 pt-3">
+                  <button
+                    type="button"
+                    onClick={() => setExpandedDetails(!expandedDetails)}
+                    className="flex items-center gap-2 border border-white/20 bg-[#211a17] px-3.5 py-1.5 font-mono-tech text-xs uppercase tracking-widest text-white hover:border-primary transition-all cursor-pointer"
+                  >
+                    <span>{expandedDetails ? 'Hide System Specs' : 'Inspect Capabilities'}</span>
+                    <ChevronDown className={`h-3.5 w-3.5 text-primary transition-transform ${expandedDetails ? 'rotate-180' : ''}`} />
+                  </button>
+                </div>
+
+                {expandedDetails && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="mt-2 border border-white/10 bg-[#211a17] p-3"
+                  >
+                    <span className="font-mono-tech text-xs font-semibold uppercase tracking-widest text-[#8c9a72] block mb-1.5">
+                      Core Platform Capabilities
+                    </span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {p.capabilities.map((c) => (
+                        <span
+                          key={c}
+                          className="border border-white/10 bg-[#342924] px-2 py-0.5 font-mono-tech text-xs text-muted-foreground"
+                        >
+                          {c}
+                        </span>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Burnt Copper NEXT -> Arrow Control */}
+          <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+            <span className="font-mono-tech text-xs text-white/40 uppercase tracking-widest hidden sm:inline-block">
+              Click arrow to transition product →
+            </span>
+
+            <button
+              type="button"
+              onClick={handleNextProduct}
+              className="group flex items-center gap-3 border border-primary bg-primary px-6 py-2.5 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all cursor-pointer ml-auto"
+              aria-label="Transition to next product"
+            >
+              <span>NEXT →</span>
             </button>
-          ))}
+          </div>
         </div>
       </Reveal>
-
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={p.id}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -16 }}
-          transition={{ duration: 0.4 }}
-          className="mt-8 grid gap-8 lg:grid-cols-[1fr_1fr] lg:gap-12"
-        >
-          {/* Conceptual interface */}
-          <ConceptualUI variant={p.ui} name={p.name} />
-
-          {/* Details */}
-          <div>
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
-              {p.tagline}
-            </p>
-            <h3 className="mt-2 font-display text-3xl font-semibold">{p.name}</h3>
-            <p className="mt-4 leading-relaxed text-muted-foreground">{p.purpose}</p>
-
-            <p className="mt-8 mb-4 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
-              How it works
-            </p>
-            <ol className="grid gap-3 sm:grid-cols-2">
-              {p.workflow.map((w, i) => {
-                const WIcon = w.icon
-                return (
-                  <motion.li
-                    key={w.label}
-                    initial={{ opacity: 0, y: 12 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.08, duration: 0.4 }}
-                    className="rounded-xl border border-border bg-card/40 p-4"
-                  >
-                    <div className="flex items-center gap-2.5">
-                      <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/15 text-primary">
-                        <WIcon className="h-4 w-4" />
-                      </span>
-                      <span className="text-sm font-medium">{w.label}</span>
-                    </div>
-                    <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                      {w.text}
-                    </p>
-                  </motion.li>
-                )
-              })}
-            </ol>
-
-            <p className="mt-8 mb-3 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
-              Capabilities
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {p.capabilities.map((c) => (
-                <span
-                  key={c}
-                  className="rounded-full border border-border bg-background/50 px-3 py-1.5 text-xs text-muted-foreground"
-                >
-                  {c}
-                </span>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-      </AnimatePresence>
     </Section>
   )
 }
 
-/* Abstract product interface mock — conceptual, no invented data */
-function ConceptualUI({ variant, name }: { variant: string; name: string }) {
+function EvolvingProductVisual({ variant, name }: { variant: string; name: string }) {
   const isAudit = variant === 'audit'
   const AccentIcon = isAudit ? ClipboardCheck : Building2
   const rows = isAudit
-    ? ['Scope defined', 'Checklist in progress', 'Evidence attached', 'Findings logged']
-    : ['Members registered', 'Requests open', 'Notices scheduled', 'Records updated']
-  const sidebar = isAudit
-    ? [ClipboardCheck, FileSearch, ShieldCheck, FileText, Wrench]
-    : [Users, Wallet, Bell, ListChecks, FileText]
+    ? ['Audit Scope & Checklist Defined', 'Structured Evidence Capture', 'Risk & Non-Conformity Logging', 'Traceable Report Generation']
+    : ['Member & Unit Directory Register', 'Dues & Task Request Workflows', 'Notice Broadcast & Communications', 'Auditable Operations Record']
 
   return (
-    <div className="relative">
-      <div className="overflow-hidden rounded-2xl border border-border bg-card/60 shadow-2xl backdrop-blur">
-        {/* window bar */}
-        <div className="flex items-center gap-2 border-b border-border bg-background/60 px-4 py-3">
-          <span className="h-2.5 w-2.5 rounded-full bg-destructive/70" />
-          <span className="h-2.5 w-2.5 rounded-full bg-primary/40" />
-          <span className="h-2.5 w-2.5 rounded-full bg-primary/70" />
-          <span className="ml-3 flex items-center gap-1.5 text-[11px] text-muted-foreground">
-            <AccentIcon className="h-3.5 w-3.5 text-primary" />
+    <div className="border border-white/10 bg-[#211a17] p-4 sm:p-5">
+      <div className="flex items-center justify-between border-b border-white/10 pb-2.5 mb-3">
+        <div className="flex items-center gap-2">
+          <AccentIcon className="h-4 w-4 text-primary" />
+          <span className="font-serif-editorial text-xl sm:text-2xl font-normal text-white">
             {name}
           </span>
         </div>
-        <div className="grid grid-cols-[auto_1fr]">
-          {/* sidebar */}
-          <div className="flex flex-col gap-1 border-r border-border bg-background/40 p-3">
-            {sidebar.map((SIcon, i) => (
-              <span
-                key={i}
-                className={`flex h-9 w-9 items-center justify-center rounded-lg ${
-                  i === 1 ? 'bg-primary/20 text-primary' : 'text-muted-foreground'
-                }`}
-              >
-                <SIcon className="h-4 w-4" />
-              </span>
-            ))}
-          </div>
-          {/* content */}
-          <div className="p-4">
-            <div className="mb-4 flex items-center justify-between">
-              <div className="h-2.5 w-28 rounded-full bg-muted-foreground/25" />
-              <div className="h-6 w-16 rounded-md bg-primary/25" />
-            </div>
-            <div className="space-y-2.5">
-              {rows.map((r, i) => (
-                <motion.div
-                  key={r}
-                  initial={{ opacity: 0, x: -12 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1, duration: 0.4 }}
-                  className="flex items-center gap-3 rounded-lg border border-border bg-background/50 px-3 py-2.5"
-                >
-                  <span
-                    className={`flex h-6 w-6 items-center justify-center rounded-md text-[10px] ${
-                      i < 2 ? 'bg-primary/20 text-primary' : 'bg-muted text-muted-foreground'
-                    }`}
-                  >
-                    {i < 2 ? '✓' : i + 1}
-                  </span>
-                  <span className="text-xs text-muted-foreground">{r}</span>
-                  <span className="ml-auto h-1.5 w-10 rounded-full bg-muted-foreground/20" />
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
+        <span className="font-mono-tech text-xs text-[#8c9a72] font-semibold">
+          SYSTEM LAYER
+        </span>
       </div>
-      <div className="absolute -bottom-3 -right-3 -z-10 h-24 w-24 rounded-2xl bg-primary/20 blur-2xl" />
+
+      <div className="space-y-2 font-mono-tech">
+        {rows.map((r, i) => (
+          <motion.div
+            key={r}
+            initial={{ opacity: 0, x: -12 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: i * 0.08, duration: 0.35 }}
+            className="flex items-center justify-between border border-white/10 bg-[#2b211d] p-2.5 text-xs"
+          >
+            <div className="flex items-center gap-2">
+              <span className="flex h-5 w-5 items-center justify-center bg-primary/20 text-[10px] text-primary font-bold">
+                0{i + 1}
+              </span>
+              <span className="text-foreground/90 font-sans">{r}</span>
+            </div>
+            <span className="text-[10px] text-[#8c9a72] uppercase font-bold">INTEGRATED</span>
+          </motion.div>
+        ))}
+      </div>
     </div>
   )
 }

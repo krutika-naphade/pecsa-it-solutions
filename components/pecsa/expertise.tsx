@@ -1,221 +1,186 @@
 'use client'
 
 import { AnimatePresence, motion } from 'motion/react'
-import {
-  Bot,
-  Code2,
-  Cpu,
-  Globe,
-  Network,
-  Workflow,
-} from 'lucide-react'
+import { Code2, Cpu, Workflow, Network } from 'lucide-react'
 import { useState } from 'react'
-import { Reveal, Section, SectionTitle } from './primitives'
+import { Reveal, Section } from './primitives'
 
-const CAPS = [
+const EXPERTISE_DISCIPLINES = [
   {
+    id: '01',
+    key: 'SOFTWARE',
+    title: 'SOFTWARE DEVELOPMENT & DIGITAL SURFACES',
     icon: Code2,
-    title: 'Software Development',
-    summary: 'Custom platforms, web and internal systems built for real operations.',
-    applications: ['Enterprise platforms', 'Internal tools & portals', 'APIs & integrations', 'SaaS products'],
-    tech: ['Web apps', 'Backend services', 'Databases', 'Cloud'],
+    tagline: 'Custom platforms, web and internal systems built for real operations.',
+    summary: 'The foundation of most solutions — enterprise platforms, internal portals, APIs, and scalable web services engineered for speed, security, and high reliability.',
+    applications: ['Enterprise platforms', 'Internal tools & portals', 'APIs & integrations', 'SaaS products & digital UX'],
+    tech: ['TypeScript', 'React', 'Next.js', 'Node.js', 'REST & GraphQL APIs', 'Cloud hosting'],
   },
   {
+    id: '02',
+    key: 'INTELLIGENCE',
+    title: 'AI & INTELLIGENT LOGIC',
     icon: Cpu,
-    title: 'AI Solutions',
-    summary: 'Applied intelligence that supports decisions and automates judgement.',
+    tagline: 'Applied intelligence that supports decisions and automates judgement.',
+    summary: 'How we add intelligence — from machine learning models to language model copilots — always anchored on a concrete business decision or operational bottleneck.',
     applications: ['Document & data understanding', 'Prediction & classification', 'Assistants & copilots', 'Computer vision'],
-    tech: ['ML models', 'LLMs', 'Data pipelines', 'Inference APIs'],
+    tech: ['Python', 'Machine learning models', 'LLMs', 'Data pipelines', 'Inference APIs'],
   },
   {
+    id: '03',
+    key: 'AUTOMATION',
+    title: 'WORKFLOW & PROCESS ORCHESTRATION',
     icon: Workflow,
-    title: 'Automation',
-    summary: 'Removing repetitive, manual work from day-to-day operations.',
+    tagline: 'Removing repetitive, manual work from day-to-day operations.',
+    summary: 'Connecting systems, orchestrating multi-step workflows, and reacting to operational events without human intervention.',
     applications: ['Workflow automation', 'Process orchestration', 'Reporting & alerts', 'System-to-system flows'],
-    tech: ['Event pipelines', 'Schedulers', 'Integrations', 'Rules engines'],
+    tech: ['Workflow engines', 'Event pipelines', 'Schedulers', 'Integration connectors', 'Rules engines'],
   },
   {
+    id: '04',
+    key: 'PHYSICAL SYSTEMS',
+    title: 'IOT SENSORS & ROBOTICS CONTROL',
     icon: Network,
-    title: 'IoT Solutions',
-    summary: 'Connecting the physical world to software and dashboards.',
-    applications: ['Sensor networks', 'Remote monitoring', 'Telemetry dashboards', 'Edge data capture'],
-    tech: ['Devices & gateways', 'Edge compute', 'Time-series data', 'Dashboards'],
-  },
-  {
-    icon: Bot,
-    title: 'Robotics',
-    summary: 'Bringing automation into physical space and industrial systems.',
-    applications: ['Motion & control', 'Physical automation', 'Industrial systems', 'Autonomous behaviour'],
-    tech: ['Controllers', 'Sensors', 'Actuation', 'Control software'],
-  },
-  {
-    icon: Globe,
-    title: 'Digital Solutions',
-    summary: 'The digital surfaces and experiences that carry the product.',
-    applications: ['Digital products', 'Portals & experiences', 'Interfaces & UX', 'Digital operations'],
-    tech: ['Frontend', 'Design systems', 'Analytics', 'Hosting'],
+    tagline: 'Connecting the physical world to software dashboards & control systems.',
+    summary: 'Where software meets physical machinery — capturing real-time telemetry from sensors and sending control signals to physical automation and robotics.',
+    applications: ['Sensor networks', 'Remote monitoring', 'Physical automation', 'Industrial control systems'],
+    tech: ['IoT gateways', 'Edge compute', 'Sensors & actuation', 'Controllers', 'Time-series data'],
   },
 ]
 
 export function Expertise() {
   const [active, setActive] = useState(0)
-  const cap = CAPS[active]
-  const Icon = cap.icon
 
-  // radial positions for the node ring
-  const R = 42 // percentage radius
-  const nodes = CAPS.map((_, i) => {
-    const angle = (i / CAPS.length) * Math.PI * 2 - Math.PI / 2
-    return {
-      x: 50 + Math.cos(angle) * R,
-      y: 50 + Math.sin(angle) * R,
-    }
-  })
+  const handleNextDiscipline = () => {
+    setActive((prev) => (prev + 1) % EXPERTISE_DISCIPLINES.length)
+  }
+
+  const current = EXPERTISE_DISCIPLINES[active]
+  const Icon = current.icon
 
   return (
-    <Section id="expertise" index="03" eyebrow="Our Expertise">
+    <Section id="expertise" index="02" eyebrow="Our Expertise">
       <Reveal>
-        <SectionTitle>
-          One connected system of{' '}
-          <span className="text-primary">capabilities</span>
-        </SectionTitle>
+        <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.02] tracking-tight text-foreground max-w-5xl">
+          ONE PROBLEM.{' '}
+          <span className="text-primary italic font-serif-editorial">
+            MANY WAYS TO ENGINEER THE ANSWER.
+          </span>
+        </h2>
       </Reveal>
       <Reveal delay={0.1}>
-        <p className="mt-6 max-w-2xl leading-relaxed text-muted-foreground">
+        <p className="mt-1.5 sm:mt-2 max-w-2xl font-sans text-xs sm:text-sm leading-relaxed text-muted-foreground">
           Our capabilities are not isolated services — they interconnect. A
           single solution might combine software, AI and automation, or link IoT
-          sensors to robotics on a factory floor. Select a capability to explore
-          what it covers and how it connects to the rest of the system.
+          sensors to robotics on a factory floor. Use the arrow control to transition between capabilities.
         </p>
       </Reveal>
 
-      <div className="mt-12 grid gap-8 lg:grid-cols-[1fr_1fr] lg:gap-12">
-        {/* Interactive node ecosystem */}
-        <Reveal className="order-2 lg:order-1">
-          <div className="relative mx-auto aspect-square w-full max-w-[440px]">
-            <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full">
-              {nodes.map((n, i) => (
-                <motion.line
-                  key={i}
-                  x1="50"
-                  y1="50"
-                  x2={n.x}
-                  y2={n.y}
-                  stroke="oklch(0.72 0.17 240)"
-                  strokeWidth={active === i ? 0.7 : 0.3}
-                  strokeOpacity={active === i ? 0.8 : 0.2}
-                  animate={{ strokeOpacity: active === i ? 0.8 : 0.2 }}
-                  transition={{ duration: 0.4 }}
-                />
-              ))}
-            </svg>
-
-            {/* center hub */}
-            <div className="absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-2xl border border-primary/40 bg-card/80 backdrop-blur">
-              <span className="font-display text-xs font-bold text-primary">PECSA</span>
-              <span className="text-[9px] text-muted-foreground">system</span>
+      {/* ONE IMMERSIVE CAPABILITY EXPLORER (HIGH VIEWPORT POSITIONING) */}
+      <Reveal delay={0.15}>
+        <div className="mt-3 sm:mt-4 border border-white/10 bg-[#2b211d] p-4 sm:p-5 md:p-6 relative shadow-2xl">
+          {/* Active Capability Header */}
+          <div className="flex items-center justify-between border-b border-white/10 pb-2.5 mb-3">
+            <div className="flex items-center gap-2.5">
+              <span className="flex h-7 w-7 items-center justify-center border border-primary bg-primary/10 text-primary">
+                <Icon className="h-3.5 w-3.5" />
+              </span>
+              <div>
+                <span className="font-mono-tech text-xs uppercase tracking-widest text-[#8c9a72] font-bold">
+                  CAPABILITY [{current.id} / 04]
+                </span>
+                <span className="font-mono-tech text-xs text-white/40 block mt-0.5 font-medium">
+                  {current.key}
+                </span>
+              </div>
             </div>
 
-            {/* nodes */}
-            {CAPS.map((c, i) => {
-              const NodeIcon = c.icon
-              const selected = active === i
-              return (
+            {/* Progress Bar Dots */}
+            <div className="flex items-center gap-2 font-mono-tech text-xs text-muted-foreground">
+              {EXPERTISE_DISCIPLINES.map((d, index) => (
                 <button
-                  key={c.title}
+                  key={d.key}
                   type="button"
-                  onClick={() => setActive(i)}
-                  aria-pressed={selected}
-                  aria-label={c.title}
-                  className="absolute -translate-x-1/2 -translate-y-1/2"
-                  style={{ left: `${nodes[i].x}%`, top: `${nodes[i].y}%` }}
-                >
-                  <motion.span
-                    animate={{ scale: selected ? 1.15 : 1 }}
-                    className={`flex h-13 w-13 items-center justify-center rounded-xl border transition-colors ${
-                      selected
-                        ? 'border-primary/60 bg-primary/20 text-primary glow-ring'
-                        : 'border-border bg-card/70 text-muted-foreground hover:border-primary/40 hover:text-foreground'
-                    }`}
-                  >
-                    <NodeIcon className="h-5 w-5" />
-                  </motion.span>
-                </button>
-              )
-            })}
+                  onClick={() => setActive(index)}
+                  className={`h-1.5 transition-all cursor-pointer ${
+                    active === index ? 'w-8 bg-primary' : 'w-2 bg-white/20 hover:bg-white/40'
+                  }`}
+                  aria-label={`Jump to ${d.key}`}
+                />
+              ))}
+            </div>
           </div>
-        </Reveal>
 
-        {/* Detail panel */}
-        <div className="order-1 lg:order-2">
+          {/* Morphing Capability Canvas */}
           <AnimatePresence mode="wait">
             <motion.div
-              key={active}
-              initial={{ opacity: 0, y: 16 }}
+              key={current.key}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.35 }}
-              className="rounded-2xl border border-border bg-card/50 p-6 backdrop-blur sm:p-8"
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="grid gap-4 sm:gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start"
             >
-              <div className="flex items-center gap-4">
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/15 text-primary">
-                  <Icon className="h-6 w-6" />
+              <div>
+                <span className="font-mono-tech text-xs uppercase tracking-widest text-muted-foreground block mb-1 font-medium">
+                  {current.tagline}
                 </span>
-                <h3 className="font-display text-2xl font-semibold">{cap.title}</h3>
+                <h3 className="font-serif-editorial text-2xl sm:text-3xl font-normal text-foreground leading-tight">
+                  {current.title}
+                </h3>
+                <p className="mt-2 font-sans text-xs sm:text-sm leading-relaxed text-muted-foreground max-w-xl">
+                  {current.summary}
+                </p>
               </div>
-              <p className="mt-4 leading-relaxed text-muted-foreground">{cap.summary}</p>
 
-              <div className="mt-6 grid gap-6 sm:grid-cols-2">
-                <div>
-                  <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-primary/90">
-                    Applications
-                  </p>
-                  <ul className="space-y-2">
-                    {cap.applications.map((a) => (
-                      <li key={a} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-primary" />
-                        {a}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-primary/90">
-                    Connected technologies
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {cap.tech.map((t) => (
-                      <span
-                        key={t}
-                        className="rounded-full border border-border bg-background/50 px-3 py-1 text-xs text-muted-foreground"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
+              {/* Connected Applications & Technologies */}
+              <div className="border-t lg:border-t-0 lg:border-l border-white/10 pt-3 lg:pt-0 lg:pl-5">
+                <h4 className="font-mono-tech text-xs font-semibold uppercase tracking-widest text-[#8c9a72] mb-1.5">
+                  Core System Applications
+                </h4>
+                <ul className="space-y-1 font-sans text-xs text-muted-foreground mb-3">
+                  {current.applications.map((app) => (
+                    <li key={app} className="flex items-center gap-2">
+                      <span className="h-1.5 w-1.5 bg-primary" />
+                      <span className="text-foreground/90">{app}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <h4 className="font-mono-tech text-xs font-semibold uppercase tracking-widest text-[#8c9a72] mb-1.5">
+                  Connected Technologies
+                </h4>
+                <div className="flex flex-wrap gap-1.5">
+                  {current.tech.map((t) => (
+                    <span
+                      key={t}
+                      className="border border-white/10 bg-[#211a17] px-2.5 py-0.5 font-mono-tech text-xs text-muted-foreground"
+                    >
+                      {t}
+                    </span>
+                  ))}
                 </div>
               </div>
             </motion.div>
           </AnimatePresence>
 
-          <div className="mt-4 flex flex-wrap gap-2">
-            {CAPS.map((c, i) => (
-              <button
-                key={c.title}
-                type="button"
-                onClick={() => setActive(i)}
-                className={`rounded-full px-3 py-1.5 text-xs transition-colors ${
-                  active === i
-                    ? 'bg-primary text-primary-foreground'
-                    : 'border border-border text-muted-foreground hover:text-foreground'
-                }`}
-              >
-                {c.title}
-              </button>
-            ))}
+          {/* Simple Burnt Copper Arrow Control labelled NEXT -> */}
+          <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+            <span className="font-mono-tech text-xs text-white/40 uppercase tracking-widest hidden sm:inline-block">
+              Click arrow to transform capability →
+            </span>
+
+            <button
+              type="button"
+              onClick={handleNextDiscipline}
+              className="group flex items-center gap-3 border border-primary bg-primary px-6 py-2.5 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all cursor-pointer ml-auto"
+              aria-label="Advance to next capability"
+            >
+              <span>NEXT →</span>
+            </button>
           </div>
         </div>
-      </div>
+      </Reveal>
     </Section>
   )
 }

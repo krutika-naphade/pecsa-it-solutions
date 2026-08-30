@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils'
 export function Reveal({
   children,
   delay = 0,
-  y = 28,
+  y = 16,
   className,
   as = 'div',
 }: {
@@ -25,8 +25,8 @@ export function Reveal({
       className={className}
       initial={{ opacity: 0, y: reduce ? 0 : y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.7, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}
     </MotionTag>
@@ -35,19 +35,19 @@ export function Reveal({
 
 export const staggerParent: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.12 } },
+  show: { transition: { staggerChildren: 0.08 } },
 }
 
 export const staggerChild: Variants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 14 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] },
+    transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] },
   },
 }
 
-/* Section shell with consistent vertical rhythm + eyebrow index */
+/* Section shell with Deep Espresso Viewport Fit Chapter rhythm & clean fixed-navbar scroll offset */
 export function Section({
   id,
   index,
@@ -65,17 +65,22 @@ export function Section({
     <section
       id={id}
       className={cn(
-        'relative mx-auto w-full max-w-7xl scroll-mt-24 px-5 py-24 sm:px-8 md:py-32',
+        'relative mx-auto w-full max-w-7xl min-h-[calc(100vh-4rem)] flex flex-col justify-center scroll-mt-16 px-6 py-8 sm:px-10 md:py-12',
         className,
       )}
     >
-      <Reveal className="mb-10 flex items-center gap-4 md:mb-14">
-        <span className="font-display text-sm font-medium tabular-nums text-primary">
-          {index}
-        </span>
-        <span className="h-px w-10 bg-primary/40" aria-hidden="true" />
-        <span className="text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground">
-          {eyebrow}
+      <Reveal className="mb-4 flex items-center justify-between pb-1 md:mb-6">
+        <div className="flex items-center gap-4">
+          <span className="font-mono-tech text-xs tracking-widest text-primary uppercase font-bold">
+            [{index}]
+          </span>
+          <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
+          <span className="font-mono-tech text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground">
+            {eyebrow}
+          </span>
+        </div>
+        <span className="hidden font-mono-tech text-[10px] uppercase tracking-widest text-white/30 sm:inline-block">
+          PECSA IT SOLUTIONS
         </span>
       </Reveal>
       {children}
@@ -93,7 +98,7 @@ export function SectionTitle({
   return (
     <h2
       className={cn(
-        'font-display text-3xl font-semibold leading-[1.08] tracking-tight text-balance sm:text-4xl md:text-5xl',
+        'font-serif-editorial text-3xl font-normal leading-[1.05] tracking-tight text-foreground sm:text-5xl md:text-6xl max-w-4xl',
         className,
       )}
     >

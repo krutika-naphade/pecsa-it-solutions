@@ -24,60 +24,48 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --color-navy: var(--navy);
-  --color-electric: var(--electric);
-  --color-electric-soft: var(--electric-soft);
-  --color-pecsa-red: var(--pecsa-red);
+  --color-burnt-copper: var(--burnt-copper);
+  --color-muted-sage: var(--muted-sage);
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-space-grotesk), var(--font-inter), sans-serif;
-
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.4);
+  --font-display: var(--font-serif), Playfair Display, Georgia, serif;
+  --font-mono: var(--font-space-grotesk), monospace;
 }
 
 :root {
   color-scheme: dark;
-  --radius: 0.75rem;
+  --radius: 0rem;
 
-  /* Near-black with a faint navy cast */
-  --background: oklch(0.16 0.018 265);
-  --foreground: oklch(0.96 0.005 260);
+  /* Deep Espresso Editorial Palette (Deep Warm Espresso, Warm Cream, Burnt Copper & Muted Sage) */
+  --background: #211a17;
+  --foreground: #f3e9d8;
 
-  /* Charcoal / deep navy panels */
-  --card: oklch(0.2 0.022 264);
-  --card-foreground: oklch(0.96 0.005 260);
-  --popover: oklch(0.18 0.02 264);
-  --popover-foreground: oklch(0.96 0.005 260);
+  --card: #2b211d;
+  --card-foreground: #f3e9d8;
+  --popover: #2b211d;
+  --popover-foreground: #f3e9d8;
 
-  /* Electric blue as the brand primary */
-  --primary: oklch(0.68 0.16 245);
-  --primary-foreground: oklch(0.15 0.02 265);
+  /* Brand Accents */
+  --primary: #c65a3a; /* Burnt Copper Primary Accent */
+  --primary-foreground: #ffffff;
 
-  --secondary: oklch(0.26 0.025 264);
-  --secondary-foreground: oklch(0.95 0.005 260);
+  --secondary: #342924;
+  --secondary-foreground: #f3e9d8;
 
-  --muted: oklch(0.24 0.02 264);
-  --muted-foreground: oklch(0.72 0.02 262);
+  --muted: #28201c;
+  --muted-foreground: #b9aa98; /* Muted Warm Taupe/Beige */
 
-  --accent: oklch(0.28 0.03 262);
-  --accent-foreground: oklch(0.96 0.005 260);
+  --accent: #382d27;
+  --accent-foreground: #f3e9d8;
 
-  --destructive: oklch(0.6 0.22 25);
+  --destructive: #b91c1c;
 
-  --border: oklch(0.4 0.02 262 / 22%);
-  --input: oklch(0.5 0.02 262 / 30%);
-  --ring: oklch(0.68 0.16 245 / 60%);
+  --border: rgba(243, 233, 216, 0.1);
+  --input: rgba(243, 233, 216, 0.15);
+  --ring: #c65a3a;
 
-  /* Extended brand tokens */
-  --navy: oklch(0.24 0.045 258);
-  --electric: oklch(0.72 0.17 240);
-  --electric-soft: oklch(0.72 0.17 240 / 12%);
-  --pecsa-red: oklch(0.62 0.22 25);
+  --burnt-copper: #c65a3a;
+  --muted-sage: #8c9a72;
 }
 
 @layer base {
@@ -86,14 +74,17 @@
   }
   html {
     scroll-behavior: smooth;
+    background-color: var(--background);
+    color: var(--foreground);
   }
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: 'ss01', 'cv01';
+    font-feature-settings: 'ss01', 'cv01', 'zero';
+    overflow-x: hidden;
   }
   ::selection {
-    background: oklch(0.72 0.17 240 / 35%);
-    color: oklch(0.98 0 0);
+    background: rgba(198, 90, 58, 0.3);
+    color: #ffffff;
   }
 }
 
@@ -103,104 +94,20 @@
   }
 }
 
-/* ---------- Reusable premium utilities ---------- */
 @layer utilities {
-  .bg-grid {
-    background-image:
-      linear-gradient(to right, oklch(0.6 0.02 262 / 6%) 1px, transparent 1px),
-      linear-gradient(to bottom, oklch(0.6 0.02 262 / 6%) 1px, transparent 1px);
-    background-size: 48px 48px;
+  .font-serif-editorial {
+    font-family: var(--font-serif), Playfair Display, Georgia, serif;
   }
-  .bg-radial-glow {
-    background: radial-gradient(
-      ellipse 80% 60% at 70% 30%,
-      oklch(0.68 0.16 245 / 16%),
-      transparent 70%
-    );
+  .font-mono-tech {
+    font-family: var(--font-space-grotesk), monospace;
   }
-  .text-gradient {
-    background: linear-gradient(
-      100deg,
-      oklch(0.98 0 0),
-      oklch(0.82 0.09 245) 55%,
-      oklch(0.7 0.14 240)
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  .border-hairline {
+    border-color: rgba(243, 233, 216, 0.1);
   }
-  .glass {
-    background: oklch(0.22 0.022 264 / 55%);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+  .text-burnt-copper {
+    color: #c65a3a;
   }
-  .glow-ring {
-    box-shadow:
-      0 0 0 1px oklch(0.72 0.17 240 / 25%),
-      0 0 40px -8px oklch(0.72 0.17 240 / 45%);
-  }
-}
-
-/* Slow drift for orbital rings */
-@keyframes spin-slow {
-  to {
-    transform: rotate(360deg);
-  }
-}
-@keyframes spin-reverse {
-  to {
-    transform: rotate(-360deg);
-  }
-}
-@keyframes float-y {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-@keyframes pulse-node {
-  0%,
-  100% {
-    opacity: 0.5;
-    transform: scale(0.85);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.1);
-  }
-}
-@keyframes dash-move {
-  to {
-    stroke-dashoffset: -1000;
-  }
-}
-
-.animate-spin-slow {
-  animation: spin-slow 40s linear infinite;
-}
-.animate-spin-reverse {
-  animation: spin-reverse 55s linear infinite;
-}
-.animate-float {
-  animation: float-y 6s ease-in-out infinite;
-}
-.animate-pulse-node {
-  animation: pulse-node 3s ease-in-out infinite;
-}
-.animate-dash {
-  stroke-dasharray: 6 10;
-  animation: dash-move 30s linear infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-spin-slow,
-  .animate-spin-reverse,
-  .animate-float,
-  .animate-pulse-node,
-  .animate-dash {
-    animation: none !important;
+  .text-muted-sage {
+    color: #8c9a72;
   }
 }

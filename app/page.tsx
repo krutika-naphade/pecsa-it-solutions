@@ -1,4 +1,5 @@
 import { Nav } from '@/components/pecsa/nav'
+import { SideNav } from '@/components/pecsa/side-nav'
 import { Hero } from '@/components/pecsa/hero'
 import { WhoWeAre } from '@/components/pecsa/who-we-are'
 import { Expertise } from '@/components/pecsa/expertise'
@@ -17,6 +18,7 @@ export default function Page() {
   return (
     <main className="relative min-h-screen overflow-x-hidden">
       <Nav />
+      <SideNav />
       <Hero />
       <WhoWeAre />
       <Expertise />

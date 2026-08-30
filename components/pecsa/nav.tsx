@@ -1,7 +1,7 @@
 'use client'
 
 import { AnimatePresence, motion } from 'motion/react'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, ArrowUpRight } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 const LINKS = [
@@ -18,7 +18,7 @@ export function Nav() {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
+    const onScroll = () => setScrolled(window.scrollY > 20)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -36,48 +36,50 @@ export function Nav() {
       <div
         className={`transition-all duration-300 ${
           scrolled
-            ? 'glass border-b border-border/70'
-            : 'border-b border-transparent'
+            ? 'bg-[#211a17]/90 border-b border-white/10 backdrop-blur-md py-3.5'
+            : 'bg-transparent border-b border-white/5 py-5'
         }`}
       >
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 sm:px-10">
           <a
             href="#top"
-            className="group flex items-center gap-2.5"
+            className="group flex items-center gap-3"
             aria-label="PECSA IT Solutions home"
           >
-            <span className="relative flex h-8 w-8 items-center justify-center rounded-md bg-primary/15 ring-1 ring-primary/40">
-              <span className="h-2.5 w-2.5 rounded-sm bg-primary transition-transform duration-300 group-hover:rotate-45" />
+            <span className="flex h-7 w-7 items-center justify-center border border-white/20 bg-card text-xs font-mono-tech font-bold text-foreground transition-colors group-hover:border-primary group-hover:bg-primary group-hover:text-white">
+              P
             </span>
-            <span className="font-display text-sm font-semibold tracking-tight">
-              PECSA<span className="text-primary"> IT</span>
+            <span className="font-mono-tech text-sm font-semibold tracking-wider text-foreground">
+              PECSA <span className="text-primary font-normal">// IT</span>
             </span>
           </a>
 
-          <ul className="hidden items-center gap-7 lg:flex">
+          <ul className="hidden items-center gap-8 lg:flex">
             {LINKS.map((l) => (
               <li key={l.href}>
                 <a
                   href={l.href}
-                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  className="relative group text-xs font-mono-tech uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {l.label}
+                  <span className="absolute -bottom-1 left-0 h-[1px] w-0 bg-primary transition-all duration-300 group-hover:w-full" />
                 </a>
               </li>
             ))}
           </ul>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <a
               href="#connect"
-              className="hidden rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.03] sm:inline-flex"
+              className="hidden items-center gap-2 border border-primary bg-primary px-5 py-2 text-xs font-mono-tech uppercase tracking-widest text-white transition-all hover:bg-primary/90 sm:inline-flex"
             >
-              Start a Project
+              <span>Start a Project</span>
+              <ArrowUpRight className="h-3.5 w-3.5" />
             </a>
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-md ring-1 ring-border lg:hidden"
+              className="inline-flex h-9 w-9 items-center justify-center border border-white/20 bg-card text-foreground hover:border-primary lg:hidden"
               aria-label={open ? 'Close menu' : 'Open menu'}
               aria-expanded={open}
             >
@@ -90,34 +92,43 @@ export function Nav() {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="glass border-b border-border/70 lg:hidden"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: '100vh' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 top-[60px] z-40 bg-[#211a17] border-t border-white/10 px-6 py-10 lg:hidden overflow-y-auto"
           >
-            <ul className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-4 sm:px-8">
-              {LINKS.map((l) => (
-                <li key={l.href}>
-                  <a
-                    href={l.href}
-                    onClick={() => setOpen(false)}
-                    className="block rounded-lg px-3 py-2.5 text-base text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-                  >
-                    {l.label}
-                  </a>
-                </li>
-              ))}
-              <li className="mt-2">
+            <div className="flex flex-col gap-6 max-w-7xl mx-auto">
+              <span className="font-mono-tech text-xs uppercase tracking-widest text-primary">
+                Navigation Directory
+              </span>
+              <ul className="flex flex-col gap-4">
+                {LINKS.map((l, i) => (
+                  <li key={l.href}>
+                    <a
+                      href={l.href}
+                      onClick={() => setOpen(false)}
+                      className="group flex items-center justify-between border-b border-white/10 pb-3 font-serif-editorial text-3xl text-foreground hover:text-primary transition-colors"
+                    >
+                      <span>{l.label}</span>
+                      <span className="font-mono-tech text-xs text-muted-foreground group-hover:text-primary">
+                        0{i + 1}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-8 pt-4">
                 <a
                   href="#connect"
                   onClick={() => setOpen(false)}
-                  className="block rounded-lg bg-primary px-3 py-3 text-center text-base font-medium text-primary-foreground"
+                  className="flex items-center justify-center gap-2 w-full border border-primary bg-primary px-6 py-4 font-mono-tech text-xs uppercase tracking-widest text-white font-semibold"
                 >
-                  Start a Project
+                  <span>Start a Project</span>
+                  <ArrowUpRight className="h-4 w-4" />
                 </a>
-              </li>
-            </ul>
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

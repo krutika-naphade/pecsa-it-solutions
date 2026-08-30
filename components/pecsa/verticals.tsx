@@ -1,7 +1,7 @@
 'use client'
 
 import { AnimatePresence, motion } from 'motion/react'
-import { Building2, ClipboardCheck, Home, Factory, ArrowUpRight } from 'lucide-react'
+import { Building2, ClipboardCheck, Home, Factory } from 'lucide-react'
 import { useState } from 'react'
 import { Reveal, Section, SectionTitle } from './primitives'
 
@@ -38,125 +38,126 @@ const VERTICALS = [
 
 export function Verticals() {
   const [active, setActive] = useState(0)
+
+  const handleNextVertical = () => {
+    setActive((prev) => (prev + 1) % VERTICALS.length)
+  }
+
   const v = VERTICALS[active]
   const Icon = v.icon
 
   return (
-    <Section id="verticals" index="07" eyebrow="Vertical Strengths">
+    <Section id="verticals" index="06" eyebrow="Vertical Strengths">
       <Reveal>
         <SectionTitle>
-          Where we go <span className="text-primary">deep</span>
+          Where we go <span className="text-primary italic font-serif-editorial">deep</span>
         </SectionTitle>
       </Reveal>
       <Reveal delay={0.1}>
-        <p className="mt-6 max-w-2xl leading-relaxed text-muted-foreground">
-          Beyond individual capabilities, PECSA has developed real depth in a set
-          of domains. Select a vertical to see how our capabilities and
-          technologies come together to solve its specific problems.
+        <p className="mt-2.5 max-w-2xl font-sans text-sm sm:text-base leading-relaxed text-muted-foreground">
+          Beyond individual capabilities, PECSA has developed real depth in a set of domains. Use the arrow control to cycle through each vertical.
         </p>
       </Reveal>
 
-      <div className="mt-12 grid gap-6 lg:grid-cols-[minmax(0,320px)_1fr] lg:gap-10">
-        {/* Selector */}
-        <Reveal>
-          <div className="flex flex-col gap-2">
-            {VERTICALS.map((vert, i) => {
-              const VIcon = vert.icon
-              const selected = active === i
-              return (
+      {/* ONE INTERACTIVE COMPOSITION (COMPACT VERTICAL RHYTHM) */}
+      <Reveal delay={0.15}>
+        <div className="mt-5 border border-white/10 bg-[#2b211d] p-5 sm:p-8 relative shadow-2xl">
+          {/* Header */}
+          <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-5">
+            <span className="font-mono-tech text-xs uppercase tracking-widest text-[#8c9a72] font-bold">
+              ACTIVE SECTOR [0{active + 1} / 04]
+            </span>
+
+            {/* Dots */}
+            <div className="flex items-center gap-2">
+              {VERTICALS.map((vert, index) => (
                 <button
                   key={vert.name}
                   type="button"
-                  onClick={() => setActive(i)}
-                  aria-pressed={selected}
-                  className={`group flex items-center gap-3 rounded-xl border px-4 py-4 text-left transition-all ${
-                    selected
-                      ? 'border-primary/60 bg-primary/10 glow-ring'
-                      : 'border-border bg-card/40 hover:border-primary/30'
+                  onClick={() => setActive(index)}
+                  className={`h-1.5 transition-all cursor-pointer ${
+                    active === index ? 'w-6 bg-primary' : 'w-2 bg-white/20 hover:bg-white/40'
                   }`}
-                >
-                  <span
-                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg transition-colors ${
-                      selected ? 'bg-primary/20 text-primary' : 'bg-secondary text-muted-foreground'
-                    }`}
-                  >
-                    <VIcon className="h-5 w-5" />
-                  </span>
-                  <span className={`text-sm font-medium ${selected ? 'text-foreground' : 'text-muted-foreground'}`}>
-                    {vert.name}
-                  </span>
-                  <ArrowUpRight
-                    className={`ml-auto h-4 w-4 shrink-0 text-primary transition-opacity ${
-                      selected ? 'opacity-100' : 'opacity-0 group-hover:opacity-60'
-                    }`}
-                  />
-                </button>
-              )
-            })}
-          </div>
-        </Reveal>
-
-        {/* Detail */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={active}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.4 }}
-            className="relative overflow-hidden rounded-2xl border border-border bg-card/50 p-6 backdrop-blur sm:p-8"
-          >
-            <div className="pointer-events-none absolute right-0 top-0 h-48 w-48 bg-radial-glow" />
-            <div className="flex items-center gap-4">
-              <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/15 text-primary">
-                <Icon className="h-7 w-7" />
-              </span>
-              <h3 className="font-display text-2xl font-semibold sm:text-3xl">{v.name}</h3>
+                  aria-label={`Jump to ${vert.name}`}
+                />
+              ))}
             </div>
-            <p className="mt-5 max-w-2xl leading-relaxed text-muted-foreground">{v.body}</p>
+          </div>
 
-            <div className="mt-8 grid gap-8 sm:grid-cols-2">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={v.name}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start min-h-[160px]"
+            >
               <div>
-                <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-primary/90">
-                  Relevant capabilities
+                <div className="flex items-center gap-2.5 mb-2">
+                  <span className="flex h-8 w-8 items-center justify-center border border-primary bg-primary/10 text-primary">
+                    <Icon className="h-4 w-4" />
+                  </span>
+                  <span className="font-mono-tech text-xs uppercase tracking-widest text-[#8c9a72] font-semibold">
+                    SECTOR DOMAIN 0{active + 1}
+                  </span>
+                </div>
+                <h3 className="font-serif-editorial text-2xl sm:text-4xl font-normal text-foreground">
+                  {v.name}
+                </h3>
+                <p className="mt-3 font-sans text-xs sm:text-sm leading-relaxed text-muted-foreground max-w-xl">
+                  {v.body}
                 </p>
-                <ul className="space-y-2.5">
-                  {v.capabilities.map((c, i) => (
-                    <motion.li
-                      key={c}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.1 + i * 0.06 }}
-                      className="flex items-center gap-2.5 text-sm text-muted-foreground"
-                    >
-                      <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                      {c}
-                    </motion.li>
+              </div>
+
+              {/* Capabilities & Technologies */}
+              <div className="border-t lg:border-t-0 lg:border-l border-white/10 pt-5 lg:pt-0 lg:pl-8">
+                <h4 className="font-mono-tech text-xs font-semibold uppercase tracking-widest text-[#8c9a72] mb-3">
+                  Relevant Capabilities
+                </h4>
+                <ul className="space-y-2 font-sans text-xs sm:text-sm text-muted-foreground mb-6">
+                  {v.capabilities.map((c) => (
+                    <li key={c} className="flex items-center gap-2.5">
+                      <span className="h-1.5 w-1.5 bg-primary" />
+                      <span className="text-foreground/90">{c}</span>
+                    </li>
                   ))}
                 </ul>
-              </div>
-              <div>
-                <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-primary/90">
-                  Connected technology
-                </p>
+
+                <h4 className="font-mono-tech text-xs font-semibold uppercase tracking-widest text-[#8c9a72] mb-3">
+                  Connected Technology
+                </h4>
                 <div className="flex flex-wrap gap-2">
-                  {v.tech.map((t, i) => (
-                    <motion.span
+                  {v.tech.map((t) => (
+                    <span
                       key={t}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.15 + i * 0.06 }}
-                      className="rounded-full border border-border bg-background/50 px-3 py-1.5 text-xs text-muted-foreground"
+                      className="border border-white/10 bg-[#211a17] px-3 py-1 font-mono-tech text-xs text-muted-foreground"
                     >
                       {t}
-                    </motion.span>
+                    </span>
                   ))}
                 </div>
               </div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-      </div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Arrow Control */}
+          <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+            <span className="font-mono-tech text-xs text-white/40 uppercase tracking-widest hidden sm:inline-block">
+              Click arrow to cycle sector →
+            </span>
+
+            <button
+              type="button"
+              onClick={handleNextVertical}
+              className="group flex items-center gap-3 border border-primary bg-primary px-7 py-3 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all cursor-pointer ml-auto"
+              aria-label="Cycle to next sector"
+            >
+              <span>NEXT →</span>
+            </button>
+          </div>
+        </div>
+      </Reveal>
     </Section>
   )
 }

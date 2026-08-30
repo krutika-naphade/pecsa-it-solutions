@@ -1,9 +1,9 @@
 'use client'
 
 import { AnimatePresence, motion } from 'motion/react'
-import { CheckCircle2, Send } from 'lucide-react'
+import { CheckCircle2, ArrowRight } from 'lucide-react'
 import { useState, type FormEvent } from 'react'
-import { Reveal, Section, SectionTitle } from './primitives'
+import { Reveal, Section } from './primitives'
 
 const INTERESTS = [
   'Software Development',
@@ -62,37 +62,35 @@ export function Connect() {
   }
 
   const fieldClass =
-    'w-full rounded-xl border border-border bg-background/60 px-4 py-3 text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary/60 focus:ring-1 focus:ring-primary/40'
+    'w-full border border-white/15 bg-[#211a17] px-4 py-3.5 text-foreground outline-none font-sans text-sm transition-all placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-primary'
 
   return (
-    <Section id="connect" index="12" eyebrow="Let's Connect">
-      <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+    <Section id="connect" index="11" eyebrow="Let's Connect">
+      <div className="grid gap-16 lg:grid-cols-[1fr_1.1fr] lg:items-start">
         <div>
           <Reveal>
-            <SectionTitle>
-              Have a problem worth <span className="text-primary">solving?</span>
-            </SectionTitle>
+            <h2 className="font-serif-editorial text-5xl sm:text-6xl md:text-7xl font-normal leading-[0.98] text-foreground">
+              Have a problem worth{' '}
+              <span className="text-primary italic font-serif-editorial">solving?</span>
+            </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mt-6 max-w-md leading-relaxed text-muted-foreground">
+            <p className="mt-8 font-sans text-base leading-relaxed text-muted-foreground max-w-lg">
               Tell us what you are trying to achieve. We will get back to you to
               explore whether — and how — technology can help. No obligation,
               just a genuine conversation about your goal.
             </p>
           </Reveal>
           <Reveal delay={0.2}>
-            <div className="mt-10 flex flex-col gap-4">
+            <div className="mt-10 flex flex-col gap-4 border-l-2 border-primary pl-6">
               {[
                 'We read every message ourselves.',
                 'We reply with honest, practical direction.',
                 'If technology is not the answer, we will say so.',
               ].map((line) => (
-                <div key={line} className="flex items-start gap-3">
-                  <span
-                    className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary"
-                    aria-hidden="true"
-                  />
-                  <p className="text-sm text-foreground/80">{line}</p>
+                <div key={line} className="flex items-center gap-3">
+                  <span className="h-1.5 w-1.5 bg-primary" aria-hidden="true" />
+                  <p className="font-mono-tech text-xs uppercase tracking-wider text-white/80 font-medium">{line}</p>
                 </div>
               ))}
             </div>
@@ -100,7 +98,16 @@ export function Connect() {
         </div>
 
         <Reveal delay={0.15}>
-          <div className="relative rounded-2xl border border-border bg-card/60 p-6 backdrop-blur sm:p-8">
+          <div className="border border-white/10 bg-[#2b211d] p-8 sm:p-10 shadow-2xl">
+            <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+              <span className="font-mono-tech text-xs uppercase tracking-widest text-primary font-bold">
+                PROJECT INTAKE
+              </span>
+              <span className="font-mono-tech text-xs text-white/40">
+                DIRECT CONTACT
+              </span>
+            </div>
+
             <AnimatePresence mode="wait">
               {sent ? (
                 <motion.div
@@ -111,13 +118,13 @@ export function Connect() {
                   transition={{ duration: 0.4 }}
                   className="flex flex-col items-center py-10 text-center"
                 >
-                  <span className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/15 text-primary">
+                  <span className="flex h-16 w-16 items-center justify-center border border-primary bg-primary/10 text-primary">
                     <CheckCircle2 className="h-8 w-8" />
                   </span>
-                  <h3 className="mt-6 font-display text-2xl font-semibold">
-                    Message received
+                  <h3 className="mt-6 font-serif-editorial text-3xl font-normal text-foreground">
+                    Message Received
                   </h3>
-                  <p className="mt-3 max-w-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-3 max-w-sm font-sans text-sm leading-relaxed text-muted-foreground">
                     Thanks, {values.name.split(' ')[0] || 'there'}. We have your
                     note about {values.interest.toLowerCase()} and will get back
                     to you to explore how we can help.
@@ -125,9 +132,9 @@ export function Connect() {
                   <button
                     type="button"
                     onClick={reset}
-                    className="mt-8 rounded-full border border-primary/50 px-6 py-2.5 text-sm font-medium text-primary transition-colors hover:bg-primary/10"
+                    className="mt-8 border border-primary bg-primary px-6 py-3 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all cursor-pointer"
                   >
-                    Send another message
+                    Send Another Message
                   </button>
                 </motion.div>
               ) : (
@@ -139,9 +146,9 @@ export function Connect() {
                   transition={{ duration: 0.3 }}
                   onSubmit={handleSubmit}
                   noValidate
-                  className="flex flex-col gap-5"
+                  className="flex flex-col gap-6"
                 >
-                  <div className="grid gap-5 sm:grid-cols-2">
+                  <div className="grid gap-6 sm:grid-cols-2">
                     <Field label="Name" error={errors.name}>
                       <input
                         className={fieldClass}
@@ -183,7 +190,7 @@ export function Connect() {
                         What is this about?
                       </option>
                       {INTERESTS.map((i) => (
-                        <option key={i} value={i} className="bg-background">
+                        <option key={i} value={i} className="bg-[#211a17]">
                           {i}
                         </option>
                       ))}
@@ -202,10 +209,10 @@ export function Connect() {
 
                   <button
                     type="submit"
-                    className="glow-ring mt-1 flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 font-medium text-primary-foreground transition-transform hover:scale-[1.02] active:scale-100"
+                    className="group mt-2 flex items-center justify-center gap-3 border border-primary bg-primary px-8 py-4 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all cursor-pointer"
                   >
-                    Send Message
-                    <Send className="h-4 w-4" />
+                    <span>Send Message</span>
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </button>
                 </motion.form>
               )}
@@ -230,16 +237,16 @@ function Field({
 }) {
   return (
     <label className="flex flex-col gap-2">
-      <span className="flex items-center justify-between text-sm font-medium text-foreground/90">
+      <span className="flex items-center justify-between font-mono-tech text-xs uppercase tracking-wider text-foreground font-medium">
         {label}
-        {hint && <span className="text-xs font-normal text-muted-foreground">{hint}</span>}
+        {hint && <span className="text-[10px] text-muted-foreground font-normal">{hint}</span>}
       </span>
       {children}
       {error && (
         <motion.span
           initial={{ opacity: 0, y: -4 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-xs text-destructive"
+          className="font-mono-tech text-[11px] text-primary"
         >
           {error}
         </motion.span>
