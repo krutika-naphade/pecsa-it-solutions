@@ -3,19 +3,23 @@
 import { AnimatePresence, motion } from 'motion/react'
 import { Menu, X, ArrowUpRight } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 const LINKS = [
-  { label: 'Who We Are', href: '#who-we-are' },
-  { label: 'Expertise', href: '#expertise' },
-  { label: 'Innovation', href: '#innovation' },
-  { label: 'Products', href: '#products' },
-  { label: 'How We Work', href: '#how-we-work' },
-  { label: 'Projects', href: '#projects' },
+  { label: 'HOME', href: '/' },
+  { label: 'ABOUT', href: '/about' },
+  { label: 'SOLUTIONS', href: '/solutions' },
+  { label: 'SERVICES', href: '/services' },
+  { label: 'INDUSTRIES', href: '/industries' },
+  { label: 'PROJECTS', href: '/projects' },
+  { label: 'CONTACT', href: '/contact' },
 ]
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -41,8 +45,8 @@ export function Nav() {
         }`}
       >
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 sm:px-10">
-          <a
-            href="#top"
+          <Link
+            href="/"
             className="group flex items-center gap-3"
             aria-label="PECSA IT Solutions home"
           >
@@ -52,30 +56,39 @@ export function Nav() {
             <span className="font-mono-tech text-sm font-semibold tracking-wider text-foreground">
               PECSA <span className="text-primary font-normal">// IT</span>
             </span>
-          </a>
+          </Link>
 
-          <ul className="hidden items-center gap-8 lg:flex">
-            {LINKS.map((l) => (
-              <li key={l.href}>
-                <a
-                  href={l.href}
-                  className="relative group text-xs font-mono-tech uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  {l.label}
-                  <span className="absolute -bottom-1 left-0 h-[1px] w-0 bg-primary transition-all duration-300 group-hover:w-full" />
-                </a>
-              </li>
-            ))}
+          <ul className="hidden items-center gap-7 lg:flex">
+            {LINKS.map((l) => {
+              const isActive = pathname === l.href
+              return (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    className={`relative group text-xs font-mono-tech uppercase tracking-widest transition-colors ${
+                      isActive ? 'text-primary font-semibold' : 'text-muted-foreground hover:text-foreground'
+                    }`}
+                  >
+                    {l.label}
+                    <span
+                      className={`absolute -bottom-1 left-0 h-[1px] bg-primary transition-all duration-300 ${
+                        isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                      }`}
+                    />
+                  </Link>
+                </li>
+              )
+            })}
           </ul>
 
           <div className="flex items-center gap-4">
-            <a
-              href="#connect"
+            <Link
+              href="/contact"
               className="hidden items-center gap-2 border border-primary bg-primary px-5 py-2 text-xs font-mono-tech uppercase tracking-widest text-white transition-all hover:bg-primary/90 sm:inline-flex"
             >
               <span>Start a Project</span>
               <ArrowUpRight className="h-3.5 w-3.5" />
-            </a>
+            </Link>
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
@@ -103,30 +116,35 @@ export function Nav() {
                 Navigation Directory
               </span>
               <ul className="flex flex-col gap-4">
-                {LINKS.map((l, i) => (
-                  <li key={l.href}>
-                    <a
-                      href={l.href}
-                      onClick={() => setOpen(false)}
-                      className="group flex items-center justify-between border-b border-white/10 pb-3 font-serif-editorial text-3xl text-foreground hover:text-primary transition-colors"
-                    >
-                      <span>{l.label}</span>
-                      <span className="font-mono-tech text-xs text-muted-foreground group-hover:text-primary">
-                        0{i + 1}
-                      </span>
-                    </a>
-                  </li>
-                ))}
+                {LINKS.map((l, i) => {
+                  const isActive = pathname === l.href
+                  return (
+                    <li key={l.href}>
+                      <Link
+                        href={l.href}
+                        onClick={() => setOpen(false)}
+                        className={`group flex items-center justify-between border-b border-white/10 pb-3 font-serif-editorial text-3xl transition-colors ${
+                          isActive ? 'text-primary font-medium' : 'text-foreground hover:text-primary'
+                        }`}
+                      >
+                        <span>{l.label}</span>
+                        <span className="font-mono-tech text-xs text-muted-foreground group-hover:text-primary">
+                          0{i + 1}
+                        </span>
+                      </Link>
+                    </li>
+                  )
+                })}
               </ul>
               <div className="mt-8 pt-4">
-                <a
-                  href="#connect"
+                <Link
+                  href="/contact"
                   onClick={() => setOpen(false)}
                   className="flex items-center justify-center gap-2 w-full border border-primary bg-primary px-6 py-4 font-mono-tech text-xs uppercase tracking-widest text-white font-semibold"
                 >
                   <span>Start a Project</span>
                   <ArrowUpRight className="h-4 w-4" />
-                </a>
+                </Link>
               </div>
             </div>
           </motion.div>
@@ -135,3 +153,4 @@ export function Nav() {
     </header>
   )
 }
+

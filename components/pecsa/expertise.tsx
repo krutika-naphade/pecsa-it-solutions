@@ -1,50 +1,65 @@
 'use client'
 
 import { AnimatePresence, motion } from 'motion/react'
-import { Code2, Cpu, Workflow, Network } from 'lucide-react'
+import { Code2, Cpu, Workflow, Network, Bot, Globe } from 'lucide-react'
 import { useState } from 'react'
+import Link from 'next/link'
 import { Reveal, Section } from './primitives'
 
-const EXPERTISE_DISCIPLINES = [
+const CAPABILITIES_LIST = [
   {
     id: '01',
     key: 'SOFTWARE',
-    title: 'SOFTWARE DEVELOPMENT & DIGITAL SURFACES',
+    title: 'Software Development',
     icon: Code2,
-    tagline: 'Custom platforms, web and internal systems built for real operations.',
-    summary: 'The foundation of most solutions — enterprise platforms, internal portals, APIs, and scalable web services engineered for speed, security, and high reliability.',
-    applications: ['Enterprise platforms', 'Internal tools & portals', 'APIs & integrations', 'SaaS products & digital UX'],
-    tech: ['TypeScript', 'React', 'Next.js', 'Node.js', 'REST & GraphQL APIs', 'Cloud hosting'],
+    summary: 'Custom applications and business systems designed around your workflows.',
+    applications: ['Custom Web & Desktop Applications', 'Enterprise Business Systems', 'Workflow-Specific Tools', 'API & Database Integration'],
+    tech: ['React', 'Next.js', 'Node.js', 'Python', 'PHP', 'PostgreSQL'],
   },
   {
     id: '02',
-    key: 'INTELLIGENCE',
-    title: 'AI & INTELLIGENT LOGIC',
+    key: 'AI',
+    title: 'AI Solutions',
     icon: Cpu,
-    tagline: 'Applied intelligence that supports decisions and automates judgement.',
-    summary: 'How we add intelligence — from machine learning models to language model copilots — always anchored on a concrete business decision or operational bottleneck.',
-    applications: ['Document & data understanding', 'Prediction & classification', 'Assistants & copilots', 'Computer vision'],
-    tech: ['Python', 'Machine learning models', 'LLMs', 'Data pipelines', 'Inference APIs'],
+    summary: 'AI-powered applications and intelligent workflows that help teams work smarter.',
+    applications: ['Intelligent Automation Workflows', 'LLMs & AI Agents', 'Machine Learning Models', 'Computer Vision Systems'],
+    tech: ['LLMs', 'Machine Learning', 'AI Agents', 'Computer Vision', 'Python'],
   },
   {
     id: '03',
     key: 'AUTOMATION',
-    title: 'WORKFLOW & PROCESS ORCHESTRATION',
+    title: 'Automation',
     icon: Workflow,
-    tagline: 'Removing repetitive, manual work from day-to-day operations.',
-    summary: 'Connecting systems, orchestrating multi-step workflows, and reacting to operational events without human intervention.',
-    applications: ['Workflow automation', 'Process orchestration', 'Reporting & alerts', 'System-to-system flows'],
-    tech: ['Workflow engines', 'Event pipelines', 'Schedulers', 'Integration connectors', 'Rules engines'],
+    summary: 'Transform repetitive processes into efficient, connected workflows.',
+    applications: ['Workflow Automation', 'System & API Integration', 'Robotic Process Automation (RPA)', 'Operational Task Reduction'],
+    tech: ['Workflow Automation', 'API Integration', 'RPA', 'Event Pipelines'],
   },
   {
     id: '04',
-    key: 'PHYSICAL SYSTEMS',
-    title: 'IOT SENSORS & ROBOTICS CONTROL',
+    key: 'IOT',
+    title: 'IoT Solutions',
     icon: Network,
-    tagline: 'Connecting the physical world to software dashboards & control systems.',
-    summary: 'Where software meets physical machinery — capturing real-time telemetry from sensors and sending control signals to physical automation and robotics.',
-    applications: ['Sensor networks', 'Remote monitoring', 'Physical automation', 'Industrial control systems'],
-    tech: ['IoT gateways', 'Edge compute', 'Sensors & actuation', 'Controllers', 'Time-series data'],
+    summary: 'Connect devices, data, and software to monitor and control real-world operations.',
+    applications: ['Sensor Data Collection', 'Real-Time Telemetry & Monitoring', 'Remote Asset Management', 'Cloud IoT Dashboards'],
+    tech: ['Sensors', 'Embedded Systems', 'Cloud IoT', 'Real-Time Monitoring'],
+  },
+  {
+    id: '05',
+    key: 'ROBOTICS',
+    title: 'Robotics',
+    icon: Bot,
+    summary: 'Combine hardware, software, sensors, and intelligence to automate physical processes.',
+    applications: ['Hardware & Sensor Integration', 'Physical Process Automation', 'Embedded Controllers', 'Autonomous Task Systems'],
+    tech: ['Embedded Systems', 'Sensors', 'Control Systems', 'Automation'],
+  },
+  {
+    id: '06',
+    key: 'DIGITAL',
+    title: 'Digital Solutions',
+    icon: Globe,
+    summary: 'High-performance websites and digital experiences built to support business growth.',
+    applications: ['High-Performance Websites', 'Web Portals & Portfolios', 'Lead Generation Platforms', 'Digital Experience UX'],
+    tech: ['Next.js', 'React', 'Tailwind / Vanilla CSS', 'SEO Optimization'],
   },
 ]
 
@@ -52,60 +67,60 @@ export function Expertise() {
   const [active, setActive] = useState(0)
 
   const handleNextDiscipline = () => {
-    setActive((prev) => (prev + 1) % EXPERTISE_DISCIPLINES.length)
+    setActive((prev) => (prev + 1) % CAPABILITIES_LIST.length)
   }
 
-  const current = EXPERTISE_DISCIPLINES[active]
+  const current = CAPABILITIES_LIST[active]
   const Icon = current.icon
 
   return (
-    <Section id="expertise" index="02" eyebrow="Our Expertise">
+    <Section id="expertise" index="02" eyebrow="What We Do">
       <Reveal>
         <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.02] tracking-tight text-foreground max-w-5xl">
-          ONE PROBLEM.{' '}
+          One Technology Partner.{' '}
           <span className="text-primary italic font-serif-editorial">
-            MANY WAYS TO ENGINEER THE ANSWER.
+            Multiple Possibilities.
           </span>
         </h2>
       </Reveal>
       <Reveal delay={0.1}>
-        <p className="mt-1.5 sm:mt-2 max-w-2xl font-sans text-xs sm:text-sm leading-relaxed text-muted-foreground">
-          Our capabilities are not isolated services — they interconnect. A
-          single solution might combine software, AI and automation, or link IoT
-          sensors to robotics on a factory floor. Use the arrow control to transition between capabilities.
+        <p className="mt-4 max-w-3xl font-sans text-base sm:text-lg leading-relaxed text-muted-foreground">
+          Businesses don't always need more technology. They need the right technology.
+          <br /><br />
+          At PECSA, we combine multiple technology capabilities to create solutions around your actual business requirements.
         </p>
       </Reveal>
 
-      {/* ONE IMMERSIVE CAPABILITY EXPLORER (HIGH VIEWPORT POSITIONING) */}
+      {/* ONE IMMERSIVE CAPABILITY EXPLORER */}
       <Reveal delay={0.15}>
-        <div className="mt-3 sm:mt-4 border border-white/10 bg-[#2b211d] p-4 sm:p-5 md:p-6 relative shadow-2xl">
+        <div className="mt-5 border border-white/10 bg-[#2b211d] p-5 sm:p-6 md:p-8 relative shadow-2xl">
           {/* Active Capability Header */}
-          <div className="flex items-center justify-between border-b border-white/10 pb-2.5 mb-3">
-            <div className="flex items-center gap-2.5">
-              <span className="flex h-7 w-7 items-center justify-center border border-primary bg-primary/10 text-primary">
-                <Icon className="h-3.5 w-3.5" />
+          <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
+            <div className="flex items-center gap-3">
+              <span className="flex h-8 w-8 items-center justify-center border border-primary bg-primary/10 text-primary">
+                <Icon className="h-4 w-4" />
               </span>
               <div>
                 <span className="font-mono-tech text-xs uppercase tracking-widest text-[#8c9a72] font-bold">
-                  CAPABILITY [{current.id} / 04]
+                  CAPABILITY [{current.id} / 06]
                 </span>
-                <span className="font-mono-tech text-xs text-white/40 block mt-0.5 font-medium">
+                <span className="font-mono-tech text-xs text-white/40 block font-medium">
                   {current.key}
                 </span>
               </div>
             </div>
 
             {/* Progress Bar Dots */}
-            <div className="flex items-center gap-2 font-mono-tech text-xs text-muted-foreground">
-              {EXPERTISE_DISCIPLINES.map((d, index) => (
+            <div className="flex items-center gap-1.5 font-mono-tech text-xs text-muted-foreground">
+              {CAPABILITIES_LIST.map((d, index) => (
                 <button
                   key={d.key}
                   type="button"
                   onClick={() => setActive(index)}
                   className={`h-1.5 transition-all cursor-pointer ${
-                    active === index ? 'w-8 bg-primary' : 'w-2 bg-white/20 hover:bg-white/40'
+                    active === index ? 'w-6 bg-primary' : 'w-2 bg-white/20 hover:bg-white/40'
                   }`}
-                  aria-label={`Jump to ${d.key}`}
+                  aria-label={`Jump to ${d.title}`}
                 />
               ))}
             </div>
@@ -119,26 +134,35 @@ export function Expertise() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="grid gap-4 sm:gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start"
+              className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start"
             >
               <div>
-                <span className="font-mono-tech text-xs uppercase tracking-widest text-muted-foreground block mb-1 font-medium">
-                  {current.tagline}
+                <span className="font-mono-tech text-xs uppercase tracking-widest text-primary block mb-2 font-semibold">
+                  0{active + 1} — {current.title}
                 </span>
-                <h3 className="font-serif-editorial text-2xl sm:text-3xl font-normal text-foreground leading-tight">
+                <h3 className="font-serif-editorial text-2xl sm:text-4xl font-normal text-foreground leading-tight">
                   {current.title}
                 </h3>
-                <p className="mt-2 font-sans text-xs sm:text-sm leading-relaxed text-muted-foreground max-w-xl">
+                <p className="mt-3 font-sans text-sm sm:text-base leading-relaxed text-muted-foreground max-w-xl">
                   {current.summary}
                 </p>
+                <div className="mt-6">
+                  <Link
+                    href="/services"
+                    className="inline-flex items-center gap-2 border border-white/20 bg-[#211a17] px-4 py-2 font-mono-tech text-xs uppercase tracking-widest text-foreground hover:border-primary transition-colors"
+                  >
+                    <span>Explore Services</span>
+                    <span className="text-primary">→</span>
+                  </Link>
+                </div>
               </div>
 
               {/* Connected Applications & Technologies */}
-              <div className="border-t lg:border-t-0 lg:border-l border-white/10 pt-3 lg:pt-0 lg:pl-5">
-                <h4 className="font-mono-tech text-xs font-semibold uppercase tracking-widest text-[#8c9a72] mb-1.5">
-                  Core System Applications
+              <div className="border-t lg:border-t-0 lg:border-l border-white/10 pt-4 lg:pt-0 lg:pl-6">
+                <h4 className="font-mono-tech text-xs font-semibold uppercase tracking-widest text-[#8c9a72] mb-2">
+                  Key Deliverables
                 </h4>
-                <ul className="space-y-1 font-sans text-xs text-muted-foreground mb-3">
+                <ul className="space-y-1.5 font-sans text-xs sm:text-sm text-muted-foreground mb-4">
                   {current.applications.map((app) => (
                     <li key={app} className="flex items-center gap-2">
                       <span className="h-1.5 w-1.5 bg-primary" />
@@ -147,14 +171,14 @@ export function Expertise() {
                   ))}
                 </ul>
 
-                <h4 className="font-mono-tech text-xs font-semibold uppercase tracking-widest text-[#8c9a72] mb-1.5">
-                  Connected Technologies
+                <h4 className="font-mono-tech text-xs font-semibold uppercase tracking-widest text-[#8c9a72] mb-2">
+                  Technologies
                 </h4>
                 <div className="flex flex-wrap gap-1.5">
                   {current.tech.map((t) => (
                     <span
                       key={t}
-                      className="border border-white/10 bg-[#211a17] px-2.5 py-0.5 font-mono-tech text-xs text-muted-foreground"
+                      className="border border-white/10 bg-[#211a17] px-2.5 py-1 font-mono-tech text-xs text-muted-foreground"
                     >
                       {t}
                     </span>
@@ -164,10 +188,10 @@ export function Expertise() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Simple Burnt Copper Arrow Control labelled NEXT -> */}
-          <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+          {/* Arrow Control */}
+          <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
             <span className="font-mono-tech text-xs text-white/40 uppercase tracking-widest hidden sm:inline-block">
-              Click arrow to transform capability →
+              Click arrow to transition capability →
             </span>
 
             <button
@@ -184,3 +208,4 @@ export function Expertise() {
     </Section>
   )
 }
+

@@ -1,40 +1,46 @@
 'use client'
 
 import { AnimatePresence, motion } from 'motion/react'
-import { Compass, PenTool, Hammer, Rocket, HeartHandshake } from 'lucide-react'
+import { Compass, FileCode2, PenTool, Hammer, Rocket, TrendingUp } from 'lucide-react'
 import { useState } from 'react'
-import { Reveal, Section, SectionTitle } from './primitives'
+import { Reveal, Section } from './primitives'
 
 const STAGES = [
   {
+    step: '01',
     icon: Compass,
-    label: 'DISCOVERY',
-    summary: 'Understand the problem, people and constraints.',
-    body: 'We sit with the business to map how work happens today, where the friction is, and what success would actually look like. Discovery produces a shared, honest understanding of the problem before anything is committed to.',
+    label: 'Discover',
+    body: 'We understand your business, users, challenges, and goals.',
   },
   {
+    step: '02',
+    icon: FileCode2,
+    label: 'Define',
+    body: 'We identify the right solution, technology stack, features, and roadmap.',
+  },
+  {
+    step: '03',
     icon: PenTool,
-    label: 'BLUEPRINT',
-    summary: 'Turn understanding into a concrete plan.',
-    body: 'We translate the problem into an architecture and a plan: what to build, in what order, with what technology, and how it integrates with existing systems. The blueprint makes scope, risk and sequencing explicit.',
+    label: 'Design',
+    body: 'We create intuitive experiences and a scalable technical architecture.',
   },
   {
+    step: '04',
     icon: Hammer,
-    label: 'BUILD',
-    summary: 'Engineer the solution in disciplined increments.',
-    body: 'We build in validated increments, keeping the system robust and testable throughout. Regular checkpoints keep the work aligned with the business intent, so there are no surprises at the end.',
+    label: 'Build',
+    body: 'Our team develops, integrates, tests, and refines the solution.',
   },
   {
+    step: '05',
     icon: Rocket,
-    label: 'DEPLOYMENT',
-    summary: 'Move carefully into live operations.',
-    body: 'We roll the solution into real use with care — integrating, supporting the people who use it, and monitoring behaviour. Deployment is treated as a controlled transition, not a hand-off.',
+    label: 'Launch',
+    body: 'We deploy your solution and make sure everything works as intended.',
   },
   {
-    icon: HeartHandshake,
-    label: 'IMPROVEMENT',
-    summary: 'Keep improving as the business evolves.',
-    body: 'We stay involved after launch, measuring outcomes and refining the system over time. Our aim is a long-term partnership where technology keeps pace with the business rather than ageing in place.',
+    step: '06',
+    icon: TrendingUp,
+    label: 'Evolve',
+    body: 'We continuously improve and scale the solution as your business grows.',
   },
 ]
 
@@ -52,32 +58,32 @@ export function HowWeWork() {
     <Section id="how-we-work" index="05" eyebrow="How We Work">
       <div className="max-w-3xl">
         <Reveal>
-          <SectionTitle>
-            A journey from idea to{' '}
-            <span className="text-primary italic font-serif-editorial">lasting partnership</span>
-          </SectionTitle>
+          <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.02] tracking-tight text-foreground">
+            From Problem to{' '}
+            <span className="text-primary italic font-serif-editorial">Possibility.</span>
+          </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="mt-2.5 font-sans text-sm sm:text-base leading-relaxed text-muted-foreground">
-            Every engagement follows a deliberate path designed to reduce risk and ensure what we build keeps delivering value long after launch.
+          <p className="mt-3 font-sans text-sm sm:text-base leading-relaxed text-muted-foreground">
+            Our structured 6-stage engineering process ensures every project moves smoothly from initial vision to measurable business value.
           </p>
         </Reveal>
       </div>
 
-      {/* CONTINUOUS VISUAL JOURNEY (COMPACT VERTICAL RHYTHM) */}
+      {/* CONTINUOUS VISUAL JOURNEY */}
       <Reveal delay={0.15}>
         <div className="mt-5 border border-white/10 bg-[#2b211d] p-5 sm:p-8 relative shadow-2xl">
           {/* Header Progress */}
           <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-5">
             <span className="font-mono-tech text-xs uppercase tracking-widest text-[#8c9a72] font-bold">
-              ENGAGEMENT JOURNEY [0{active + 1} / 05]
+              ENGAGEMENT STAGE [{current.step} / 06]
             </span>
 
             {/* Step Dots */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5">
               {STAGES.map((s, index) => (
                 <button
-                  key={s.label}
+                  key={s.step}
                   type="button"
                   onClick={() => setActive(index)}
                   className={`h-1.5 transition-all cursor-pointer ${
@@ -91,7 +97,7 @@ export function HowWeWork() {
 
           <AnimatePresence mode="wait">
             <motion.div
-              key={current.label}
+              key={current.step}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
@@ -103,12 +109,12 @@ export function HowWeWork() {
                   <span className="flex h-8 w-8 items-center justify-center border border-primary bg-primary/20 text-primary">
                     <Icon className="h-4 w-4" />
                   </span>
-                  <span className="font-mono-tech text-xs uppercase tracking-widest text-muted-foreground font-medium">
-                    PHASE 0{active + 1} · {current.summary}
+                  <span className="font-mono-tech text-xs uppercase tracking-widest text-primary font-bold">
+                    STAGE {current.step}
                   </span>
                 </div>
                 <h3 className="font-serif-editorial text-3xl sm:text-4xl font-normal text-foreground leading-tight">
-                  {current.label}
+                  0{active + 1} — {current.label}
                 </h3>
                 <p className="mt-3 font-sans text-sm sm:text-base leading-relaxed text-muted-foreground max-w-xl">
                   {current.body}
@@ -118,10 +124,10 @@ export function HowWeWork() {
               {/* Spatial Journey Visual Display */}
               <div className="border border-white/10 bg-[#211a17] p-6 flex flex-col items-center justify-center text-center">
                 <span className="font-serif-editorial text-6xl text-primary font-normal leading-none">
-                  0{active + 1}
+                  {current.step}
                 </span>
                 <span className="mt-2 font-mono-tech text-xs uppercase tracking-widest text-[#8c9a72] font-semibold">
-                  {current.label}
+                  {current.label} STAGE
                 </span>
               </div>
             </motion.div>
@@ -147,3 +153,4 @@ export function HowWeWork() {
     </Section>
   )
 }
+

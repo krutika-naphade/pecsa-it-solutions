@@ -2,6 +2,7 @@
 
 import { motion } from 'motion/react'
 import { ArrowUpRight } from 'lucide-react'
+import Link from 'next/link'
 import { HeroSculpture } from './hero-sculpture'
 
 export function Hero() {
@@ -22,34 +23,24 @@ export function Hero() {
             >
               <span className="h-1.5 w-1.5 bg-primary" />
               <span className="font-mono-tech text-xs uppercase tracking-widest text-muted-foreground">
-                PECSA IT SOLUTIONS
+                SOFTWARE • AI • AUTOMATION • IoT • ROBOTICS
               </span>
             </motion.div>
 
-            <h1 className="font-serif-editorial text-5xl font-normal leading-[0.96] tracking-tight text-foreground sm:text-7xl md:text-8xl">
-              Engineering what’s{' '}
-              <span className="text-primary italic font-serif-editorial">next.</span>
+            <h1 className="font-serif-editorial text-4xl font-normal leading-[1.02] tracking-tight text-foreground sm:text-6xl md:text-7xl">
+              Technology That Solves Real Business Problems.
             </h1>
 
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="mt-6 font-sans text-xl font-medium text-foreground/90 md:text-2xl"
-            >
-              Technology that solves real business problems.
-            </motion.p>
-
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground font-sans"
+              className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground font-sans sm:text-lg"
             >
               We design and build practical technology solutions that help
               businesses automate operations, improve efficiency, and grow —
-              across software, AI, automation, IoT, robotics and digital
-              solutions.
+              from custom software and AI-powered systems to IoT, robotics, and
+              digital experiences.
             </motion.p>
 
             {/* CTAs */}
@@ -59,20 +50,21 @@ export function Hero() {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="mt-8 flex flex-wrap items-center gap-4"
             >
-              <a
-                href="#connect"
+              <Link
+                href="/contact"
                 className="group flex items-center gap-3 border border-primary bg-primary px-7 py-3.5 font-mono-tech text-xs uppercase tracking-widest text-white transition-all hover:bg-primary/90"
               >
                 <span>Start a Project</span>
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
+              </Link>
 
-              <a
-                href="#expertise"
+              <Link
+                href="/solutions"
                 className="group flex items-center gap-3 border border-white/20 bg-[#2b211d] px-7 py-3.5 font-mono-tech text-xs uppercase tracking-widest text-foreground transition-colors hover:border-white/50"
               >
-                <span>Explore Our Expertise</span>
-              </a>
+                <span>Explore Solutions</span>
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-primary" />
+              </Link>
             </motion.div>
           </div>
 
@@ -85,3 +77,4 @@ export function Hero() {
     </section>
   )
 }
+

@@ -2,33 +2,33 @@
 
 import { AnimatePresence, motion } from 'motion/react'
 import { useState } from 'react'
-import { Reveal, Section, SectionTitle } from './primitives'
+import { Reveal, Section } from './primitives'
 
 const POINTS = [
   {
     step: '01',
     title: 'Practical Technology',
-    body: 'We build technology that earns its place in real operations. Every solution is judged by whether it works reliably in the messiness of the real world — not by how impressive it looks in a demo. Pragmatism, robustness and maintainability come before novelty.',
+    body: 'We focus on solutions that create real business value.',
   },
   {
     step: '02',
     title: 'Business-Centric Approach',
-    body: 'We start from business outcomes and work backwards to technology. Understanding the problem, the constraints and the people involved lets us build solutions that fit how an organisation actually works, and that deliver value where it matters.',
+    body: 'We understand your workflow before designing the technology.',
   },
   {
     step: '03',
     title: 'Scalable Architecture',
-    body: 'We design systems that can grow. Clean architecture, sensible data models and modular components mean a solution can expand in scope and load over time without needing to be rebuilt from scratch.',
+    body: 'We build solutions that can evolve with your business.',
   },
   {
     step: '04',
     title: 'Multiple Technology Capabilities',
-    body: 'Software, AI, automation, IoT and robotics under one roof mean we can combine disciplines into a single connected solution. This breadth lets us solve problems that a single-discipline team simply cannot.',
+    body: 'Software, AI, automation, IoT, robotics, and digital solutions under one technology partner.',
   },
   {
     step: '05',
     title: 'Long-Term Partnership',
-    body: 'We aim to be a lasting technology partner, not a one-off vendor. We stay involved after launch — measuring, supporting and improving — so the systems we build keep pace with the business as it evolves.',
+    body: "We don't disappear after deployment. We help you improve and scale.",
   },
 ]
 
@@ -46,28 +46,28 @@ export function WhyPecsa() {
       <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr]">
         <div className="lg:sticky lg:top-24 lg:self-start">
           <Reveal>
-            <SectionTitle>
-              The difference is in{' '}
-              <span className="text-primary italic font-serif-editorial">how we build</span>
-            </SectionTitle>
+            <h2 className="font-serif-editorial text-3xl sm:text-5xl font-normal leading-[1.02] tracking-tight text-foreground">
+              Built for Businesses That Want to{' '}
+              <span className="text-primary italic font-serif-editorial">Move Forward.</span>
+            </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mt-3 font-sans text-sm sm:text-base leading-relaxed text-muted-foreground max-w-xl">
-              Plenty of companies can write code. What sets PECSA apart is a consistent philosophy that runs through everything we do.
+            <p className="mt-4 font-sans text-sm sm:text-base leading-relaxed text-muted-foreground max-w-xl">
+              We approach every technology partnership with a commitment to real business outcomes, clarity, and long-term reliability.
             </p>
           </Reveal>
         </div>
 
-        {/* Spatial Typography Transformation Canvas (COMPACT VERTICAL RHYTHM) */}
+        {/* Spatial Typography Transformation Canvas */}
         <div>
           <Reveal delay={0.15}>
             <div className="border border-white/10 bg-[#2b211d] p-5 sm:p-8 relative shadow-2xl">
               <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
                 <span className="font-mono-tech text-xs uppercase tracking-widest text-[#8c9a72] font-bold">
-                  DIFFERENTIATOR [0{active + 1} / 05]
+                  CORE PILLAR [0{active + 1} / 05]
                 </span>
-                <span className="font-mono-tech text-xs text-white/40">
-                  PHILOSOPHY
+                <span className="font-mono-tech text-xs text-primary font-semibold">
+                  PECSA VALUE
                 </span>
               </div>
 
@@ -78,7 +78,7 @@ export function WhyPecsa() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -16 }}
                   transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                  className="min-h-[160px]"
+                  className="min-h-[140px]"
                 >
                   <span className="font-serif-editorial text-5xl sm:text-6xl text-primary font-normal leading-none block mb-3">
                     {p.step}
@@ -86,7 +86,7 @@ export function WhyPecsa() {
                   <h3 className="font-serif-editorial text-2xl sm:text-3xl font-normal text-foreground mb-3">
                     {p.title}
                   </h3>
-                  <p className="font-sans text-xs sm:text-sm leading-relaxed text-muted-foreground">
+                  <p className="font-sans text-sm sm:text-base leading-relaxed text-muted-foreground">
                     {p.body}
                   </p>
                 </motion.div>
@@ -121,3 +121,4 @@ export function WhyPecsa() {
     </Section>
   )
 }
+

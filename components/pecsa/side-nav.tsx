@@ -3,13 +3,16 @@
 import { AnimatePresence, motion } from 'motion/react'
 import { SlidersHorizontal, X, ArrowUpRight } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 
-const OFF_NAVBAR_SECTIONS = [
-  { label: 'Verticals', href: '#verticals', code: '06' },
-  { label: 'Why PECSA', href: '#why-pecsa', code: '07' },
-  { label: 'Technology', href: '#tech-stack', code: '09' },
-  { label: 'Build With Us', href: '#build-with-us', code: '10' },
-  { label: 'Connect', href: '#connect', code: '11' },
+const PAGE_SECTIONS = [
+  { label: 'HOME', href: '/', code: '01' },
+  { label: 'ABOUT', href: '/about', code: '02' },
+  { label: 'SOLUTIONS', href: '/solutions', code: '03' },
+  { label: 'SERVICES', href: '/services', code: '04' },
+  { label: 'INDUSTRIES', href: '/industries', code: '05' },
+  { label: 'PROJECTS', href: '/projects', code: '06' },
+  { label: 'CONTACT', href: '/contact', code: '07' },
 ]
 
 export function SideNav() {
@@ -62,7 +65,7 @@ export function SideNav() {
             >
               <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-4">
                 <span className="font-mono-tech text-xs uppercase tracking-widest text-[#8c9a72] font-bold">
-                  OFF-NAVBAR DIRECTORY
+                  PAGE DIRECTORY
                 </span>
                 <button
                   type="button"
@@ -75,9 +78,9 @@ export function SideNav() {
               </div>
 
               <ul className="flex flex-col gap-3 font-sans">
-                {OFF_NAVBAR_SECTIONS.map((sec) => (
+                {PAGE_SECTIONS.map((sec) => (
                   <li key={sec.href}>
-                    <a
+                    <Link
                       href={sec.href}
                       onClick={() => setOpen(false)}
                       className="group flex items-center justify-between border-b border-white/5 pb-2.5 text-sm font-serif-editorial text-foreground hover:text-primary transition-colors"
@@ -89,14 +92,14 @@ export function SideNav() {
                       <span className="font-mono-tech text-xs text-muted-foreground group-hover:text-primary">
                         {sec.code}
                       </span>
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
 
               <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between font-mono-tech text-[10px] uppercase tracking-wider text-white/40">
                 <span>PECSA IT SOLUTIONS</span>
-                <span>CHAPTER DIRECTORY</span>
+                <span>DIRECT ACCESS</span>
               </div>
             </motion.div>
           </>
@@ -105,3 +108,4 @@ export function SideNav() {
     </aside>
   )
 }
+
