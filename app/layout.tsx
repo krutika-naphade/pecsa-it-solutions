@@ -16,6 +16,7 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://pecsa.in'),
   title: 'PECSA IT Solutions — Engineering what’s next',
   description:
     'PECSA IT Solutions designs and builds practical technology that helps businesses automate operations, improve efficiency and grow — across software, AI, automation, IoT, robotics and digital solutions.',

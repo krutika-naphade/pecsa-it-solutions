@@ -1,8 +1,11 @@
 import { Metadata } from 'next'
 import { Nav } from '@/components/pecsa/nav'
 import { SideNav } from '@/components/pecsa/side-nav'
+import { PageHeader } from '@/components/pecsa/primitives'
+import { WhoWeAre } from '@/components/pecsa/who-we-are'
 import { Innovation } from '@/components/pecsa/innovation'
 import { WhyPecsa } from '@/components/pecsa/why-pecsa'
+import { TechStack } from '@/components/pecsa/tech-stack'
 import { BuildWithUs } from '@/components/pecsa/build-with-us'
 import { Footer } from '@/components/pecsa/footer'
 
@@ -13,31 +16,46 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden pt-20 bg-[#211a17]">
+    <main className="relative min-h-screen overflow-x-hidden pt-24 md:pt-28 bg-background text-foreground">
       <Nav />
       <SideNav />
 
-      {/* Page Header Banner */}
-      <section className="bg-[#211a17] py-16 sm:py-20 border-b border-white/10">
-        <div className="mx-auto max-w-7xl px-6 sm:px-10">
-          <span className="font-mono-tech text-xs uppercase tracking-widest text-primary font-semibold block mb-3">
-            ABOUT PECSA IT SOLUTIONS
-          </span>
-          <h1 className="font-serif-editorial text-4xl sm:text-6xl md:text-7xl font-normal text-foreground">
-            We're Building More Than <span className="text-primary italic">Software.</span>
-          </h1>
-          <p className="mt-6 max-w-3xl font-sans text-lg sm:text-xl leading-relaxed text-muted-foreground">
-            PECSA IT Solutions is a technology company focused on creating practical solutions across software, AI, automation, IoT, robotics, and digital technologies.
-          </p>
-          <p className="mt-3 max-w-3xl font-sans text-base sm:text-lg leading-relaxed text-muted-foreground">
-            Our goal is simple: make technology useful, accessible, and capable of solving real-world problems.
-          </p>
+      {/* Standardized Page Header Banner */}
+      <PageHeader
+        eyebrow="ABOUT PECSA IT SOLUTIONS"
+        title="We're Building More Than"
+        titleAccent="Software."
+        description="PECSA IT Solutions is a technology company focused on creating practical solutions across software, AI, automation, IoT, robotics, and digital technologies."
+        lead="Our goal is simple: make technology useful, accessible, and capable of solving real-world business problems."
+      >
+        <div className="mt-8 pt-6 border-t border-border/80 grid gap-6 sm:grid-cols-2 font-mono-tech text-xs text-muted-foreground">
+          <div>
+            <span className="text-primary font-bold block mb-1 uppercase tracking-widest">Engineering Hub</span>
+            <span className="text-foreground text-sm font-sans font-medium">Nagpur, Maharashtra, India</span>
+          </div>
+          <div>
+            <span className="text-primary font-bold block mb-1 uppercase tracking-widest">Core Focus</span>
+            <span className="text-foreground text-sm font-sans font-medium">Objective-Driven Business Systems & Automation</span>
+          </div>
         </div>
-      </section>
+      </PageHeader>
 
+      {/* 01. PECSA Positioning */}
+      <WhoWeAre />
+
+      {/* 02. Problem-First Approach */}
       <Innovation />
+
+      {/* 03. 5 Pillars (Why PECSA) */}
       <WhyPecsa />
+
+      {/* 04. Technology Stack Taxonomy */}
+      <TechStack />
+
+      {/* 05. Final CTA */}
       <BuildWithUs />
+
+      {/* 06. Footer */}
       <Footer />
     </main>
   )

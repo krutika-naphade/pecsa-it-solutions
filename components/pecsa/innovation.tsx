@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from 'motion/react'
 import { useState } from 'react'
+import { ArrowRight } from 'lucide-react'
 import { Reveal, Section } from './primitives'
 
 const PROCESS_STAGES = [
@@ -52,7 +53,7 @@ export function Innovation() {
         <Reveal>
           <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.02] tracking-tight text-foreground">
             We Start With the Problem.{' '}
-            <span className="text-primary italic font-serif-editorial">Not the Technology.</span>
+            <span className="text-primary italic">Not the Technology.</span>
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
@@ -67,8 +68,8 @@ export function Innovation() {
 
       {/* Visual / Process Flow Bar */}
       <Reveal delay={0.15}>
-        <div className="mt-8 border border-white/10 bg-[#211a17] p-4 sm:p-6">
-          <span className="font-mono-tech text-xs font-semibold uppercase tracking-widest text-[#8c9a72] block mb-4">
+        <div className="mt-8 border border-border bg-card p-4 sm:p-6 shadow-sm">
+          <span className="font-mono-tech text-xs font-semibold uppercase tracking-widest text-muted-sage block mb-4">
             VISUAL PROCESS FLOW
           </span>
           <div className="flex flex-wrap items-center justify-between gap-3 font-mono-tech text-xs sm:text-sm">
@@ -77,13 +78,13 @@ export function Innovation() {
                 <button
                   type="button"
                   onClick={() => setActive(idx)}
-                  className={`flex items-center gap-2 border px-3.5 py-2 transition-colors cursor-pointer ${
+                  className={`flex items-center gap-2 border px-3.5 py-2 transition-colors cursor-pointer font-semibold ${
                     active === idx
-                      ? 'border-primary bg-primary text-white font-bold'
-                      : 'border-white/15 bg-[#2b211d] text-muted-foreground hover:border-white/40 hover:text-white'
+                      ? 'border-primary bg-primary text-white'
+                      : 'border-border bg-background text-muted-foreground hover:border-primary hover:text-foreground'
                   }`}
                 >
-                  <span className="text-[10px] text-white/50">0{idx + 1}</span>
+                  <span className="text-[10px] opacity-70">0{idx + 1}</span>
                   <span>{s.label}</span>
                 </button>
                 {idx < PROCESS_STAGES.length - 1 && (
@@ -97,12 +98,12 @@ export function Innovation() {
 
       {/* Interactive Process Stage Presentation */}
       <Reveal delay={0.2}>
-        <div className="mt-4 border border-white/10 bg-[#2b211d] p-5 sm:p-8 relative shadow-2xl">
-          <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-5">
-            <span className="font-mono-tech text-xs uppercase tracking-widest text-[#8c9a72] font-bold">
+        <div className="mt-4 border border-border bg-card p-5 sm:p-8 relative shadow-lg">
+          <div className="flex items-center justify-between border-b border-border pb-4 mb-5">
+            <span className="font-mono-tech text-xs uppercase tracking-widest text-muted-sage font-bold">
               PROCESS STAGE [{current.step} / 05]
             </span>
-            <span className="font-mono-tech text-xs text-primary font-semibold uppercase">
+            <span className="font-mono-tech text-xs text-primary font-bold uppercase">
               {current.label}
             </span>
           </div>
@@ -128,29 +129,30 @@ export function Innovation() {
                 </p>
               </div>
 
-              <div className="border border-white/10 bg-[#211a17] p-6 flex flex-col items-center justify-center text-center">
+              <div className="border border-border bg-background/60 p-6 flex flex-col items-center justify-center text-center">
                 <span className="font-serif-editorial text-6xl text-primary font-normal leading-none">
                   {current.step}
                 </span>
-                <span className="mt-2 font-mono-tech text-xs uppercase tracking-widest text-[#8c9a72] font-semibold">
+                <span className="mt-2 font-mono-tech text-xs uppercase tracking-widest text-muted-sage font-semibold">
                   {current.label}
                 </span>
               </div>
             </motion.div>
           </AnimatePresence>
 
-          <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
-            <span className="font-mono-tech text-xs text-white/40 uppercase tracking-widest hidden sm:inline-block">
+          <div className="mt-6 pt-4 border-t border-border flex items-center justify-between">
+            <span className="font-mono-tech text-xs text-muted-foreground uppercase tracking-widest hidden sm:inline-block">
               Click arrow to advance process →
             </span>
 
             <button
               type="button"
               onClick={handleNextStage}
-              className="group flex items-center gap-3 border border-primary bg-primary px-7 py-3 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all cursor-pointer ml-auto"
+              className="group flex items-center gap-3 border border-primary bg-primary px-7 py-3 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all cursor-pointer font-semibold ml-auto shadow-sm"
               aria-label="Advance to next process stage"
             >
-              <span>NEXT →</span>
+              <span>NEXT STAGE</span>
+              <ArrowRight className="h-3.5 w-3.5" />
             </button>
           </div>
         </div>
@@ -158,4 +160,3 @@ export function Innovation() {
     </Section>
   )
 }
-

@@ -2,10 +2,11 @@
 
 import { AnimatePresence, motion } from 'motion/react'
 import { CheckCircle2, ArrowRight } from 'lucide-react'
-import { useState, type FormEvent } from 'react'
+import { useState, useEffect, type FormEvent } from 'react'
 import { Reveal, Section } from './primitives'
 
 const INTERESTS = [
+  'Architect Portfolio',
   'Software Development',
   'AI Solutions',
   'Automation',
@@ -13,7 +14,6 @@ const INTERESTS = [
   'Robotics',
   'Digital Solutions',
   'Partnership',
-  'Careers',
   'Something else',
 ]
 
@@ -27,10 +27,20 @@ type Fields = {
 
 const EMPTY: Fields = { name: '', email: '', company: '', interest: '', message: '' }
 
-export function Connect() {
-  const [values, setValues] = useState<Fields>(EMPTY)
+export function Connect({ initialInterest }: { initialInterest?: string }) {
+  const [values, setValues] = useState<Fields>(() => ({
+    ...EMPTY,
+    interest: initialInterest || '',
+  }))
   const [errors, setErrors] = useState<Partial<Record<keyof Fields, string>>>({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [sent, setSent] = useState(false)
+
+  useEffect(() => {
+    if (initialInterest) {
+      setValues((v) => ({ ...v, interest: initialInterest }))
+    }
+  }, [initialInterest])
 
   function set<K extends keyof Fields>(key: K, value: string) {
     setValues((v) => ({ ...v, [key]: value }))
@@ -39,20 +49,33 @@ export function Connect() {
 
   function validate(): boolean {
     const next: Partial<Record<keyof Fields, string>> = {}
-    if (!values.name.trim()) next.name = 'Please tell us your name.'
-    if (!values.email.trim()) next.email = 'Please add an email so we can reply.'
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email))
-      next.email = 'That email address looks incomplete.'
-    if (!values.interest) next.interest = 'Pick the area closest to your need.'
-    if (!values.message.trim() || values.message.trim().length < 10)
-      next.message = 'A sentence or two about your goal helps us reply well.'
+    if (!values.name.trim()) next.name = 'Please provide your name.'
+    if (!values.email.trim()) {
+      next.email = 'Please provide an email address so our engineers can reply.'
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
+      next.email = 'Please enter a valid email format (e.g., name@company.com).'
+    }
+    if (!values.interest) next.interest = 'Please select the area closest to your business requirement.'
+    if (!values.message.trim() || values.message.trim().length < 10) {
+      next.message = 'Please provide at least a short description of the business problem you are looking to solve.'
+    }
     setErrors(next)
     return Object.keys(next).length === 0
   }
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault()
-    if (validate()) setSent(true)
+    if (isSubmitting) return
+    if (!validate()) return
+
+    setIsSubmitting(true)
+    try {
+      // Direct client-side submission simulation with safeguard
+      await new Promise((resolve) => setTimeout(resolve, 600))
+      setSent(true)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   function reset() {
@@ -62,35 +85,33 @@ export function Connect() {
   }
 
   const fieldClass =
-    'w-full border border-white/15 bg-[#211a17] px-4 py-3.5 text-foreground outline-none font-sans text-sm transition-all placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-primary'
+    'w-full border border-border bg-background px-4 py-3 text-foreground outline-none font-sans text-sm transition-all placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-primary disabled:opacity-60 disabled:cursor-not-allowed'
 
   return (
-    <Section id="connect" index="11" eyebrow="Let's Connect">
-      <div className="grid gap-16 lg:grid-cols-[1fr_1.1fr] lg:items-start">
+    <Section id="connect" index="01" eyebrow="PROJECT INTAKE">
+      <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-start">
         <div>
           <Reveal>
-            <h2 className="font-serif-editorial text-5xl sm:text-6xl md:text-7xl font-normal leading-[0.98] text-foreground">
-              Have a problem worth{' '}
-              <span className="text-primary italic font-serif-editorial">solving?</span>
+            <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.02] text-foreground">
+              Direct Engineering <span className="text-primary italic">Intake.</span>
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mt-8 font-sans text-base leading-relaxed text-muted-foreground max-w-lg">
-              Tell us what you are trying to achieve. We will get back to you to
-              explore whether — and how — technology can help. No obligation,
-              just a genuine conversation about your goal.
+            <p className="mt-4 font-sans text-base leading-relaxed text-muted-foreground max-w-lg">
+              Tell us what operational friction or technology goal you are trying to address.
+              Our core engineering team will evaluate your requirements and respond with clear, objective technical direction.
             </p>
           </Reveal>
           <Reveal delay={0.2}>
-            <div className="mt-10 flex flex-col gap-4 border-l-2 border-primary pl-6">
+            <div className="mt-8 flex flex-col gap-4 border-l-2 border-primary pl-6">
               {[
-                'We read every message ourselves.',
-                'We reply with honest, practical direction.',
-                'If technology is not the answer, we will say so.',
+                'Direct review by core technical team.',
+                'Honest, practical engineering direction.',
+                'Transparent evaluation — if custom tech is not needed, we will say so.',
               ].map((line) => (
                 <div key={line} className="flex items-center gap-3">
-                  <span className="h-1.5 w-1.5 bg-primary" aria-hidden="true" />
-                  <p className="font-mono-tech text-xs uppercase tracking-wider text-white/80 font-medium">{line}</p>
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
+                  <p className="font-mono-tech text-xs uppercase tracking-wider text-muted-foreground font-medium">{line}</p>
                 </div>
               ))}
             </div>
@@ -98,13 +119,13 @@ export function Connect() {
         </div>
 
         <Reveal delay={0.15}>
-          <div className="border border-white/10 bg-[#2b211d] p-8 sm:p-10 shadow-2xl">
-            <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+          <div className="border border-border bg-card p-6 sm:p-10 shadow-lg">
+            <div className="flex items-center justify-between border-b border-border pb-4 mb-6">
               <span className="font-mono-tech text-xs uppercase tracking-widest text-primary font-bold">
-                PROJECT INTAKE
+                PROJECT INTAKE FORM
               </span>
-              <span className="font-mono-tech text-xs text-white/40">
-                DIRECT CONTACT
+              <span className="font-mono-tech text-xs text-muted-foreground font-medium">
+                NAGPUR, INDIA
               </span>
             </div>
 
@@ -122,19 +143,19 @@ export function Connect() {
                     <CheckCircle2 className="h-8 w-8" />
                   </span>
                   <h3 className="mt-6 font-serif-editorial text-3xl font-normal text-foreground">
-                    Message Received
+                    Inquiry Received
                   </h3>
-                  <p className="mt-3 max-w-sm font-sans text-sm leading-relaxed text-muted-foreground">
-                    Thanks, {values.name.split(' ')[0] || 'there'}. We have your
-                    note about {values.interest.toLowerCase()} and will get back
-                    to you to explore how we can help.
+                  <p className="mt-3 max-w-md font-sans text-sm leading-relaxed text-muted-foreground">
+                    Thank you, {values.name.split(' ')[0] || 'there'}. We have logged your inquiry regarding{' '}
+                    <strong className="text-foreground font-medium">{values.interest.toLowerCase()}</strong>. Our engineering team in Nagpur will evaluate your requirements and reply directly to{' '}
+                    <strong className="text-foreground font-medium">{values.email}</strong> within 24 hours.
                   </p>
                   <button
                     type="button"
                     onClick={reset}
-                    className="mt-8 border border-primary bg-primary px-6 py-3 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all cursor-pointer"
+                    className="mt-8 border border-primary bg-primary px-6 py-3 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all cursor-pointer font-semibold shadow-sm"
                   >
-                    Send Another Message
+                    Submit Another Inquiry
                   </button>
                 </motion.div>
               ) : (
@@ -146,72 +167,100 @@ export function Connect() {
                   transition={{ duration: 0.3 }}
                   onSubmit={handleSubmit}
                   noValidate
-                  className="flex flex-col gap-6"
+                  aria-busy={isSubmitting}
+                  className="flex flex-col gap-5"
                 >
-                  <div className="grid gap-6 sm:grid-cols-2">
-                    <Field label="Name" error={errors.name}>
+                  <div className="grid gap-5 sm:grid-cols-2">
+                    <Field label="Name" id="intake-name" error={errors.name} required>
                       <input
+                        id="intake-name"
                         className={fieldClass}
                         value={values.name}
                         onChange={(e) => set('name', e.target.value)}
-                        placeholder="Your name"
+                        placeholder="Your full name"
                         autoComplete="name"
+                        required
+                        aria-required="true"
+                        aria-invalid={!!errors.name}
+                        aria-describedby={errors.name ? 'intake-name-error' : undefined}
+                        disabled={isSubmitting}
                       />
                     </Field>
-                    <Field label="Email" error={errors.email}>
+                    <Field label="Email" id="intake-email" error={errors.email} required>
                       <input
+                        id="intake-email"
                         type="email"
                         className={fieldClass}
                         value={values.email}
                         onChange={(e) => set('email', e.target.value)}
                         placeholder="you@company.com"
                         autoComplete="email"
+                        required
+                        aria-required="true"
+                        aria-invalid={!!errors.email}
+                        aria-describedby={errors.email ? 'intake-email-error' : undefined}
+                        disabled={isSubmitting}
                       />
                     </Field>
                   </div>
 
-                  <Field label="Company" hint="Optional">
+                  <Field label="Company" id="intake-company" hint="Optional">
                     <input
+                      id="intake-company"
                       className={fieldClass}
                       value={values.company}
                       onChange={(e) => set('company', e.target.value)}
                       placeholder="Company or organisation"
                       autoComplete="organization"
+                      disabled={isSubmitting}
                     />
                   </Field>
 
-                  <Field label="Interest" error={errors.interest}>
+                  <Field label="Interest / Domain" id="intake-interest" error={errors.interest} required>
                     <select
+                      id="intake-interest"
                       className={`${fieldClass} appearance-none`}
                       value={values.interest}
                       onChange={(e) => set('interest', e.target.value)}
+                      required
+                      aria-required="true"
+                      aria-invalid={!!errors.interest}
+                      aria-describedby={errors.interest ? 'intake-interest-error' : undefined}
+                      disabled={isSubmitting}
                     >
                       <option value="" disabled>
-                        What is this about?
+                        Select the technology domain
                       </option>
                       {INTERESTS.map((i) => (
-                        <option key={i} value={i} className="bg-[#211a17]">
+                        <option key={i} value={i} className="bg-card text-foreground">
                           {i}
                         </option>
                       ))}
                     </select>
                   </Field>
 
-                  <Field label="Message" error={errors.message}>
+                  <Field label="Problem / Requirement" id="intake-message" error={errors.message} required>
                     <textarea
+                      id="intake-message"
                       rows={4}
                       className={`${fieldClass} resize-none`}
                       value={values.message}
                       onChange={(e) => set('message', e.target.value)}
-                      placeholder="Tell us what you are trying to achieve."
+                      placeholder="Describe the operational friction or system requirements you want to solve."
+                      required
+                      aria-required="true"
+                      aria-invalid={!!errors.message}
+                      aria-describedby={errors.message ? 'intake-message-error' : undefined}
+                      disabled={isSubmitting}
                     />
                   </Field>
 
                   <button
                     type="submit"
-                    className="group mt-2 flex items-center justify-center gap-3 border border-primary bg-primary px-8 py-4 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all cursor-pointer"
+                    disabled={isSubmitting}
+                    className="group mt-2 flex items-center justify-center gap-3 border border-primary bg-primary px-8 py-4 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all cursor-pointer font-semibold shadow-sm disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    <span>Send Message</span>
+                    <span>{isSubmitting ? 'Evaluating & Submitting...' : 'Send Inquiry'}</span>
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </button>
                 </motion.form>
@@ -226,24 +275,33 @@ export function Connect() {
 
 function Field({
   label,
+  id,
   hint,
   error,
+  required,
   children,
 }: {
   label: string
+  id: string
   hint?: string
   error?: string
+  required?: boolean
   children: React.ReactNode
 }) {
   return (
-    <label className="flex flex-col gap-2">
-      <span className="flex items-center justify-between font-mono-tech text-xs uppercase tracking-wider text-foreground font-medium">
-        {label}
+    <div className="flex flex-col gap-2">
+      <label htmlFor={id} className="flex items-center justify-between font-mono-tech text-xs uppercase tracking-wider text-foreground font-semibold">
+        <span>
+          {label}
+          {required && <span className="text-primary ml-1" aria-hidden="true">*</span>}
+        </span>
         {hint && <span className="text-[10px] text-muted-foreground font-normal">{hint}</span>}
-      </span>
+      </label>
       {children}
       {error && (
         <motion.span
+          id={`${id}-error`}
+          role="alert"
           initial={{ opacity: 0, y: -4 }}
           animate={{ opacity: 1, y: 0 }}
           className="font-mono-tech text-[11px] text-primary"
@@ -251,6 +309,6 @@ function Field({
           {error}
         </motion.span>
       )}
-    </label>
+    </div>
   )
 }

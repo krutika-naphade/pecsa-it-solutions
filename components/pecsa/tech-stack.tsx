@@ -1,7 +1,7 @@
 'use client'
 
 import { AnimatePresence, motion } from 'motion/react'
-import { Code2, Cpu, Cloud, Database, Workflow, Network, Bot } from 'lucide-react'
+import { Code2, Cpu, Cloud, Database, Workflow, Network, Bot, ArrowRight } from 'lucide-react'
 import { useState } from 'react'
 import { Reveal, Section } from './primitives'
 
@@ -72,7 +72,7 @@ export function TechStack() {
       <Reveal>
         <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.02] tracking-tight text-foreground">
           Powered by{' '}
-          <span className="text-primary italic font-serif-editorial">Modern Technology</span>
+          <span className="text-primary italic">Modern Technology.</span>
         </h2>
       </Reveal>
       <Reveal delay={0.1}>
@@ -83,22 +83,22 @@ export function TechStack() {
 
       {/* DYNAMIC TECHNOLOGY ECOSYSTEM */}
       <Reveal delay={0.15}>
-        <div className="mt-5 border border-white/10 bg-[#2b211d] p-5 sm:p-8 relative shadow-2xl">
+        <div className="mt-6 border border-border bg-card p-5 sm:p-8 relative shadow-lg">
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-5">
-            <span className="font-mono-tech text-xs uppercase tracking-widest text-[#8c9a72] font-bold">
+          <div className="flex items-center justify-between border-b border-border pb-4 mb-5">
+            <span className="font-mono-tech text-xs uppercase tracking-widest text-muted-sage font-bold">
               TECHNOLOGY CATEGORY [{cat.id} / 07]
             </span>
 
             {/* Dots */}
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-2">
               {CATEGORIES.map((c, index) => (
                 <button
                   key={c.name}
                   type="button"
                   onClick={() => setActive(index)}
-                  className={`h-1.5 transition-all cursor-pointer ${
-                    active === index ? 'w-6 bg-primary' : 'w-2 bg-white/20 hover:bg-white/40'
+                  className={`h-2 transition-all cursor-pointer ${
+                    active === index ? 'w-6 bg-primary' : 'w-2 bg-border hover:bg-muted-foreground'
                   }`}
                   aria-label={`Jump to ${c.name}`}
                 />
@@ -121,7 +121,7 @@ export function TechStack() {
                     <Icon className="h-5 w-5" />
                   </span>
                   <div>
-                    <span className="font-mono-tech text-[10px] uppercase tracking-widest text-[#8c9a72] font-semibold">
+                    <span className="font-mono-tech text-[10px] uppercase tracking-widest text-muted-sage font-semibold">
                       CATEGORY {cat.id}
                     </span>
                     <h3 className="font-serif-editorial text-2xl sm:text-3xl font-normal text-foreground">
@@ -135,8 +135,8 @@ export function TechStack() {
               </div>
 
               {/* Technologies Tags */}
-              <div className="border-t lg:border-t-0 lg:border-l border-white/10 pt-4 lg:pt-0 lg:pl-8">
-                <h4 className="font-mono-tech text-xs font-semibold uppercase tracking-widest text-[#8c9a72] mb-3">
+              <div className="border-t lg:border-t-0 lg:border-l border-border pt-5 lg:pt-0 lg:pl-8">
+                <h4 className="font-mono-tech text-xs font-semibold uppercase tracking-widest text-muted-sage mb-3">
                   {cat.name} Ecosystem
                 </h4>
                 <div className="flex flex-wrap gap-2">
@@ -146,7 +146,7 @@ export function TechStack() {
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.25 }}
-                      className="border border-white/15 bg-[#211a17] px-4 py-2 font-mono-tech text-xs text-foreground/90 font-medium hover:border-primary transition-colors"
+                      className="border border-border bg-background px-4 py-2 font-mono-tech text-xs text-foreground/90 font-medium hover:border-primary transition-colors"
                     >
                       {t}
                     </motion.span>
@@ -157,18 +157,19 @@ export function TechStack() {
           </AnimatePresence>
 
           {/* Arrow Control */}
-          <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
-            <span className="font-mono-tech text-xs text-white/40 uppercase tracking-widest hidden sm:inline-block">
+          <div className="mt-6 pt-4 border-t border-border flex items-center justify-between">
+            <span className="font-mono-tech text-xs text-muted-foreground uppercase tracking-widest hidden sm:inline-block">
               Click arrow to cycle category →
             </span>
 
             <button
               type="button"
               onClick={handleNextCategory}
-              className="group flex items-center gap-3 border border-primary bg-primary px-7 py-3 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all cursor-pointer ml-auto"
+              className="group flex items-center gap-3 border border-primary bg-primary px-7 py-3 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all cursor-pointer font-semibold ml-auto shadow-sm"
               aria-label="Cycle to next tech category"
             >
-              <span>NEXT →</span>
+              <span>NEXT CATEGORY</span>
+              <ArrowRight className="h-3.5 w-3.5" />
             </button>
           </div>
         </div>
@@ -176,4 +177,3 @@ export function TechStack() {
     </Section>
   )
 }
-

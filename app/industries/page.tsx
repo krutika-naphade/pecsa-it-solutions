@@ -1,7 +1,8 @@
 import { Metadata } from 'next'
 import { Nav } from '@/components/pecsa/nav'
 import { SideNav } from '@/components/pecsa/side-nav'
-import { Verticals } from '@/components/pecsa/verticals'
+import { PageHeader } from '@/components/pecsa/primitives'
+import { FullVerticalsGrid } from '@/components/pecsa/verticals'
 import { WhyPecsa } from '@/components/pecsa/why-pecsa'
 import { BuildWithUs } from '@/components/pecsa/build-with-us'
 import { Footer } from '@/components/pecsa/footer'
@@ -13,26 +14,22 @@ export const metadata: Metadata = {
 
 export default function IndustriesPage() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden pt-20 bg-[#211a17]">
+    <main className="relative min-h-screen overflow-x-hidden pt-24 md:pt-28 bg-background text-foreground">
       <Nav />
       <SideNav />
 
-      {/* Page Header Banner */}
-      <section className="bg-[#211a17] py-16 sm:py-20 border-b border-white/10">
-        <div className="mx-auto max-w-7xl px-6 sm:px-10">
-          <span className="font-mono-tech text-xs uppercase tracking-widest text-primary font-semibold block mb-3">
-            INDUSTRY SECTORS & VERTICALS
-          </span>
-          <h1 className="font-serif-editorial text-4xl sm:text-6xl md:text-7xl font-normal text-foreground">
-            Technology Adapted to <span className="text-primary italic">Your Industry.</span>
-          </h1>
-          <p className="mt-6 max-w-3xl font-sans text-lg sm:text-xl leading-relaxed text-muted-foreground">
-            We adapt software, AI, automation, IoT, and robotics to solve sector-specific operational bottlenecks and unlock business growth.
-          </p>
-        </div>
-      </section>
+      {/* Standardized Page Header Banner */}
+      <PageHeader
+        eyebrow="INDUSTRY SECTORS & VERTICALS"
+        title="Technology Adapted to"
+        titleAccent="Your Industry."
+        description="We adapt software, AI, automation, IoT, and robotics to solve sector-specific operational bottlenecks and unlock business growth."
+        lead="Explore how our multidisciplinary technology approach solves challenges across manufacturing, real estate, education, healthcare, and residential communities."
+      />
 
-      <Verticals />
+      {/* Full Sector Grid Catalog */}
+      <FullVerticalsGrid />
+
       <WhyPecsa />
       <BuildWithUs />
       <Footer />

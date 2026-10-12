@@ -36,36 +36,72 @@
   color-scheme: dark;
   --radius: 0rem;
 
-  /* Deep Espresso Editorial Palette (Deep Warm Espresso, Warm Cream, Burnt Copper & Muted Sage) */
-  --background: #211a17;
-  --foreground: #f3e9d8;
+  /* THEME A — DARK PECSA (Deep Warm Espresso, Warm Cream, Burnt Copper & Muted Sage) */
+  --background: #191311;
+  --foreground: #f5ede0;
 
-  --card: #2b211d;
-  --card-foreground: #f3e9d8;
-  --popover: #2b211d;
-  --popover-foreground: #f3e9d8;
+  --card: #221a17;
+  --card-foreground: #f5ede0;
+  --popover: #221a17;
+  --popover-foreground: #f5ede0;
 
   /* Brand Accents */
-  --primary: #c65a3a; /* Burnt Copper Primary Accent */
+  --primary: #d96b43; /* Burnt Copper Primary Accent */
   --primary-foreground: #ffffff;
 
-  --secondary: #342924;
-  --secondary-foreground: #f3e9d8;
+  --secondary: #2c221e;
+  --secondary-foreground: #f5ede0;
 
-  --muted: #28201c;
-  --muted-foreground: #b9aa98; /* Muted Warm Taupe/Beige */
+  --muted: #211916;
+  --muted-foreground: #baa896; /* Muted Warm Sand */
 
-  --accent: #382d27;
-  --accent-foreground: #f3e9d8;
+  --accent: #322621;
+  --accent-foreground: #f5ede0;
 
   --destructive: #b91c1c;
 
-  --border: rgba(243, 233, 216, 0.1);
-  --input: rgba(243, 233, 216, 0.15);
+  --border: rgba(245, 237, 224, 0.1);
+  --input: rgba(245, 237, 224, 0.15);
+  --ring: #d96b43;
+
+  --burnt-copper: #d96b43;
+  --muted-sage: #8c9a72;
+  --grid-line: rgba(245, 237, 224, 0.05);
+}
+
+[data-theme='light'], html.light {
+  color-scheme: light;
+
+  /* THEME B — LIGHT / MODERN PECSA (Editorial Studio Off-White, Dark Espresso, Burnt Copper & Sage) */
+  --background: #fcfaf7;
+  --foreground: #1c1614;
+
+  --card: #f4f0e8;
+  --card-foreground: #1c1614;
+  --popover: #ffffff;
+  --popover-foreground: #1c1614;
+
+  --primary: #c65a3a;
+  --primary-foreground: #ffffff;
+
+  --secondary: #ede7dd;
+  --secondary-foreground: #1c1614;
+
+  --muted: #f1ede6;
+  --muted-foreground: #5a524c;
+
+  --accent: #e8e2d7;
+  --accent-foreground: #1c1614;
+
+  --destructive: #dc2626;
+
+  --border: rgba(28, 22, 20, 0.12);
+  --input: rgba(28, 22, 20, 0.15);
   --ring: #c65a3a;
 
   --burnt-copper: #c65a3a;
-  --muted-sage: #8c9a72;
+  --muted-sage: #6e7d55;
+  --grid-line: rgba(28, 22, 20, 0.05);
 }
 
 @layer base {
@@ -76,14 +112,16 @@
     scroll-behavior: smooth;
     background-color: var(--background);
     color: var(--foreground);
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
   body {
     @apply bg-background text-foreground;
     font-feature-settings: 'ss01', 'cv01', 'zero';
     overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
   ::selection {
-    background: rgba(198, 90, 58, 0.3);
+    background: rgba(217, 107, 67, 0.3);
     color: #ffffff;
   }
 }
@@ -102,12 +140,17 @@
     font-family: var(--font-space-grotesk), monospace;
   }
   .border-hairline {
-    border-color: rgba(243, 233, 216, 0.1);
+    border-color: var(--border);
   }
   .text-burnt-copper {
-    color: #c65a3a;
+    color: var(--burnt-copper);
   }
   .text-muted-sage {
-    color: #8c9a72;
+    color: var(--muted-sage);
+  }
+  .tech-grid-bg {
+    background-image: linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+                      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 }

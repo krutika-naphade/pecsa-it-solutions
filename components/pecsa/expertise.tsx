@@ -1,8 +1,6 @@
 'use client'
 
-import { AnimatePresence, motion } from 'motion/react'
-import { Code2, Cpu, Workflow, Network, Bot, Globe } from 'lucide-react'
-import { useState } from 'react'
+import { Code2, Cpu, Workflow, Network, Bot, Globe, ArrowRight, ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
 import { Reveal, Section } from './primitives'
 
@@ -12,200 +10,340 @@ const CAPABILITIES_LIST = [
     key: 'SOFTWARE',
     title: 'Software Development',
     icon: Code2,
-    summary: 'Custom applications and business systems designed around your workflows.',
-    applications: ['Custom Web & Desktop Applications', 'Enterprise Business Systems', 'Workflow-Specific Tools', 'API & Database Integration'],
-    tech: ['React', 'Next.js', 'Node.js', 'Python', 'PHP', 'PostgreSQL'],
+    problem: 'Fragmented operations, disconnected spreadsheets, and rigid off-the-shelf software create administrative friction, human error, and lost operational data.',
+    summary: 'Custom applications and enterprise business systems designed specifically around your operational workflows and business objectives.',
+    deliverables: ['Custom Web & Desktop Applications', 'Enterprise ERP & Operations Systems', 'Workflow-Specific Tools', 'API & Database Integration'],
+    tech: ['React', 'Next.js', 'Node.js', 'Python', 'PostgreSQL'],
+    contextualLink: {
+      text: 'Explore Proprietary Platforms (Auditool & Society Management)',
+      href: '/products',
+    },
   },
   {
     id: '02',
     key: 'AI',
     title: 'AI Solutions',
     icon: Cpu,
-    summary: 'AI-powered applications and intelligent workflows that help teams work smarter.',
-    applications: ['Intelligent Automation Workflows', 'LLMs & AI Agents', 'Machine Learning Models', 'Computer Vision Systems'],
-    tech: ['LLMs', 'Machine Learning', 'AI Agents', 'Computer Vision', 'Python'],
+    problem: 'Teams spend hours manually categorizing data, reviewing repetitive documentation, and extracting critical operational insights from unstructured formats.',
+    summary: 'Intelligent workflows and AI-powered systems that augment teams, automate classification, and accelerate business decisions.',
+    deliverables: ['Intelligent Automation Workflows', 'LLMs & AI Agents', 'Machine Learning Models', 'Computer Vision Systems'],
+    tech: ['LLMs', 'AI Agents', 'Machine Learning', 'Computer Vision'],
+    contextualLink: {
+      text: 'Inquire About AI Automation Workflows',
+      href: '/contact?interest=AI%20Solutions',
+    },
   },
   {
     id: '03',
     key: 'AUTOMATION',
     title: 'Automation',
     icon: Workflow,
-    summary: 'Transform repetitive processes into efficient, connected workflows.',
-    applications: ['Workflow Automation', 'System & API Integration', 'Robotic Process Automation (RPA)', 'Operational Task Reduction'],
-    tech: ['Workflow Automation', 'API Integration', 'RPA', 'Event Pipelines'],
+    problem: 'Disjointed software tools force staff into manual data re-entry, delayed handoffs, and error-prone reconciliation across departments.',
+    summary: 'Transform repetitive manual tasks and scattered data handoffs into reliable, connected automated pipelines.',
+    deliverables: ['Workflow Automation', 'System & API Integration', 'Robotic Process Automation (RPA)', 'Operational Task Reduction'],
+    tech: ['Workflow Automation', 'API Integration', 'RPA', 'Pipelines'],
+    contextualLink: {
+      text: 'Review Our 6-Phase Engineering Delivery Process',
+      href: '/services',
+    },
   },
   {
     id: '04',
     key: 'IOT',
     title: 'IoT Solutions',
     icon: Network,
-    summary: 'Connect devices, data, and software to monitor and control real-world operations.',
-    applications: ['Sensor Data Collection', 'Real-Time Telemetry & Monitoring', 'Remote Asset Management', 'Cloud IoT Dashboards'],
-    tech: ['Sensors', 'Embedded Systems', 'Cloud IoT', 'Real-Time Monitoring'],
+    problem: 'Physical equipment and industrial assets run without real-time visibility, leading to unexpected failures, mechanical halts, and blind spots.',
+    summary: 'Connect physical devices, sensors, and cloud software to monitor, alert, and manage real-world industrial assets.',
+    deliverables: ['Sensor Data Collection', 'Real-Time Telemetry & Monitoring', 'Remote Asset Management', 'Cloud IoT Dashboards'],
+    tech: ['Sensors', 'Embedded Systems', 'Cloud IoT', 'Telemetry'],
+    contextualLink: {
+      text: 'View Verified Industrial IoT Telemetry Case Study',
+      href: '/projects',
+    },
   },
   {
     id: '05',
     key: 'ROBOTICS',
     title: 'Robotics',
     icon: Bot,
-    summary: 'Combine hardware, software, sensors, and intelligence to automate physical processes.',
-    applications: ['Hardware & Sensor Integration', 'Physical Process Automation', 'Embedded Controllers', 'Autonomous Task Systems'],
-    tech: ['Embedded Systems', 'Sensors', 'Control Systems', 'Automation'],
+    problem: 'Mechanical routines, physical inspection, and repetitive handling bottlenecks reduce production consistency and throughput.',
+    summary: 'Combine hardware, sensors, embedded controllers, and intelligent software to automate physical and mechanical processes.',
+    deliverables: ['Hardware & Sensor Integration', 'Physical Process Automation', 'Embedded Controllers', 'Autonomous Task Systems'],
+    tech: ['Embedded Systems', 'Sensors', 'Control Systems'],
+    contextualLink: {
+      text: 'Discuss Hardware & Embedded Engineering',
+      href: '/contact?interest=Robotics',
+    },
   },
   {
     id: '06',
     key: 'DIGITAL',
     title: 'Digital Solutions',
     icon: Globe,
-    summary: 'High-performance websites and digital experiences built to support business growth.',
-    applications: ['High-Performance Websites', 'Web Portals & Portfolios', 'Lead Generation Platforms', 'Digital Experience UX'],
-    tech: ['Next.js', 'React', 'Tailwind / Vanilla CSS', 'SEO Optimization'],
+    problem: 'Generic agency web templates fail to communicate design rigor, brand depth, and technical credibility to discerning clients.',
+    summary: 'High-performance websites, specialized studio portfolios, and web platforms built to support commercial growth.',
+    deliverables: ['High-Performance Websites', 'Specialized Practice Portfolios', 'Lead Generation Platforms', 'Digital Experience UX'],
+    tech: ['Next.js', 'React', 'Tailwind CSS', 'SEO Optimization'],
+    contextualLink: {
+      text: 'Explore For Architects: Portfolio Philosophy',
+      href: '/for-architects/philosophy',
+    },
   },
 ]
 
 export function Expertise() {
-  const [active, setActive] = useState(0)
-
-  const handleNextDiscipline = () => {
-    setActive((prev) => (prev + 1) % CAPABILITIES_LIST.length)
-  }
-
-  const current = CAPABILITIES_LIST[active]
-  const Icon = current.icon
-
   return (
-    <Section id="expertise" index="02" eyebrow="What We Do">
-      <Reveal>
-        <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.02] tracking-tight text-foreground max-w-5xl">
-          One Technology Partner.{' '}
-          <span className="text-primary italic font-serif-editorial">
-            Multiple Possibilities.
-          </span>
-        </h2>
-      </Reveal>
-      <Reveal delay={0.1}>
-        <p className="mt-4 max-w-3xl font-sans text-base sm:text-lg leading-relaxed text-muted-foreground">
-          Businesses don't always need more technology. They need the right technology.
-          <br /><br />
-          At PECSA, we combine multiple technology capabilities to create solutions around your actual business requirements.
-        </p>
-      </Reveal>
-
-      {/* ONE IMMERSIVE CAPABILITY EXPLORER */}
-      <Reveal delay={0.15}>
-        <div className="mt-5 border border-white/10 bg-[#2b211d] p-5 sm:p-6 md:p-8 relative shadow-2xl">
-          {/* Active Capability Header */}
-          <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
-            <div className="flex items-center gap-3">
-              <span className="flex h-8 w-8 items-center justify-center border border-primary bg-primary/10 text-primary">
-                <Icon className="h-4 w-4" />
-              </span>
-              <div>
-                <span className="font-mono-tech text-xs uppercase tracking-widest text-[#8c9a72] font-bold">
-                  CAPABILITY [{current.id} / 06]
-                </span>
-                <span className="font-mono-tech text-xs text-white/40 block font-medium">
-                  {current.key}
-                </span>
-              </div>
-            </div>
-
-            {/* Progress Bar Dots */}
-            <div className="flex items-center gap-1.5 font-mono-tech text-xs text-muted-foreground">
-              {CAPABILITIES_LIST.map((d, index) => (
-                <button
-                  key={d.key}
-                  type="button"
-                  onClick={() => setActive(index)}
-                  className={`h-1.5 transition-all cursor-pointer ${
-                    active === index ? 'w-6 bg-primary' : 'w-2 bg-white/20 hover:bg-white/40'
-                  }`}
-                  aria-label={`Jump to ${d.title}`}
-                />
-              ))}
-            </div>
+    <Section id="expertise" index="03" eyebrow="What We Do">
+      <div className="space-y-10">
+        {/* Section Header */}
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+          <div className="max-w-3xl">
+            <Reveal>
+              <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.02] tracking-tight text-foreground">
+                One Technology Partner.{' '}
+                <span className="text-primary italic">Multiple Possibilities.</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="mt-4 font-sans text-base sm:text-lg leading-relaxed text-muted-foreground font-light">
+                Businesses don’t always need more technology. They need the right technology. We combine multiple disciplines to create integrated solutions around your actual requirements.
+              </p>
+            </Reveal>
           </div>
 
-          {/* Morphing Capability Canvas */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current.key}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start"
+          <Reveal delay={0.15}>
+            <Link
+              href="/solutions"
+              className="inline-flex items-center gap-2 border border-border bg-card px-6 py-3 font-mono-tech text-xs uppercase tracking-widest text-foreground hover:border-primary transition-colors font-semibold shadow-xs shrink-0"
             >
-              <div>
-                <span className="font-mono-tech text-xs uppercase tracking-widest text-primary block mb-2 font-semibold">
-                  0{active + 1} — {current.title}
-                </span>
-                <h3 className="font-serif-editorial text-2xl sm:text-4xl font-normal text-foreground leading-tight">
-                  {current.title}
-                </h3>
-                <p className="mt-3 font-sans text-sm sm:text-base leading-relaxed text-muted-foreground max-w-xl">
-                  {current.summary}
-                </p>
-                <div className="mt-6">
-                  <Link
-                    href="/services"
-                    className="inline-flex items-center gap-2 border border-white/20 bg-[#211a17] px-4 py-2 font-mono-tech text-xs uppercase tracking-widest text-foreground hover:border-primary transition-colors"
-                  >
-                    <span>Explore Services</span>
-                    <span className="text-primary">→</span>
-                  </Link>
-                </div>
-              </div>
-
-              {/* Connected Applications & Technologies */}
-              <div className="border-t lg:border-t-0 lg:border-l border-white/10 pt-4 lg:pt-0 lg:pl-6">
-                <h4 className="font-mono-tech text-xs font-semibold uppercase tracking-widest text-[#8c9a72] mb-2">
-                  Key Deliverables
-                </h4>
-                <ul className="space-y-1.5 font-sans text-xs sm:text-sm text-muted-foreground mb-4">
-                  {current.applications.map((app) => (
-                    <li key={app} className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 bg-primary" />
-                      <span className="text-foreground/90">{app}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <h4 className="font-mono-tech text-xs font-semibold uppercase tracking-widest text-[#8c9a72] mb-2">
-                  Technologies
-                </h4>
-                <div className="flex flex-wrap gap-1.5">
-                  {current.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="border border-white/10 bg-[#211a17] px-2.5 py-1 font-mono-tech text-xs text-muted-foreground"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Arrow Control */}
-          <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
-            <span className="font-mono-tech text-xs text-white/40 uppercase tracking-widest hidden sm:inline-block">
-              Click arrow to transition capability →
-            </span>
-
-            <button
-              type="button"
-              onClick={handleNextDiscipline}
-              className="group flex items-center gap-3 border border-primary bg-primary px-6 py-2.5 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all cursor-pointer ml-auto"
-              aria-label="Advance to next capability"
-            >
-              <span>NEXT →</span>
-            </button>
-          </div>
+              <span>Explore All Solutions</span>
+              <ArrowUpRight className="h-4 w-4 text-primary" />
+            </Link>
+          </Reveal>
         </div>
-      </Reveal>
+
+        {/* 6 Capabilities Structured Grid */}
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {CAPABILITIES_LIST.map((c, i) => {
+            const Icon = c.icon
+            return (
+              <Reveal key={c.id} delay={0.05 * i}>
+                <div className="group border border-border bg-card p-6 h-full flex flex-col justify-between hover:border-primary/60 transition-all shadow-xs">
+                  <div>
+                    <div className="flex items-center justify-between border-b border-border pb-3 mb-4 font-mono-tech text-xs">
+                      <span className="text-primary font-bold">[{c.id}]</span>
+                      <span className="text-muted-foreground uppercase font-semibold">{c.key}</span>
+                    </div>
+
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="flex h-10 w-10 items-center justify-center border border-primary bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                        <Icon className="h-5 w-5" />
+                      </span>
+                      <h3 className="font-serif-editorial text-2xl font-normal text-foreground">
+                        {c.title}
+                      </h3>
+                    </div>
+
+                    <p className="font-sans text-sm text-muted-foreground leading-relaxed mb-6 font-light">
+                      {c.summary}
+                    </p>
+
+                    <div className="space-y-4">
+                      <div>
+                        <span className="font-mono-tech text-[11px] uppercase tracking-wider text-foreground font-semibold block mb-2">
+                          Key Deliverables
+                        </span>
+                        <ul className="space-y-1.5 font-sans text-xs text-muted-foreground">
+                          {c.deliverables.map((app) => (
+                            <li key={app} className="flex items-center gap-2">
+                              <span className="h-1 w-1 rounded-full bg-primary" />
+                              <span>{app}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div>
+                        <span className="font-mono-tech text-[11px] uppercase tracking-wider text-foreground font-semibold block mb-2">
+                          Technologies
+                        </span>
+                        <div className="flex flex-wrap gap-1.5">
+                          {c.tech.map((t) => (
+                            <span
+                              key={t}
+                              className="border border-border bg-background px-2.5 py-0.5 font-mono-tech text-[10px] text-muted-foreground"
+                            >
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-8 pt-4 border-t border-border flex items-center justify-between">
+                    <Link
+                      href={c.contextualLink.href}
+                      className="font-mono-tech text-xs text-primary uppercase tracking-widest font-semibold hover:underline flex items-center gap-1.5"
+                    >
+                      <span>Inquire Solution →</span>
+                    </Link>
+                  </div>
+                </div>
+              </Reveal>
+            )
+          })}
+        </div>
+
+        {/* Specialized Practice Callout */}
+        <Reveal delay={0.2}>
+          <div className="border border-border bg-card/60 p-6 sm:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6 shadow-sm">
+            <div className="max-w-2xl">
+              <span className="font-mono-tech text-xs uppercase tracking-widest text-primary font-bold block mb-1.5">
+                SPECIALIZED DIGITAL PRACTICE // FOR ARCHITECTS
+              </span>
+              <h3 className="font-serif-editorial text-2xl sm:text-3xl font-normal text-foreground">
+                Built Around Your Philosophy.
+              </h3>
+              <p className="mt-2 font-sans text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                We don’t build generic portfolio templates. We translate an architectural studio’s unique design thinking, material sensibilities, and spatial sequencing into an authentic digital presence.
+              </p>
+            </div>
+
+            <Link
+              href="/for-architects/philosophy"
+              className="inline-flex items-center gap-2 border border-primary bg-primary px-6 py-3 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all font-semibold shrink-0 shadow-xs"
+            >
+              <span>Explore Architecture Philosophy</span>
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </Reveal>
+      </div>
     </Section>
   )
 }
 
+/* -------------------------------------------------------------------------- */
+/* FULL SOLUTIONS GRID CATALOG (FOR /solutions PAGE)                         */
+/* -------------------------------------------------------------------------- */
+
+export function FullSolutionsList() {
+  return (
+    <Section
+      id="all-solutions"
+      index="01"
+      eyebrow="ALL 6 CAPABILITY AREAS"
+      className="pt-16 sm:pt-20 md:pt-24 pb-12 sm:pb-16 md:pb-20"
+      dividerClassName="mb-5 sm:mb-6 md:mb-6"
+    >
+      <div className="space-y-10 sm:space-y-12">
+        <Reveal>
+          <div className="border-l-2 border-primary pl-4 sm:pl-6 max-w-3xl">
+            <span className="font-mono-tech text-xs uppercase tracking-widest text-primary font-bold block mb-1">
+              PROBLEM-FIRST CAPABILITY ARCHITECTURE
+            </span>
+            <h2 className="font-serif-editorial text-3xl sm:text-5xl font-normal text-foreground">
+              What PECSA Helps Solve Across Core Disciplines
+            </h2>
+            <p className="mt-3 font-sans text-sm sm:text-base leading-relaxed text-muted-foreground">
+              We design every solution starting from the operational friction point. Explore the practical business challenges addressed by each engineering capability.
+            </p>
+          </div>
+        </Reveal>
+
+        <div className="space-y-8">
+          {CAPABILITIES_LIST.map((c, i) => {
+            const Icon = c.icon
+            return (
+              <Reveal key={c.id} delay={i * 0.05}>
+                <div className="border border-border bg-card p-6 sm:p-8 md:p-10 shadow-sm hover:border-primary/40 transition-all">
+                  <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+                    {/* Left: Capability Info & Problem Solved */}
+                    <div className="space-y-5">
+                      <div className="flex items-center justify-between border-b border-border/80 pb-2.5">
+                        <span className="font-mono-tech text-xs text-primary font-bold">
+                          [{c.id}] // {c.key}
+                        </span>
+                        <span className="font-mono-tech text-[10px] text-muted-foreground uppercase font-semibold">
+                          CORE CAPABILITY
+                        </span>
+                      </div>
+
+                      <div className="flex items-center gap-3.5">
+                        <span className="flex h-11 w-11 items-center justify-center border border-primary/40 bg-primary/10 text-primary shrink-0">
+                          <Icon className="h-5 w-5" />
+                        </span>
+                        <h3 className="font-serif-editorial text-2xl sm:text-3xl font-normal text-foreground">
+                          {c.title}
+                        </h3>
+                      </div>
+
+                      {/* Problem Statement Callout */}
+                      <div className="border border-border/80 bg-background/60 p-4">
+                        <span className="font-mono-tech text-[10px] uppercase tracking-wider text-primary font-bold block mb-1">
+                          Operational Friction Solved
+                        </span>
+                        <p className="font-sans text-xs sm:text-sm text-foreground/90 leading-relaxed font-medium">
+                          {c.problem}
+                        </p>
+                      </div>
+
+                      <p className="font-sans text-sm text-muted-foreground leading-relaxed font-light">
+                        {c.summary}
+                      </p>
+                    </div>
+
+                    {/* Right: Deliverables, Stack, and Contextual Bridge */}
+                    <div className="space-y-5 pt-2 lg:pt-0">
+                      <div>
+                        <span className="font-mono-tech text-[10px] uppercase tracking-wider text-foreground font-semibold block mb-2.5">
+                          Engineered Deliverables
+                        </span>
+                        <div className="grid gap-2 sm:grid-cols-2">
+                          {c.deliverables.map((d) => (
+                            <div key={d} className="flex items-start gap-2 border border-border bg-background/50 p-2.5">
+                              <span className="h-1.5 w-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
+                              <span className="font-sans text-xs text-foreground/90 font-medium leading-snug">{d}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div>
+                        <span className="font-mono-tech text-[10px] uppercase tracking-wider text-foreground font-semibold block mb-2">
+                          Technologies Deployed
+                        </span>
+                        <div className="flex flex-wrap gap-1.5">
+                          {c.tech.map((t) => (
+                            <span
+                              key={t}
+                              className="border border-border bg-background px-2.5 py-0.5 font-mono-tech text-xs text-muted-foreground"
+                            >
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Contextual Link */}
+                      <div className="pt-2 border-t border-border/60">
+                        <Link
+                          href={c.contextualLink.href}
+                          className="inline-flex items-center gap-1.5 font-mono-tech text-xs text-primary uppercase tracking-wider font-semibold hover:underline"
+                        >
+                          <span>{c.contextualLink.text}</span>
+                          <ArrowRight className="h-3.5 w-3.5" />
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            )
+          })}
+        </div>
+      </div>
+    </Section>
+  )
+}
