@@ -24,30 +24,30 @@ export function WhoWeAre() {
             <span className="font-mono-tech text-xs uppercase tracking-widest text-primary font-bold inline-block border border-primary/30 bg-primary/5 px-3 py-1 mb-2">
               BUILDING TECHNOLOGY FOR THE REAL WORLD
             </span>
-            <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.05] text-foreground">
+            <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.05] text-foreground break-words">
               Building Technology for the{' '}
               <span className="text-primary italic">Real World.</span>
             </h2>
           </Reveal>
 
           <Reveal delay={0.15}>
-            <p className="font-sans text-lg sm:text-xl leading-relaxed text-muted-foreground font-light">
+            <p className="font-sans text-base sm:text-xl leading-relaxed text-muted-foreground font-light break-words">
               From a simple website to a complex automated system, we believe technology should have a purpose — solving problems, reducing complexity, and creating measurable value.
             </p>
           </Reveal>
 
           <Reveal delay={0.2}>
-            <p className="font-sans text-sm sm:text-base leading-relaxed text-foreground/90">
+            <p className="font-sans text-sm sm:text-base leading-relaxed text-foreground/90 break-words">
               We work alongside business leaders as hands-on engineering partners. Whether optimizing a manufacturing workflow or building custom software from the ground up, we connect technical architecture with real-world operational execution.
             </p>
           </Reveal>
 
           {/* Domain Tags Strip */}
           <Reveal delay={0.25}>
-            <div className="flex flex-wrap items-center gap-2.5 pt-2">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 pt-2">
               {DOMAIN_TAGS.map((tag, i) => (
-                <div key={tag} className="flex items-center gap-2.5">
-                  <span className="font-mono-tech text-xs sm:text-sm font-semibold uppercase tracking-wider text-foreground bg-card border border-border px-3.5 py-1.5 hover:border-primary transition-colors shadow-2xs">
+                <div key={tag} className="flex items-center gap-2 sm:gap-2.5">
+                  <span className="font-mono-tech text-xs sm:text-sm font-semibold uppercase tracking-wider text-foreground bg-card border border-border px-3 py-1.5 sm:px-3.5 hover:border-primary transition-colors shadow-2xs">
                     {tag}
                   </span>
                   {i < DOMAIN_TAGS.length - 1 && (
@@ -60,10 +60,10 @@ export function WhoWeAre() {
 
           {/* Action Links */}
           <Reveal delay={0.35}>
-            <div className="flex flex-wrap items-center gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-4">
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2 border border-border bg-card px-6 py-3 font-mono-tech text-xs uppercase tracking-widest text-foreground hover:border-primary transition-colors font-semibold shadow-xs"
+                className="inline-flex items-center justify-center gap-2 border border-border bg-card px-6 py-3 font-mono-tech text-xs uppercase tracking-widest text-foreground hover:border-primary transition-colors font-semibold shadow-xs text-center"
               >
                 <span>Why PECSA</span>
                 <ArrowUpRight className="h-4 w-4 text-primary" />
@@ -71,7 +71,7 @@ export function WhoWeAre() {
 
               <Link
                 href="/services"
-                className="inline-flex items-center gap-2 font-mono-tech text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors"
+                className="inline-flex items-center justify-center gap-2 font-mono-tech text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors py-2 text-center"
               >
                 <span>Explore Services →</span>
               </Link>

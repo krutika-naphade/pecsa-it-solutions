@@ -26,11 +26,11 @@ export function ProblemApproach() {
             <span className="font-mono-tech text-xs uppercase tracking-widest text-primary font-bold block mb-2">
               PROBLEM-FIRST METHODOLOGY
             </span>
-            <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.03] text-foreground">
+            <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.03] text-foreground break-words">
               We Start With the Problem.{' '}
               <span className="text-primary italic">Not the Technology.</span>
             </h2>
-            <p className="mt-4 font-sans text-base sm:text-lg leading-relaxed text-muted-foreground">
+            <p className="mt-4 font-sans text-base sm:text-lg leading-relaxed text-muted-foreground break-words font-light">
               Technology is only useful when it solves the right problem. Before recommending tools or writing code, we analyze how your operations function and where friction exists.
             </p>
           </Reveal>
@@ -38,22 +38,22 @@ export function ProblemApproach() {
 
         {/* Visual Process Pipeline */}
         <Reveal delay={0.2}>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
             {METHODOLOGY_PIPELINE.map((p, i) => {
               const Icon = p.icon
               return (
                 <div
                   key={p.step}
-                  className="group border border-border bg-card p-5 transition-all hover:border-primary hover:shadow-xs relative flex flex-col justify-between"
+                  className="group border border-border bg-card p-4 sm:p-5 transition-all hover:border-primary hover:shadow-xs relative flex flex-col justify-between"
                 >
                   <div>
-                    <div className="flex items-center justify-between mb-4 border-b border-border/70 pb-2.5">
+                    <div className="flex items-center justify-between mb-3 border-b border-border/70 pb-2.5">
                       <span className="font-mono-tech text-xs text-primary font-bold">
                         PHASE {p.step}
                       </span>
                       <Icon className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
                     </div>
-                    <h3 className="font-mono-tech text-sm font-semibold uppercase tracking-wider text-foreground mb-2">
+                    <h3 className="font-mono-tech text-sm font-semibold uppercase tracking-wider text-foreground mb-1.5">
                       {p.name}
                     </h3>
                     <p className="font-sans text-xs text-muted-foreground leading-relaxed">
@@ -71,13 +71,13 @@ export function ProblemApproach() {
         </Reveal>
 
         <Reveal delay={0.3}>
-          <div className="flex items-center justify-between flex-wrap gap-4 pt-2">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4 pt-2">
             <span className="font-sans text-xs sm:text-sm text-muted-foreground">
               Every deliverable is measured by operational outcome, not arbitrary complexity.
             </span>
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 border border-border bg-card px-6 py-3 font-mono-tech text-xs uppercase tracking-widest text-foreground hover:border-primary transition-colors font-semibold shadow-xs"
+              className="inline-flex items-center justify-center gap-2 border border-border bg-card px-6 py-3 font-mono-tech text-xs uppercase tracking-widest text-foreground hover:border-primary transition-colors font-semibold shadow-xs text-center shrink-0"
             >
               <span>Explore Delivery Methodology</span>
               <ArrowRight className="h-4 w-4 text-primary" />
@@ -148,7 +148,7 @@ export function HowWeWork() {
       <div className="space-y-10">
         <div className="max-w-3xl">
           <Reveal>
-            <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.02] tracking-tight text-foreground">
+            <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.02] tracking-tight text-foreground break-words">
               Structured 6-Phase{' '}
               <span className="text-primary italic">Engineering Process.</span>
             </h2>
@@ -254,7 +254,7 @@ export function FullProcessRoadmap() {
             <span className="font-mono-tech text-xs uppercase tracking-widest text-primary font-bold block mb-1">
               ENGINEERING DELIVERY METHODOLOGY
             </span>
-            <h2 className="font-serif-editorial text-3xl sm:text-5xl font-normal text-foreground">
+            <h2 className="font-serif-editorial text-3xl sm:text-5xl font-normal text-foreground break-words">
               Sequential Process from Discovery to Long-Term Evolution
             </h2>
             <p className="mt-3 font-sans text-sm sm:text-base leading-relaxed text-muted-foreground">
@@ -268,7 +268,7 @@ export function FullProcessRoadmap() {
             const SIcon = s.icon
             return (
               <Reveal key={s.step} delay={i * 0.05}>
-                <div className="border border-border bg-card p-6 sm:p-8 shadow-2xs hover:border-primary/50 transition-all">
+                <div className="border border-border bg-card p-4 sm:p-6 md:p-8 shadow-2xs hover:border-primary/50 transition-all">
                   <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
                     <div>
                       <div className="flex items-center gap-3 mb-2 font-mono-tech text-xs">
@@ -280,7 +280,7 @@ export function FullProcessRoadmap() {
                         <span className="flex h-10 w-10 items-center justify-center border border-primary/40 bg-primary/10 text-primary shrink-0">
                           <SIcon className="h-5 w-5" />
                         </span>
-                        <h3 className="font-serif-editorial text-2xl sm:text-3xl font-normal text-foreground">
+                        <h3 className="font-serif-editorial text-2xl sm:text-3xl font-normal text-foreground break-words">
                           {s.label}
                         </h3>
                       </div>

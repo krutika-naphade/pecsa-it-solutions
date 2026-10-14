@@ -40,8 +40,8 @@ const SOCIAL_LINKS = [
 export function Footer() {
   return (
     <footer className="border-t border-border bg-card text-foreground">
-      <div className="mx-auto max-w-7xl px-6 py-16 sm:px-10 md:py-20">
-        <div className="grid gap-12 lg:grid-cols-[1.3fr_0.8fr_1fr_0.9fr]">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-10 py-12 sm:py-16 md:py-20">
+        <div className="grid gap-10 sm:gap-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.3fr_0.8fr_1fr_0.9fr]">
           {/* Brand & Intro */}
           <div>
             <Link
@@ -63,7 +63,7 @@ export function Footer() {
             <div className="mt-6">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 border border-primary bg-primary px-6 py-2.5 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all font-semibold shadow-sm"
+                className="inline-flex items-center justify-center gap-2 border border-primary bg-primary px-6 py-2.5 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all font-semibold shadow-sm w-full sm:w-auto text-center"
               >
                 <span>Start a Project</span>
                 <ArrowUpRight className="h-4 w-4" />
@@ -81,7 +81,7 @@ export function Footer() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-muted-foreground hover:text-primary transition-colors py-1 inline-block"
                   >
                     {item.label}
                   </Link>
@@ -98,7 +98,7 @@ export function Footer() {
             <ul className="space-y-2 font-sans text-xs sm:text-sm text-muted-foreground mb-6">
               {SOLUTIONS_LINKS.map((item) => (
                 <li key={item.label}>
-                  <Link href={item.href} className="hover:text-foreground transition-colors">
+                  <Link href={item.href} className="hover:text-foreground transition-colors py-1 inline-block">
                     {item.label}
                   </Link>
                 </li>
@@ -111,7 +111,7 @@ export function Footer() {
             <ul className="space-y-2 font-sans text-xs sm:text-sm text-muted-foreground">
               {PRODUCTS_LINKS.map((item) => (
                 <li key={item.label}>
-                  <Link href={item.href} className="hover:text-foreground transition-colors">
+                  <Link href={item.href} className="hover:text-foreground transition-colors py-1 inline-block">
                     {item.label}
                   </Link>
                 </li>
@@ -126,7 +126,7 @@ export function Footer() {
             </span>
             <div className="space-y-2.5 font-sans text-xs sm:text-sm text-muted-foreground">
               <div className="flex items-center gap-1.5 text-foreground font-semibold">
-                <MapPin className="h-3.5 w-3.5 text-primary" />
+                <MapPin className="h-3.5 w-3.5 text-primary shrink-0" />
                 <span>Registered Office:</span>
               </div>
               <p>Nagpur, Maharashtra, India</p>
@@ -150,7 +150,7 @@ export function Footer() {
                       href={soc.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-primary transition-colors"
+                      className="text-muted-foreground hover:text-primary transition-colors py-1"
                     >
                       {soc.label}
                     </a>
@@ -161,9 +161,9 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col items-center justify-between border-t border-border pt-8 text-xs text-muted-foreground sm:flex-row font-mono-tech">
+        <div className="mt-12 sm:mt-16 flex flex-col items-start sm:items-center justify-between border-t border-border pt-6 sm:pt-8 text-xs text-muted-foreground sm:flex-row gap-4 font-mono-tech">
           <p>© {new Date().getFullYear()} PECSA IT SOLUTIONS. All rights reserved.</p>
-          <div className="mt-4 sm:mt-0 flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-4">
             <Link href="/privacy-policy" className="hover:text-primary transition-colors">
               Privacy Policy
             </Link>

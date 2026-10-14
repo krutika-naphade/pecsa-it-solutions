@@ -69,7 +69,7 @@ export function Verticals() {
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
           <div className="max-w-3xl">
             <Reveal>
-              <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.02] tracking-tight text-foreground">
+              <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.02] tracking-tight text-foreground break-words">
                 Technology Adapted to{' '}
                 <span className="text-primary italic">Your Industry.</span>
               </h2>
@@ -84,7 +84,7 @@ export function Verticals() {
           <Reveal delay={0.15}>
             <Link
               href="/industries"
-              className="inline-flex items-center gap-2 border border-border bg-card px-6 py-3 font-mono-tech text-xs uppercase tracking-widest text-foreground hover:border-primary transition-colors font-semibold shadow-xs shrink-0"
+              className="inline-flex items-center justify-center gap-2 border border-border bg-card px-6 py-3 font-mono-tech text-xs uppercase tracking-widest text-foreground hover:border-primary transition-colors font-semibold shadow-xs shrink-0 w-full sm:w-auto text-center"
             >
               <span>Explore All Industries</span>
               <ArrowUpRight className="h-4 w-4 text-primary" />
@@ -234,7 +234,7 @@ export function FullVerticalsGrid() {
     <Section id="all-verticals" index="01" eyebrow="ALL 6 INDUSTRY VERTICALS">
       <div className="space-y-12">
         <Reveal>
-          <h2 className="font-serif-editorial text-3xl sm:text-5xl font-normal text-foreground max-w-3xl">
+          <h2 className="font-serif-editorial text-3xl sm:text-5xl font-normal text-foreground max-w-3xl break-words">
             Detailed Industry Specifications & Solutions
           </h2>
           <p className="mt-3 font-sans text-sm sm:text-base leading-relaxed text-muted-foreground max-w-2xl">
@@ -242,12 +242,12 @@ export function FullVerticalsGrid() {
           </p>
         </Reveal>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {INDUSTRIES_LIST.map((ind, i) => {
             const Icon = ind.icon
             return (
               <Reveal key={ind.id} delay={i * 0.08}>
-                <div className="group border border-border bg-card p-6 h-full flex flex-col justify-between hover:border-primary/60 transition-all shadow-xs">
+                <div className="group border border-border bg-card p-4 sm:p-6 h-full flex flex-col justify-between hover:border-primary/60 transition-all shadow-xs">
                   <div>
                     <div className="flex items-center justify-between border-b border-border pb-3 mb-4 font-mono-tech text-xs">
                       <span className="text-primary font-bold">[{ind.id}]</span>
@@ -258,7 +258,7 @@ export function FullVerticalsGrid() {
                       <span className="flex h-10 w-10 items-center justify-center border border-primary bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
                         <Icon className="h-5 w-5" />
                       </span>
-                      <h3 className="font-serif-editorial text-2xl font-normal text-foreground">
+                      <h3 className="font-serif-editorial text-2xl font-normal text-foreground break-words">
                         {ind.name}
                       </h3>
                     </div>

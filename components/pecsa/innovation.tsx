@@ -51,7 +51,7 @@ export function Innovation() {
     <Section id="innovation" index="03" eyebrow="Problem-First Approach">
       <div className="max-w-4xl">
         <Reveal>
-          <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.02] tracking-tight text-foreground">
+          <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.02] tracking-tight text-foreground break-words">
             We Start With the Problem.{' '}
             <span className="text-primary italic">Not the Technology.</span>
           </h2>
@@ -98,7 +98,7 @@ export function Innovation() {
 
       {/* Interactive Process Stage Presentation */}
       <Reveal delay={0.2}>
-        <div className="mt-4 border border-border bg-card p-5 sm:p-8 relative shadow-lg">
+        <div className="mt-4 border border-border bg-card p-4 sm:p-6 md:p-8 relative shadow-lg">
           <div className="flex items-center justify-between border-b border-border pb-4 mb-5">
             <span className="font-mono-tech text-xs uppercase tracking-widest text-muted-sage font-bold">
               PROCESS STAGE [{current.step} / 05]
@@ -115,13 +115,13 @@ export function Innovation() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="grid gap-8 lg:grid-cols-[1fr_0.5fr] lg:items-center min-h-[140px]"
+              className="grid gap-6 sm:gap-8 lg:grid-cols-[1fr_0.5fr] lg:items-center min-h-[140px]"
             >
               <div>
                 <span className="font-mono-tech text-xs uppercase tracking-widest text-muted-foreground block mb-1.5 font-medium">
                   STAGE {current.step} · {current.label.toUpperCase()}
                 </span>
-                <h3 className="font-serif-editorial text-2xl sm:text-3xl font-normal text-foreground leading-tight">
+                <h3 className="font-serif-editorial text-2xl sm:text-3xl font-normal text-foreground leading-tight break-words">
                   {current.heading}
                 </h3>
                 <p className="mt-3 font-sans text-sm sm:text-base leading-relaxed text-muted-foreground max-w-2xl">
@@ -140,7 +140,7 @@ export function Innovation() {
             </motion.div>
           </AnimatePresence>
 
-          <div className="mt-6 pt-4 border-t border-border flex items-center justify-between">
+          <div className="mt-6 pt-4 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
             <span className="font-mono-tech text-xs text-muted-foreground uppercase tracking-widest hidden sm:inline-block">
               Click arrow to advance process →
             </span>
@@ -148,7 +148,7 @@ export function Innovation() {
             <button
               type="button"
               onClick={handleNextStage}
-              className="group flex items-center gap-3 border border-primary bg-primary px-7 py-3 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all cursor-pointer font-semibold ml-auto shadow-sm"
+              className="group flex items-center justify-center gap-3 border border-primary bg-primary px-7 py-3 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all cursor-pointer font-semibold sm:ml-auto shadow-sm w-full sm:w-auto text-center"
               aria-label="Advance to next process stage"
             >
               <span>NEXT STAGE</span>

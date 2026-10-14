@@ -15,9 +15,9 @@ export function Hero() {
       <div className="absolute top-1/4 right-1/4 -translate-y-1/2 h-[500px] w-[500px] blur-[150px] pointer-events-none rounded-full bg-primary/10" />
       <div className="absolute bottom-10 left-10 h-[350px] w-[350px] blur-[130px] pointer-events-none rounded-full bg-amber-500/5" />
 
-      <div className="relative mx-auto w-full max-w-7xl px-6 sm:px-10">
+      <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-8 lg:px-10">
         {/* Main Hero Grid: Editorial Statement (Left) + Human Collaboration Photography (Right) */}
-        <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+        <div className="grid gap-10 lg:gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           {/* Left Column: Brand Statement & Primary Actions */}
           <div className="max-w-2xl">
             {/* Top Category Badge */}
@@ -25,10 +25,10 @@ export function Hero() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="mb-6 inline-flex items-center gap-3 border border-border bg-card/90 px-4 py-2 shadow-2xs backdrop-blur-xs"
+              className="mb-5 sm:mb-6 inline-flex items-center gap-2.5 sm:gap-3 border border-border bg-card/90 px-3 py-1.5 sm:px-4 sm:py-2 shadow-2xs backdrop-blur-xs max-w-full"
             >
-              <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
-              <span className="font-mono-tech text-[11px] uppercase tracking-widest text-muted-foreground font-semibold">
+              <span className="h-2 w-2 rounded-full bg-primary animate-pulse shrink-0" />
+              <span className="font-mono-tech text-[10px] sm:text-[11px] uppercase tracking-wider sm:tracking-widest text-muted-foreground font-semibold truncate sm:whitespace-normal">
                 SOFTWARE • AI • AUTOMATION • IoT • ROBOTICS
               </span>
             </motion.div>
@@ -38,7 +38,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.5 }}
-              className="font-serif-editorial text-4xl font-normal leading-[1.04] tracking-tight text-foreground sm:text-6xl md:text-7xl"
+              className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-normal leading-[1.04] tracking-tight text-foreground break-words"
             >
               Technology That Solves Real{' '}
               <span className="text-primary italic">Business Problems.</span>
@@ -49,7 +49,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground font-sans sm:text-lg font-light"
+              className="mt-5 sm:mt-6 max-w-xl text-base leading-relaxed text-muted-foreground font-sans sm:text-lg font-light break-words"
             >
               We design and build practical technology solutions that help businesses automate operations, improve efficiency, and grow — from custom software and AI systems to IoT, robotics, and digital platforms.
             </motion.p>
@@ -59,18 +59,18 @@ export function Hero() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.25, duration: 0.5 }}
-              className="mt-6 flex flex-wrap gap-y-2 gap-x-6 text-xs font-mono-tech text-muted-foreground"
+              className="mt-5 sm:mt-6 flex flex-wrap gap-y-2 gap-x-4 sm:gap-x-6 text-xs font-mono-tech text-muted-foreground"
             >
               <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-3.5 w-3.5 text-primary" />
+                <CheckCircle2 className="h-3.5 w-3.5 text-primary shrink-0" />
                 <span>Problem-First Engineering</span>
               </span>
               <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-3.5 w-3.5 text-primary" />
+                <CheckCircle2 className="h-3.5 w-3.5 text-primary shrink-0" />
                 <span>Direct Practitioner Access</span>
               </span>
               <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-3.5 w-3.5 text-primary" />
+                <CheckCircle2 className="h-3.5 w-3.5 text-primary shrink-0" />
                 <span>Multi-Disciplinary Delivery</span>
               </span>
             </motion.div>
@@ -80,11 +80,11 @@ export function Hero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
-              className="mt-10 flex flex-wrap items-center gap-4"
+              className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4"
             >
               <Link
                 href="/contact"
-                className="group flex items-center gap-3 border border-primary bg-primary px-8 py-4 font-mono-tech text-xs uppercase tracking-widest text-white transition-all hover:bg-primary/90 shadow-sm font-semibold"
+                className="group flex items-center justify-center gap-3 border border-primary bg-primary px-6 py-3.5 sm:px-8 sm:py-4 font-mono-tech text-xs uppercase tracking-widest text-white transition-all hover:bg-primary/90 shadow-sm font-semibold text-center"
               >
                 <span>Start a Project</span>
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -92,7 +92,7 @@ export function Hero() {
 
               <Link
                 href="/solutions"
-                className="group flex items-center gap-3 border border-border bg-card px-8 py-4 font-mono-tech text-xs uppercase tracking-widest text-foreground transition-colors hover:border-primary/60 shadow-2xs font-semibold"
+                className="group flex items-center justify-center gap-3 border border-border bg-card px-6 py-3.5 sm:px-8 sm:py-4 font-mono-tech text-xs uppercase tracking-widest text-foreground transition-colors hover:border-primary/60 shadow-2xs font-semibold text-center"
               >
                 <span>Explore Solutions</span>
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-primary" />

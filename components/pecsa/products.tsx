@@ -58,13 +58,28 @@ export const PRODUCTS = [
 ]
 
 export function Products() {
-  const [active, setActive] = useState(0)
-  const p = PRODUCTS[active]
-  const Icon = p.icon
+  const PREVIEW_PRODUCTS = [
+    {
+      id: 'auditool',
+      name: 'Auditool',
+      badge: 'ENTERPRISE SAAS',
+      icon: ShieldCheck,
+      shortDescription:
+        'Cloud-based safety audit compliance, digital inspection reporting, and documentation tracking.',
+    },
+    {
+      id: 'society',
+      name: 'Society Management System',
+      badge: 'OPERATIONS PLATFORM',
+      icon: Building2,
+      shortDescription:
+        'Unified digital hub connecting residents, committee administrators, gate security, and vendors.',
+    },
+  ]
 
   return (
     <Section id="products" index="05" eyebrow="Our Products">
-      <div className="space-y-10">
+      <div className="space-y-8 sm:space-y-10">
         {/* Section Header */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
           <div className="max-w-3xl">
@@ -75,153 +90,75 @@ export function Products() {
                   PROPRIETARY SOFTWARE CATALOGUE
                 </span>
               </div>
-              <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.02] tracking-tight text-foreground">
-                Technology We Build.{' '}
-                <span className="text-primary italic">Products We Believe In.</span>
+              <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.02] tracking-tight text-foreground break-words">
+                Our Products.
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
               <p className="mt-3 font-sans text-base sm:text-lg leading-relaxed text-muted-foreground font-light">
-                Alongside custom client engineering, PECSA develops and maintains proprietary software platforms built to solve acute operational inefficiencies.
+                Alongside custom engineering services, PECSA develops proprietary platforms designed to solve acute operational challenges.
               </p>
             </Reveal>
           </div>
 
-          {/* Product Switcher Tabs */}
           <Reveal delay={0.15}>
-            <div className="inline-flex border border-border bg-card p-1 shadow-2xs">
-              {PRODUCTS.map((prod, idx) => (
-                <button
-                  key={prod.id}
-                  type="button"
-                  onClick={() => setActive(idx)}
-                  className={`px-5 py-2.5 font-mono-tech text-xs uppercase tracking-wider font-semibold transition-all cursor-pointer ${
-                    active === idx
-                      ? 'bg-primary text-white shadow-xs'
-                      : 'text-muted-foreground hover:text-foreground'
-                  }`}
-                >
-                  {prod.name}
-                </button>
-              ))}
-            </div>
+            <Link
+              href="/products"
+              className="inline-flex items-center justify-center gap-2 border border-border bg-card px-6 py-3 font-mono-tech text-xs uppercase tracking-widest text-foreground hover:border-primary transition-colors font-semibold shadow-xs shrink-0 w-full sm:w-auto text-center"
+            >
+              <span>Explore Products Catalogue</span>
+              <ArrowRight className="h-4 w-4 text-primary" />
+            </Link>
           </Reveal>
         </div>
 
-        {/* Active Product Showcase */}
-        <Reveal delay={0.2}>
-          <div className="border border-border bg-card shadow-lg overflow-hidden">
-            {/* Software Window Header */}
-            <div className="flex items-center justify-between border-b border-border bg-background/80 px-4 py-2.5 sm:px-6">
-              <div className="flex items-center gap-2">
-                <span className="h-2.5 w-2.5 rounded-full bg-rose-500/70" />
-                <span className="h-2.5 w-2.5 rounded-full bg-amber-500/70" />
-                <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/70" />
-                <span className="ml-3 hidden sm:inline-block font-mono-tech text-[11px] text-muted-foreground">
-                  {p.url}
-                </span>
-              </div>
-              <span className="font-mono-tech text-[10px] uppercase tracking-widest text-primary font-bold">
-                PECSA SOFTWARE PLATFORM
-              </span>
-            </div>
+        {/* Compact 2-Card Preview */}
+        <div className="grid gap-6 md:grid-cols-2">
+          {PREVIEW_PRODUCTS.map((prod, idx) => {
+            const Icon = prod.icon
+            return (
+              <Reveal key={prod.id} delay={0.08 * idx}>
+                <div className="border border-border bg-card p-5 sm:p-6 md:p-8 h-full flex flex-col justify-between hover:border-primary/60 transition-all shadow-xs group">
+                  <div>
+                    <div className="flex items-center justify-between border-b border-border pb-3 mb-4">
+                      <span className="font-mono-tech text-[10px] uppercase tracking-widest text-primary font-bold">
+                        {prod.badge}
+                      </span>
+                      <span className="font-mono-tech text-xs text-muted-foreground">
+                        0{idx + 1} // PRODUCT
+                      </span>
+                    </div>
 
-            <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start p-6 sm:p-8 md:p-10">
-              {/* Left Column: UI Screenshot */}
-              <div className="relative group">
-                <div className="relative aspect-[16/10] w-full overflow-hidden border border-border bg-background shadow-md">
-                  <Image
-                    src={p.image}
-                    alt={p.imageAlt}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 650px"
-                    className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent pointer-events-none" />
-                </div>
-
-                <div className="mt-3 flex items-center justify-between text-[11px] font-mono-tech text-muted-foreground">
-                  <span>PRODUCTION UI INTERFACE</span>
-                  <span className="text-primary font-semibold">{p.name} // CLOUD</span>
-                </div>
-              </div>
-
-              {/* Right Column: Purpose, Audience & Verified Capabilities */}
-              <div className="space-y-6">
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="flex h-6 w-6 items-center justify-center border border-primary/40 bg-primary/10 text-primary">
-                      <Icon className="h-3.5 w-3.5" />
-                    </span>
-                    <span className="font-mono-tech text-[10px] uppercase tracking-widest text-primary font-bold">
-                      {p.badge}
-                    </span>
-                  </div>
-
-                  <h3 className="font-serif-editorial text-3xl sm:text-4xl font-normal text-foreground">
-                    {p.name}
-                  </h3>
-                  <span className="font-mono-tech text-xs uppercase tracking-wider text-muted-sage font-semibold block mt-1">
-                    {p.tagline}
-                  </span>
-
-                  <p className="mt-4 font-sans text-sm sm:text-base leading-relaxed text-muted-foreground">
-                    {p.purpose}
-                  </p>
-                </div>
-
-                {/* Target Audience Callout */}
-                <div className="border border-border/80 bg-background/50 p-3 sm:p-4">
-                  <div className="flex items-center gap-2 font-mono-tech text-[10px] uppercase tracking-wider text-primary font-bold mb-1">
-                    <Users className="h-3.5 w-3.5" />
-                    <span>Target Audience & Use Cases</span>
-                  </div>
-                  <p className="font-sans text-xs text-foreground/90 font-medium leading-relaxed">
-                    {p.audience}
-                  </p>
-                </div>
-
-                {/* Verified Features */}
-                <div>
-                  <span className="font-mono-tech text-[10px] uppercase tracking-wider text-foreground font-semibold block mb-2.5">
-                    Verified Product Capabilities
-                  </span>
-                  <div className="grid gap-2 sm:grid-cols-2">
-                    {p.features.slice(0, 4).map((feat) => (
-                      <div
-                        key={feat}
-                        className="flex items-start gap-2 border border-border/80 bg-background/60 p-2.5"
-                      >
-                        <CheckCircle2 className="h-3.5 w-3.5 text-primary shrink-0 mt-0.5" />
-                        <span className="font-sans text-xs text-foreground/90 font-medium">
-                          {feat}
-                        </span>
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="flex h-10 w-10 items-center justify-center border border-primary/40 bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors shrink-0">
+                        <Icon className="h-5 w-5" />
+                      </span>
+                      <div>
+                        <h3 className="font-serif-editorial text-2xl font-normal text-foreground break-words">
+                          {prod.name}
+                        </h3>
                       </div>
-                    ))}
+                    </div>
+
+                    <p className="font-sans text-sm text-muted-foreground leading-relaxed font-light mb-6">
+                      {prod.shortDescription}
+                    </p>
+                  </div>
+
+                  <div className="pt-4 border-t border-border flex items-center justify-between">
+                    <Link
+                      href="/products"
+                      className="font-mono-tech text-xs text-primary uppercase tracking-widest font-semibold hover:underline flex items-center gap-1.5"
+                    >
+                      <span>Explore on Products Page</span>
+                      <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                    </Link>
                   </div>
                 </div>
-
-                {/* Actions */}
-                <div className="pt-2 flex flex-wrap items-center gap-4">
-                  <Link
-                    href={p.ctaHref}
-                    className="inline-flex items-center gap-2 border border-primary bg-primary px-6 py-3 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all font-semibold shadow-xs"
-                  >
-                    <span>Request Product Demo</span>
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-
-                  <Link
-                    href="/products"
-                    className="inline-flex items-center gap-2 font-mono-tech text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    <span>View Product Catalogue →</span>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Reveal>
+              </Reveal>
+            )
+          })}
+        </div>
       </div>
     </Section>
   )
@@ -270,7 +207,7 @@ export function FullProductsView() {
                     </span>
                   </div>
 
-                  <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start p-6 sm:p-8 md:p-10">
+                  <div className="grid gap-6 sm:gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start p-4 sm:p-6 md:p-10">
                     <div className="relative group">
                       <div className="relative aspect-[16/10] w-full overflow-hidden border border-border bg-background shadow-md">
                         <Image
@@ -298,7 +235,7 @@ export function FullProductsView() {
                             {p.badge}
                           </span>
                         </div>
-                        <h3 className="font-serif-editorial text-3xl sm:text-4xl font-normal text-foreground">
+                        <h3 className="font-serif-editorial text-2xl sm:text-4xl font-normal text-foreground break-words">
                           {p.name}
                         </h3>
                         <span className="font-mono-tech text-xs uppercase tracking-wider text-muted-sage font-semibold block mt-1">
@@ -338,7 +275,7 @@ export function FullProductsView() {
                       <div className="pt-2 flex flex-wrap items-center gap-4">
                         <Link
                           href={p.ctaHref}
-                          className="inline-flex items-center gap-2 border border-primary bg-primary px-6 py-3 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all font-semibold shadow-xs"
+                          className="inline-flex items-center justify-center gap-2 border border-primary bg-primary px-6 py-3 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all font-semibold shadow-xs w-full sm:w-auto text-center"
                         >
                           <span>Request Platform Demo</span>
                           <ArrowRight className="h-4 w-4" />
@@ -353,12 +290,12 @@ export function FullProductsView() {
         </div>
 
         {/* Clear Notice on Products versus Custom Engineering */}
-        <div className="border border-border bg-card/60 p-6 sm:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div className="border border-border bg-card/60 p-5 sm:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div className="max-w-2xl">
             <span className="font-mono-tech text-xs uppercase tracking-widest text-primary font-bold block mb-1">
               CUSTOM ENGINEERING CAPABILITIES
             </span>
-            <h4 className="font-serif-editorial text-2xl font-normal text-foreground">
+            <h4 className="font-serif-editorial text-xl sm:text-2xl font-normal text-foreground break-words">
               Need a Custom System Built for Your Specific Operations?
             </h4>
             <p className="mt-2 font-sans text-xs sm:text-sm text-muted-foreground leading-relaxed">
@@ -368,7 +305,7 @@ export function FullProductsView() {
 
           <Link
             href="/services"
-            className="inline-flex items-center gap-2 border border-border bg-card px-6 py-3 font-mono-tech text-xs uppercase tracking-widest text-foreground hover:border-primary transition-colors font-semibold shrink-0 shadow-2xs"
+            className="inline-flex items-center justify-center gap-2 border border-border bg-card px-6 py-3 font-mono-tech text-xs uppercase tracking-widest text-foreground hover:border-primary transition-colors font-semibold shrink-0 shadow-2xs w-full sm:w-auto text-center"
           >
             <span>Explore Custom Services</span>
             <ArrowRight className="h-3.5 w-3.5 text-primary" />

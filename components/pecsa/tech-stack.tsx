@@ -70,7 +70,7 @@ export function TechStack() {
   return (
     <Section id="tech-stack" index="09" eyebrow="Technology Stack">
       <Reveal>
-        <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.02] tracking-tight text-foreground">
+        <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.02] tracking-tight text-foreground break-words">
           Powered by{' '}
           <span className="text-primary italic">Modern Technology.</span>
         </h2>
@@ -83,7 +83,7 @@ export function TechStack() {
 
       {/* DYNAMIC TECHNOLOGY ECOSYSTEM */}
       <Reveal delay={0.15}>
-        <div className="mt-6 border border-border bg-card p-5 sm:p-8 relative shadow-lg">
+        <div className="mt-6 border border-border bg-card p-4 sm:p-6 md:p-8 relative shadow-lg">
           {/* Header */}
           <div className="flex items-center justify-between border-b border-border pb-4 mb-5">
             <span className="font-mono-tech text-xs uppercase tracking-widest text-muted-sage font-bold">
@@ -124,7 +124,7 @@ export function TechStack() {
                     <span className="font-mono-tech text-[10px] uppercase tracking-widest text-muted-sage font-semibold">
                       CATEGORY {cat.id}
                     </span>
-                    <h3 className="font-serif-editorial text-2xl sm:text-3xl font-normal text-foreground">
+                    <h3 className="font-serif-editorial text-2xl sm:text-3xl font-normal text-foreground break-words">
                       {cat.name}
                     </h3>
                   </div>
@@ -157,7 +157,7 @@ export function TechStack() {
           </AnimatePresence>
 
           {/* Arrow Control */}
-          <div className="mt-6 pt-4 border-t border-border flex items-center justify-between">
+          <div className="mt-6 pt-4 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
             <span className="font-mono-tech text-xs text-muted-foreground uppercase tracking-widest hidden sm:inline-block">
               Click arrow to cycle category →
             </span>
@@ -165,7 +165,7 @@ export function TechStack() {
             <button
               type="button"
               onClick={handleNextCategory}
-              className="group flex items-center gap-3 border border-primary bg-primary px-7 py-3 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all cursor-pointer font-semibold ml-auto shadow-sm"
+              className="group flex items-center justify-center gap-3 border border-primary bg-primary px-7 py-3 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all cursor-pointer font-semibold sm:ml-auto shadow-sm w-full sm:w-auto text-center"
               aria-label="Cycle to next tech category"
             >
               <span>NEXT CATEGORY</span>

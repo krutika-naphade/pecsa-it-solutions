@@ -92,7 +92,7 @@ export function Connect({ initialInterest }: { initialInterest?: string }) {
       <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-start">
         <div>
           <Reveal>
-            <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.02] text-foreground">
+            <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.02] text-foreground break-words">
               Direct Engineering <span className="text-primary italic">Intake.</span>
             </h2>
           </Reveal>
@@ -119,7 +119,7 @@ export function Connect({ initialInterest }: { initialInterest?: string }) {
         </div>
 
         <Reveal delay={0.15}>
-          <div className="border border-border bg-card p-6 sm:p-10 shadow-lg">
+          <div className="border border-border bg-card p-4 sm:p-6 md:p-10 shadow-lg">
             <div className="flex items-center justify-between border-b border-border pb-4 mb-6">
               <span className="font-mono-tech text-xs uppercase tracking-widest text-primary font-bold">
                 PROJECT INTAKE FORM

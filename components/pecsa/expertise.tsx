@@ -106,7 +106,7 @@ export function Expertise() {
             </Reveal>
             <Reveal delay={0.1}>
               <p className="mt-4 font-sans text-base sm:text-lg leading-relaxed text-muted-foreground font-light">
-                Businesses don’t always need more technology. They need the right technology. We combine multiple disciplines to create integrated solutions around your actual requirements.
+                Businesses don’t always need more technology. They need the right technology. Here is a brief overview of our six core engineering disciplines, designed to solve operational bottlenecks and build scalable systems.
               </p>
             </Reveal>
           </div>
@@ -122,13 +122,13 @@ export function Expertise() {
           </Reveal>
         </div>
 
-        {/* 6 Capabilities Structured Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* 6 Capabilities Brief Overview Grid */}
+        <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {CAPABILITIES_LIST.map((c, i) => {
             const Icon = c.icon
             return (
-              <Reveal key={c.id} delay={0.05 * i}>
-                <div className="group border border-border bg-card p-6 h-full flex flex-col justify-between hover:border-primary/60 transition-all shadow-xs">
+              <Reveal key={c.id} delay={0.04 * i}>
+                <div className="group border border-border bg-card p-5 sm:p-6 h-full flex flex-col justify-between hover:border-primary/60 transition-all shadow-xs">
                   <div>
                     <div className="flex items-center justify-between border-b border-border pb-3 mb-4 font-mono-tech text-xs">
                       <span className="text-primary font-bold">[{c.id}]</span>
@@ -136,57 +136,26 @@ export function Expertise() {
                     </div>
 
                     <div className="flex items-center gap-3 mb-3">
-                      <span className="flex h-10 w-10 items-center justify-center border border-primary bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                      <span className="flex h-10 w-10 items-center justify-center border border-primary bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors shrink-0">
                         <Icon className="h-5 w-5" />
                       </span>
-                      <h3 className="font-serif-editorial text-2xl font-normal text-foreground">
+                      <h3 className="font-serif-editorial text-xl sm:text-2xl font-normal text-foreground">
                         {c.title}
                       </h3>
                     </div>
 
-                    <p className="font-sans text-sm text-muted-foreground leading-relaxed mb-6 font-light">
+                    <p className="font-sans text-xs sm:text-sm text-muted-foreground leading-relaxed font-light mb-4">
                       {c.summary}
                     </p>
-
-                    <div className="space-y-4">
-                      <div>
-                        <span className="font-mono-tech text-[11px] uppercase tracking-wider text-foreground font-semibold block mb-2">
-                          Key Deliverables
-                        </span>
-                        <ul className="space-y-1.5 font-sans text-xs text-muted-foreground">
-                          {c.deliverables.map((app) => (
-                            <li key={app} className="flex items-center gap-2">
-                              <span className="h-1 w-1 rounded-full bg-primary" />
-                              <span>{app}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div>
-                        <span className="font-mono-tech text-[11px] uppercase tracking-wider text-foreground font-semibold block mb-2">
-                          Technologies
-                        </span>
-                        <div className="flex flex-wrap gap-1.5">
-                          {c.tech.map((t) => (
-                            <span
-                              key={t}
-                              className="border border-border bg-background px-2.5 py-0.5 font-mono-tech text-[10px] text-muted-foreground"
-                            >
-                              {t}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
                   </div>
 
-                  <div className="mt-8 pt-4 border-t border-border flex items-center justify-between">
+                  <div className="pt-4 border-t border-border flex items-center justify-between">
                     <Link
-                      href={c.contextualLink.href}
+                      href="/solutions"
                       className="font-mono-tech text-xs text-primary uppercase tracking-widest font-semibold hover:underline flex items-center gap-1.5"
                     >
-                      <span>Inquire Solution →</span>
+                      <span>Explore on Solutions</span>
+                      <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </div>
                 </div>
@@ -195,7 +164,7 @@ export function Expertise() {
           })}
         </div>
 
-        {/* Specialized Practice Callout */}
+        {/* Specialized Practice Callout: For Architects */}
         <Reveal delay={0.2}>
           <div className="border border-border bg-card/60 p-6 sm:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6 shadow-sm">
             <div className="max-w-2xl">
@@ -212,7 +181,7 @@ export function Expertise() {
 
             <Link
               href="/for-architects/philosophy"
-              className="inline-flex items-center gap-2 border border-primary bg-primary px-6 py-3 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all font-semibold shrink-0 shadow-xs"
+              className="inline-flex items-center justify-center gap-2 border border-primary bg-primary px-6 py-3 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all font-semibold shrink-0 shadow-xs w-full sm:w-auto text-center"
             >
               <span>Explore Architecture Philosophy</span>
               <ArrowUpRight className="h-4 w-4" />
@@ -243,7 +212,7 @@ export function FullSolutionsList() {
             <span className="font-mono-tech text-xs uppercase tracking-widest text-primary font-bold block mb-1">
               PROBLEM-FIRST CAPABILITY ARCHITECTURE
             </span>
-            <h2 className="font-serif-editorial text-3xl sm:text-5xl font-normal text-foreground">
+            <h2 className="font-serif-editorial text-3xl sm:text-5xl font-normal text-foreground break-words">
               What PECSA Helps Solve Across Core Disciplines
             </h2>
             <p className="mt-3 font-sans text-sm sm:text-base leading-relaxed text-muted-foreground">
@@ -257,10 +226,10 @@ export function FullSolutionsList() {
             const Icon = c.icon
             return (
               <Reveal key={c.id} delay={i * 0.05}>
-                <div className="border border-border bg-card p-6 sm:p-8 md:p-10 shadow-sm hover:border-primary/40 transition-all">
-                  <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+                <div className="border border-border bg-card p-4 sm:p-6 md:p-10 shadow-sm hover:border-primary/40 transition-all">
+                  <div className="grid gap-6 sm:gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
                     {/* Left: Capability Info & Problem Solved */}
-                    <div className="space-y-5">
+                    <div className="space-y-4 sm:space-y-5">
                       <div className="flex items-center justify-between border-b border-border/80 pb-2.5">
                         <span className="font-mono-tech text-xs text-primary font-bold">
                           [{c.id}] // {c.key}
@@ -274,7 +243,7 @@ export function FullSolutionsList() {
                         <span className="flex h-11 w-11 items-center justify-center border border-primary/40 bg-primary/10 text-primary shrink-0">
                           <Icon className="h-5 w-5" />
                         </span>
-                        <h3 className="font-serif-editorial text-2xl sm:text-3xl font-normal text-foreground">
+                        <h3 className="font-serif-editorial text-2xl sm:text-3xl font-normal text-foreground break-words">
                           {c.title}
                         </h3>
                       </div>

@@ -55,21 +55,21 @@ export function PracticeBriefModal({ isOpen, onClose }: IntakeModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 12 }}
             transition={{ duration: 0.2 }}
-            className="relative z-10 w-full max-w-2xl border border-border bg-card p-6 sm:p-10 shadow-2xl overflow-y-auto max-h-[90vh]"
+            className="relative z-10 w-full max-w-2xl border border-border bg-card p-4 sm:p-8 md:p-10 shadow-2xl overflow-y-auto max-h-[90vh]"
           >
-            <div className="flex items-center justify-between border-b border-border pb-4 mb-6">
+            <div className="flex items-center justify-between border-b border-border pb-3 sm:pb-4 mb-4 sm:mb-6">
               <div>
                 <span className="font-mono-tech text-[10px] uppercase tracking-widest text-primary font-bold block">
                   PECSA ARCHITECTURAL PRACTICE BRIEF
                 </span>
-                <h3 id="brief-modal-title" className="font-serif-editorial text-2xl text-foreground font-normal">
+                <h3 id="brief-modal-title" className="font-serif-editorial text-xl sm:text-2xl text-foreground font-normal">
                   Initiate Your Studio Monograph
                 </h3>
               </div>
               <button
                 type="button"
                 onClick={onClose}
-                className="flex h-8 w-8 items-center justify-center border border-border text-muted-foreground hover:text-foreground hover:border-primary transition-colors cursor-pointer"
+                className="flex h-9 w-9 items-center justify-center border border-border text-muted-foreground hover:text-foreground hover:border-primary transition-colors cursor-pointer shrink-0"
                 aria-label="Close dialog"
               >
                 <X className="h-4 w-4" />
@@ -198,17 +198,17 @@ export function PracticeBriefModal({ isOpen, onClose }: IntakeModalProps) {
                   />
                 </div>
 
-                <div className="pt-4 border-t border-border flex items-center justify-end gap-3">
+                <div className="pt-3 sm:pt-4 border-t border-border flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2.5 sm:gap-3">
                   <button
                     type="button"
                     onClick={onClose}
-                    className="border border-border bg-background px-5 py-2.5 font-mono-tech text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground cursor-pointer"
+                    className="border border-border bg-background px-5 py-2.5 font-mono-tech text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground cursor-pointer text-center"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className="inline-flex items-center gap-2 border border-primary bg-primary px-6 py-2.5 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 font-semibold cursor-pointer shadow-xs"
+                    className="inline-flex items-center justify-center gap-2 border border-primary bg-primary px-6 py-2.5 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 font-semibold cursor-pointer shadow-xs text-center"
                   >
                     <span>Transmit Brief</span>
                     <ArrowRight className="h-3.5 w-3.5" />

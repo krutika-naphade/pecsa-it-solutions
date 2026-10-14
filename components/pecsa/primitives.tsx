@@ -67,24 +67,24 @@ export function Section({
     <section
       id={id}
       className={cn(
-        'relative mx-auto w-full max-w-7xl px-6 py-12 sm:px-10 md:py-20 scroll-mt-24',
+        'relative mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-8 lg:px-10 py-10 sm:py-14 md:py-20 scroll-mt-24',
         className,
       )}
     >
       <Reveal
         className={cn(
-          'mb-8 flex items-center justify-between border-b border-border pb-3 md:mb-10',
+          'mb-6 flex flex-wrap items-center justify-between gap-2 border-b border-border pb-3 sm:mb-8 md:mb-10',
           dividerClassName,
         )}
       >
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5 sm:gap-3">
           {index && (
             <span className="font-mono-tech text-xs tracking-widest text-primary uppercase font-bold">
               [{index}]
             </span>
           )}
           {index && <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />}
-          <span className="font-mono-tech text-xs font-semibold uppercase tracking-[0.2em] text-foreground">
+          <span className="font-mono-tech text-xs font-semibold uppercase tracking-[0.18em] sm:tracking-[0.2em] text-foreground">
             {eyebrow}
           </span>
         </div>
@@ -107,7 +107,7 @@ export function SectionTitle({
   return (
     <h2
       className={cn(
-        'font-serif-editorial text-3xl font-normal leading-[1.05] tracking-tight text-foreground sm:text-5xl md:text-6xl max-w-4xl',
+        'font-serif-editorial text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-normal leading-[1.05] tracking-tight text-foreground max-w-4xl break-words',
         className,
       )}
     >
@@ -137,24 +137,24 @@ export function PageHeader({
   return (
     <section
       className={cn(
-        'bg-background py-14 sm:py-16 md:py-20 border-b border-border tech-grid-bg',
+        'bg-background py-10 sm:py-14 md:py-20 border-b border-border tech-grid-bg',
         className,
       )}
     >
-      <div className="mx-auto max-w-7xl px-6 sm:px-10">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-10">
         <span className="font-mono-tech text-xs uppercase tracking-widest text-primary font-bold block mb-3">
           {eyebrow}
         </span>
-        <h1 className="font-serif-editorial text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal leading-[1.04] text-foreground max-w-4xl">
+        <h1 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-normal leading-[1.05] text-foreground max-w-4xl break-words">
           {title} {titleAccent && <span className="text-primary italic">{titleAccent}</span>}
         </h1>
         {description && (
-          <p className="mt-5 max-w-3xl font-sans text-base sm:text-lg md:text-xl leading-relaxed text-muted-foreground font-light">
+          <p className="mt-4 sm:mt-5 max-w-3xl font-sans text-base sm:text-lg md:text-xl leading-relaxed text-muted-foreground font-light break-words">
             {description}
           </p>
         )}
         {lead && (
-          <p className="mt-3 max-w-3xl font-sans text-sm sm:text-base md:text-lg leading-relaxed text-foreground font-medium">
+          <p className="mt-3 max-w-3xl font-sans text-xs sm:text-sm md:text-base leading-relaxed text-foreground font-medium break-words">
             {lead}
           </p>
         )}

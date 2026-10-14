@@ -56,13 +56,13 @@ export function Projects() {
                   VERIFIED IMPLEMENTATIONS & CASE STUDIES
                 </span>
               </div>
-              <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.02] tracking-tight text-foreground">
+              <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.02] tracking-tight text-foreground break-words">
                 From Ideas to{' '}
                 <span className="text-primary italic">Real-World Solutions.</span>
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="mt-3 font-sans text-sm sm:text-base leading-relaxed text-muted-foreground font-light">
+              <p className="mt-3 font-sans text-sm sm:text-base leading-relaxed text-muted-foreground font-light break-words">
                 Explore how PECSA translates complex operational challenges into dependable software, AI, IoT, and automation systems with documented business outcomes.
               </p>
             </Reveal>
@@ -71,7 +71,7 @@ export function Projects() {
           <Reveal delay={0.15}>
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 border border-border bg-card px-6 py-3 font-mono-tech text-xs uppercase tracking-widest text-foreground hover:border-primary transition-colors font-semibold shadow-xs shrink-0"
+              className="inline-flex items-center justify-center gap-2 border border-border bg-card px-6 py-3 font-mono-tech text-xs uppercase tracking-widest text-foreground hover:border-primary transition-colors font-semibold shadow-xs shrink-0 w-full sm:w-auto text-center"
             >
               <span>View All Project Files</span>
               <ArrowUpRight className="h-4 w-4 text-primary" />
@@ -89,7 +89,7 @@ export function Projects() {
                   key={item.id}
                   type="button"
                   onClick={() => setActive(idx)}
-                  className={`p-4 text-left border transition-all cursor-pointer ${
+                  className={`p-3.5 sm:p-4 text-left border transition-all cursor-pointer ${
                     isSelected
                       ? 'border-primary bg-card shadow-sm'
                       : 'border-border bg-card/60 hover:border-primary/40'
@@ -100,7 +100,7 @@ export function Projects() {
                   }`}>
                     CASE FILE 0{idx + 1} // {item.category}
                   </span>
-                  <span className="font-serif-editorial text-lg text-foreground font-normal block">
+                  <span className="font-serif-editorial text-base sm:text-lg text-foreground font-normal block">
                     {item.name}
                   </span>
                 </button>
@@ -111,12 +111,12 @@ export function Projects() {
 
         {/* Active Case Study Presentation */}
         <Reveal delay={0.2}>
-          <div className="border border-border bg-card shadow-lg p-6 sm:p-8 md:p-10">
-            <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+          <div className="border border-border bg-card shadow-lg p-4 sm:p-7 md:p-10">
+            <div className="grid gap-8 lg:gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
               {/* Left Column: Case Narrative & Image */}
               <div className="space-y-6">
                 <div>
-                  <div className="flex items-center justify-between border-b border-border/80 pb-2 mb-3">
+                  <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/80 pb-2 mb-3">
                     <span className="font-mono-tech text-xs uppercase tracking-widest text-primary font-bold">
                       {p.category}
                     </span>
@@ -124,7 +124,7 @@ export function Projects() {
                       CONTEXT: {p.clientContext}
                     </span>
                   </div>
-                  <h3 className="font-serif-editorial text-2xl sm:text-4xl font-normal text-foreground">
+                  <h3 className="font-serif-editorial text-2xl sm:text-4xl font-normal text-foreground break-words">
                     {p.name}
                   </h3>
                   <p className="mt-3 font-sans text-sm sm:text-base leading-relaxed text-foreground/90 italic">
@@ -170,7 +170,7 @@ export function Projects() {
                 <div className="pt-2">
                   <Link
                     href={p.ctaHref}
-                    className="inline-flex items-center gap-2 border border-primary bg-primary px-6 py-3 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all font-semibold shadow-xs"
+                    className="inline-flex items-center justify-center gap-2 border border-primary bg-primary px-6 py-3 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all font-semibold shadow-xs w-full sm:w-auto text-center"
                   >
                     <span>{p.ctaText}</span>
                     <ArrowRight className="h-3.5 w-3.5" />
@@ -237,7 +237,7 @@ export function FullProjectsList() {
             <span className="font-mono-tech text-xs uppercase tracking-widest text-primary font-bold block mb-1">
               PECSA CASE FILES // WORK WE HAVE CARRIED OUT
             </span>
-            <h2 className="font-serif-editorial text-3xl sm:text-5xl font-normal text-foreground">
+            <h2 className="font-serif-editorial text-3xl sm:text-5xl font-normal text-foreground break-words">
               Documented Implementations & Technical Case Studies
             </h2>
             <p className="mt-3 font-sans text-sm sm:text-base leading-relaxed text-muted-foreground">
@@ -249,8 +249,8 @@ export function FullProjectsList() {
         <div className="space-y-10">
           {VERIFIED_PROJECTS.map((p, i) => (
             <Reveal key={p.id} delay={i * 0.08}>
-              <div className="border border-border bg-card p-6 sm:p-8 md:p-10 shadow-sm">
-                <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+              <div className="border border-border bg-card p-4 sm:p-6 md:p-10 shadow-sm">
+                <div className="grid gap-6 sm:gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
                   <div className="space-y-5">
                     <div>
                       <div className="flex items-center justify-between border-b border-border/80 pb-2.5 mb-3">
@@ -261,7 +261,7 @@ export function FullProjectsList() {
                           {p.category}
                         </span>
                       </div>
-                      <h3 className="font-serif-editorial text-2xl sm:text-3xl font-normal text-foreground">
+                      <h3 className="font-serif-editorial text-2xl sm:text-3xl font-normal text-foreground break-words">
                         {p.name}
                       </h3>
                       <p className="mt-2 font-sans text-sm text-foreground/80 italic">
@@ -324,7 +324,7 @@ export function FullProjectsList() {
                     <div className="pt-2">
                       <Link
                         href={p.ctaHref}
-                        className="inline-flex items-center gap-2 border border-primary bg-primary px-5 py-2.5 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all font-semibold shadow-xs"
+                        className="inline-flex items-center justify-center gap-2 border border-primary bg-primary px-5 py-2.5 font-mono-tech text-xs uppercase tracking-widest text-white hover:bg-primary/90 transition-all font-semibold shadow-xs w-full sm:w-auto text-center"
                       >
                         <span>{p.ctaText}</span>
                         <ArrowRight className="h-3.5 w-3.5" />
@@ -339,7 +339,7 @@ export function FullProjectsList() {
 
         {/* Client Confidentiality & Publishing Protocol Notice */}
         <Reveal delay={0.2}>
-          <div className="border border-border bg-card p-6 sm:p-8 md:p-10 shadow-sm">
+          <div className="border border-border bg-card p-4 sm:p-6 md:p-10 shadow-sm">
             <div className="flex items-start gap-4">
               <span className="flex h-10 w-10 items-center justify-center border border-primary/40 bg-primary/10 text-primary shrink-0 mt-0.5">
                 <Lock className="h-5 w-5" />
@@ -349,7 +349,7 @@ export function FullProjectsList() {
                   <span className="font-mono-tech text-[10px] uppercase tracking-widest text-primary font-bold block mb-1">
                     CLIENT CONFIDENTIALITY PROTOCOL
                   </span>
-                  <h4 className="font-serif-editorial text-2xl font-normal text-foreground">
+                  <h4 className="font-serif-editorial text-xl sm:text-2xl font-normal text-foreground break-words">
                     Why We Only Publish Verified & Authorized Case Files
                   </h4>
                 </div>

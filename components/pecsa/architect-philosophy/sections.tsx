@@ -282,7 +282,7 @@ export function PhilosophySections() {
             </RevealItem>
 
             <RevealItem delay={0.2} className="mt-8">
-              <div className="border border-border bg-card p-6 sm:p-8">
+              <div className="border border-border bg-card p-4 sm:p-6 md:p-8">
                 <div className="flex items-center justify-between border-b border-border pb-3 mb-4">
                   <span className="font-mono-tech text-xs uppercase tracking-widest text-primary font-bold">
                     VISUAL LANGUAGE INTERACTION
@@ -397,15 +397,15 @@ export function PhilosophySections() {
             </h2>
           </RevealItem>
 
-          <RevealItem delay={0.12} className="my-10 sm:my-14">
-            <div className="border border-border bg-card p-8 sm:p-14 shadow-sm relative">
-              <span className="font-mono-tech text-[10px] uppercase tracking-widest text-muted-foreground absolute top-4 left-6">
+          <RevealItem delay={0.12} className="my-8 sm:my-12 md:my-14">
+            <div className="border border-border bg-card p-5 sm:p-8 md:p-14 shadow-sm relative">
+              <span className="font-mono-tech text-[10px] uppercase tracking-widest text-muted-foreground absolute top-3 left-4 sm:top-4 sm:left-6">
                 FRAME MANIFESTO
               </span>
-              <p className="font-serif-editorial text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-primary tracking-tight leading-none italic">
+              <p className="font-serif-editorial text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-normal text-primary tracking-tight leading-tight italic break-words mt-4 sm:mt-0">
                 “The website is the frame, not the artwork.”
               </p>
-              <p className="mt-6 font-sans text-base sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              <p className="mt-4 sm:mt-6 font-sans text-sm sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Our job is to create enough visual character to make the portfolio memorable,
                 while keeping the focus on the architect’s work.
               </p>
@@ -414,11 +414,11 @@ export function PhilosophySections() {
 
           <RevealItem delay={0.2}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left font-mono-tech text-xs">
-              <div className="border-2 border-primary bg-primary/5 p-6 sm:p-8">
+              <div className="border-2 border-primary bg-primary/5 p-5 sm:p-6 md:p-8">
                 <span className="text-primary font-bold block mb-2 text-sm uppercase tracking-wider">
                   The website should say:
                 </span>
-                <p className="font-serif-editorial text-2xl sm:text-3xl text-foreground font-normal leading-snug">
+                <p className="font-serif-editorial text-xl sm:text-2xl md:text-3xl text-foreground font-normal leading-snug break-words">
                   “This is their work.”
                 </p>
                 <p className="mt-3 font-sans text-xs text-muted-foreground">
@@ -426,11 +426,11 @@ export function PhilosophySections() {
                 </p>
               </div>
 
-              <div className="border border-border bg-card p-6 sm:p-8">
+              <div className="border border-border bg-card p-5 sm:p-6 md:p-8">
                 <span className="text-muted-foreground font-bold block mb-2 text-sm uppercase tracking-wider">
                   Not:
                 </span>
-                <p className="font-serif-editorial text-2xl sm:text-3xl text-muted-foreground font-normal line-through decoration-primary decoration-2 leading-snug">
+                <p className="font-serif-editorial text-xl sm:text-2xl md:text-3xl text-muted-foreground font-normal line-through decoration-primary decoration-2 leading-snug break-words">
                   “Look what the website designer did.”
                 </p>
                 <p className="mt-3 font-sans text-xs text-muted-foreground">
@@ -518,7 +518,7 @@ export function PhilosophySections() {
           </RevealItem>
 
           <RevealItem delay={0.2}>
-            <div className="border border-border bg-card p-6 sm:p-10 shadow-sm sticky top-28">
+            <div className="border border-border bg-card p-5 sm:p-8 md:p-10 shadow-sm lg:sticky lg:top-28">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeJourneyStep}
@@ -603,12 +603,12 @@ export function PhilosophySections() {
 
         <RevealItem delay={0.2} className="mt-12 sm:mt-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="border-2 border-primary bg-card p-8 sm:p-12 shadow-sm flex flex-col justify-between">
+            <div className="border-2 border-primary bg-card p-5 sm:p-8 md:p-12 shadow-sm flex flex-col justify-between">
               <div>
                 <span className="font-mono-tech text-xs uppercase tracking-widest text-primary font-bold block mb-3">
                   PECSA COMMITMENT
                 </span>
-                <p className="font-serif-editorial text-3xl sm:text-4xl md:text-5xl text-foreground font-normal leading-tight">
+                <p className="font-serif-editorial text-2xl sm:text-4xl md:text-5xl text-foreground font-normal leading-tight break-words">
                   PECSA provides the digital thinking.
                 </p>
               </div>
@@ -628,12 +628,12 @@ export function PhilosophySections() {
               </ul>
             </div>
 
-            <div className="border border-border bg-card p-8 sm:p-12 shadow-sm flex flex-col justify-between">
+            <div className="border border-border bg-card p-5 sm:p-8 md:p-12 shadow-sm flex flex-col justify-between">
               <div>
                 <span className="font-mono-tech text-xs uppercase tracking-widest text-muted-sage font-bold block mb-3">
                   STUDIO ESSENCE
                 </span>
-                <p className="font-serif-editorial text-3xl sm:text-4xl md:text-5xl text-foreground font-normal leading-tight">
+                <p className="font-serif-editorial text-2xl sm:text-4xl md:text-5xl text-foreground font-normal leading-tight break-words">
                   The architect provides the identity.
                 </p>
               </div>
@@ -687,7 +687,7 @@ export function PhilosophySections() {
             </RevealItem>
 
             <RevealItem delay={0.2} className="mt-8">
-              <div className="border border-border bg-card p-6 sm:p-8 space-y-4">
+              <div className="border border-border bg-card p-4 sm:p-6 md:p-8 space-y-4">
                 <span className="font-mono-tech text-xs uppercase tracking-widest text-primary font-bold block">
                   SCALABLE STUDIO ARCHITECTURE
                 </span>
@@ -716,14 +716,14 @@ export function PhilosophySections() {
           </div>
 
           <RevealItem delay={0.25}>
-            <div className="border border-border bg-card p-8 sm:p-12 shadow-sm relative overflow-hidden">
+            <div className="border border-border bg-card p-5 sm:p-8 md:p-12 shadow-sm relative overflow-hidden">
               <div className="absolute top-0 right-0 p-4 font-mono-tech text-[10px] text-primary/40 uppercase tracking-widest">
                 TEMPORAL DURABILITY
               </div>
               <span className="font-mono-tech text-xs uppercase tracking-widest text-primary font-bold block mb-4">
                 THE ENDURING STANDARD
               </span>
-              <h3 className="font-serif-editorial text-2xl sm:text-3xl text-foreground font-normal leading-snug">
+              <h3 className="font-serif-editorial text-2xl sm:text-3xl text-foreground font-normal leading-snug break-words">
                 Built to age with the dignity of honest materials.
               </h3>
               <p className="mt-4 font-sans text-sm text-muted-foreground leading-relaxed">

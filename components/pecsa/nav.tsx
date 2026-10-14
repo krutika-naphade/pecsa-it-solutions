@@ -1,7 +1,7 @@
 'use client'
 
 import { AnimatePresence, motion } from 'motion/react'
-import { Menu, X, ArrowUpRight, Sun, Moon, ChevronDown, SlidersHorizontal } from 'lucide-react'
+import { Menu, X, ArrowUpRight, Sun, Moon, ChevronDown } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -89,14 +89,23 @@ export function Nav() {
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setOpen(false)
+        setSolutionsMenuOpen(false)
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
     return () => {
       document.body.style.overflow = ''
+      window.removeEventListener('keydown', handleKeyDown)
     }
   }, [open])
 
-  // Close solutions dropdown when route changes
+  // Close solutions dropdown & mobile menu when route changes
   useEffect(() => {
     setSolutionsMenuOpen(false)
+    setOpen(false)
   }, [pathname])
 
   return (
@@ -247,13 +256,13 @@ export function Nav() {
               })}
             </ul>
 
-            {/* Action Group: Theme Toggle, CTA, Menu/Settings Control, Mobile Hamburger */}
+            {/* Action Group: Theme Toggle, CTA, Mobile Hamburger */}
             <div className="flex items-center gap-2 sm:gap-2.5">
               {/* Theme Toggle Button */}
               <button
                 type="button"
                 onClick={toggleTheme}
-                className="flex h-8.5 w-8.5 items-center justify-center rounded-lg border border-border/80 bg-card/80 text-foreground transition-colors hover:border-primary hover:text-primary cursor-pointer"
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-border/80 bg-card/80 text-foreground transition-colors hover:border-primary hover:text-primary cursor-pointer"
                 title={`Switch to ${theme === 'dark' ? 'Light Modern' : 'Dark Espresso'} Theme`}
                 aria-label="Toggle theme"
               >
@@ -269,22 +278,11 @@ export function Nav() {
                 <ArrowUpRight className="h-3.5 w-3.5" />
               </Link>
 
-              {/* Menu / Settings Directory Control */}
-              <button
-                type="button"
-                onClick={() => window.dispatchEvent(new CustomEvent('pecsa:toggle-directory'))}
-                className="flex h-8.5 w-8.5 items-center justify-center rounded-lg border border-border/80 bg-card/80 text-foreground transition-colors hover:border-primary hover:text-primary cursor-pointer"
-                title="Page Directory & Quick Navigation"
-                aria-label="Toggle section directory"
-              >
-                <SlidersHorizontal className="h-4 w-4" />
-              </button>
-
               {/* Mobile Hamburger Toggle */}
               <button
                 type="button"
                 onClick={() => setOpen((v) => !v)}
-                className="inline-flex h-8.5 w-8.5 items-center justify-center rounded-lg border border-border/80 bg-card/80 text-foreground hover:border-primary lg:hidden cursor-pointer"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border/80 bg-card/80 text-foreground hover:border-primary lg:hidden cursor-pointer"
                 aria-label={open ? 'Close menu' : 'Open menu'}
                 aria-expanded={open}
               >
