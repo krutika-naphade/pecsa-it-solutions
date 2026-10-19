@@ -7,7 +7,7 @@ import { Reveal, Section } from './primitives'
 export function AboutSection() {
   return (
     <Section id="about-pecsa" index="10" eyebrow="About PECSA">
-      <div className="border border-white/10 bg-[#2b211d] p-8 sm:p-12 shadow-2xl relative">
+      <div className="border border-border bg-card p-8 sm:p-12 shadow-2xl relative">
         <div className="max-w-3xl">
           <Reveal>
             <h2 className="font-serif-editorial text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.02] tracking-tight text-foreground">

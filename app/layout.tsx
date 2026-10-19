@@ -40,8 +40,8 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  colorScheme: 'dark',
-  themeColor: '#0b0e17',
+  colorScheme: 'light',
+  themeColor: '#ffffff',
   width: 'device-width',
   initialScale: 1,
 }
@@ -54,9 +54,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`dark bg-background ${inter.variable} ${spaceGrotesk.variable}`}
+      data-theme="light"
+      style={{ colorScheme: 'light' }}
+      className={`light bg-background ${inter.variable} ${spaceGrotesk.variable}`}
     >
       <body className="font-sans antialiased">
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{localStorage.removeItem('pecsa-theme');document.documentElement.classList.remove('dark');document.documentElement.classList.add('light');document.documentElement.setAttribute('data-theme','light');document.documentElement.style.colorScheme='light';}catch(e){}`,
+          }}
+        />
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

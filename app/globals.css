@@ -32,76 +32,57 @@
   --font-mono: var(--font-space-grotesk), monospace;
 }
 
-:root {
-  color-scheme: dark;
+:root,
+[data-theme='light'],
+[data-theme='dark'],
+html,
+html.light,
+html.dark,
+.dark {
+  color-scheme: light !important;
   --radius: 0rem;
 
-  /* THEME A — DARK PECSA (Deep Warm Espresso, Warm Cream, Burnt Copper & Muted Sage) */
-  --background: #191311;
-  --foreground: #f5ede0;
+  /* PECSA LIGHT THEME ONLY (Deep Navy, Electric Blue, White, Light Gray, Dark Text) */
+  --background: #ffffff;
+  --foreground: #172033;
 
-  --card: #221a17;
-  --card-foreground: #f5ede0;
-  --popover: #221a17;
-  --popover-foreground: #f5ede0;
+  --card: #f3f5f8;
+  --card-foreground: #172033;
+  --popover: #ffffff;
+  --popover-foreground: #172033;
 
   /* Brand Accents */
-  --primary: #d96b43; /* Burnt Copper Primary Accent */
+  --primary: #2563eb; /* Electric Blue */
   --primary-foreground: #ffffff;
 
-  --secondary: #2c221e;
-  --secondary-foreground: #f5ede0;
+  --secondary: #f3f5f8;
+  --secondary-foreground: #172033;
 
-  --muted: #211916;
-  --muted-foreground: #baa896; /* Muted Warm Sand */
+  --muted: #f3f5f8;
+  --muted-foreground: rgba(23, 32, 51, 0.72);
 
-  --accent: #322621;
-  --accent-foreground: #f5ede0;
-
-  --destructive: #b91c1c;
-
-  --border: rgba(245, 237, 224, 0.1);
-  --input: rgba(245, 237, 224, 0.15);
-  --ring: #d96b43;
-
-  --burnt-copper: #d96b43;
-  --muted-sage: #8c9a72;
-  --grid-line: rgba(245, 237, 224, 0.05);
-}
-
-[data-theme='light'], html.light {
-  color-scheme: light;
-
-  /* THEME B — LIGHT / MODERN PECSA (Editorial Studio Off-White, Dark Espresso, Burnt Copper & Sage) */
-  --background: #fcfaf7;
-  --foreground: #1c1614;
-
-  --card: #f4f0e8;
-  --card-foreground: #1c1614;
-  --popover: #ffffff;
-  --popover-foreground: #1c1614;
-
-  --primary: #c65a3a;
-  --primary-foreground: #ffffff;
-
-  --secondary: #ede7dd;
-  --secondary-foreground: #1c1614;
-
-  --muted: #f1ede6;
-  --muted-foreground: #5a524c;
-
-  --accent: #e8e2d7;
-  --accent-foreground: #1c1614;
+  --accent: #f3f5f8;
+  --accent-foreground: #172033;
 
   --destructive: #dc2626;
 
-  --border: rgba(28, 22, 20, 0.12);
-  --input: rgba(28, 22, 20, 0.15);
-  --ring: #c65a3a;
+  --border: rgba(11, 31, 58, 0.12);
+  --input: rgba(11, 31, 58, 0.15);
+  --ring: #2563eb;
 
-  --burnt-copper: #c65a3a;
-  --muted-sage: #6e7d55;
-  --grid-line: rgba(28, 22, 20, 0.05);
+  --deep-navy: #0b1f3a;
+  --electric-blue: #2563eb;
+  --burnt-copper: #2563eb;
+  --muted-sage: #0b1f3a;
+  --grid-line: rgba(11, 31, 58, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root,
+  html,
+  body {
+    color-scheme: light !important;
+  }
 }
 
 @layer base {
@@ -121,8 +102,8 @@
     transition: background-color 0.3s ease, color 0.3s ease;
   }
   ::selection {
-    background: rgba(217, 107, 67, 0.3);
-    color: #ffffff;
+    background: rgba(37, 99, 235, 0.2);
+    color: #0b1f3a;
   }
 }
 
@@ -147,6 +128,12 @@
   }
   .text-muted-sage {
     color: var(--muted-sage);
+  }
+  .text-deep-navy {
+    color: var(--deep-navy);
+  }
+  .text-electric-blue {
+    color: var(--electric-blue);
   }
   .tech-grid-bg {
     background-image: linear-gradient(to right, var(--grid-line) 1px, transparent 1px),

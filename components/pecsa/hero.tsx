@@ -13,7 +13,7 @@ export function Hero() {
     >
       {/* Subtle Warm Ambient Glow */}
       <div className="absolute top-1/4 right-1/4 -translate-y-1/2 h-[500px] w-[500px] blur-[150px] pointer-events-none rounded-full bg-primary/10" />
-      <div className="absolute bottom-10 left-10 h-[350px] w-[350px] blur-[130px] pointer-events-none rounded-full bg-amber-500/5" />
+      <div className="absolute bottom-10 left-10 h-[350px] w-[350px] blur-[130px] pointer-events-none rounded-full bg-primary/5" />
 
       <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-8 lg:px-10">
         {/* Main Hero Grid: Editorial Statement (Left) + Human Collaboration Photography (Right) */}

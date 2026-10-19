@@ -1,7 +1,7 @@
 'use client'
 
 import { AnimatePresence, motion } from 'motion/react'
-import { Menu, X, ArrowUpRight, Sun, Moon, ChevronDown } from 'lucide-react'
+import { Menu, X, ArrowUpRight, ChevronDown } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -50,35 +50,16 @@ export function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [solutionsMenuOpen, setSolutionsMenuOpen] = useState(false)
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark')
   const pathname = usePathname()
 
   useEffect(() => {
-    const savedTheme = (localStorage.getItem('pecsa-theme') as 'dark' | 'light') || 'dark'
-    setTheme(savedTheme)
-    document.documentElement.setAttribute('data-theme', savedTheme)
-    if (savedTheme === 'light') {
-      document.documentElement.classList.add('light')
-      document.documentElement.classList.remove('dark')
-    } else {
-      document.documentElement.classList.add('dark')
-      document.documentElement.classList.remove('light')
-    }
+    try {
+      localStorage.removeItem('pecsa-theme')
+    } catch {}
+    document.documentElement.setAttribute('data-theme', 'light')
+    document.documentElement.classList.remove('dark')
+    document.documentElement.classList.add('light')
   }, [])
-
-  const toggleTheme = () => {
-    const nextTheme = theme === 'dark' ? 'light' : 'dark'
-    setTheme(nextTheme)
-    localStorage.setItem('pecsa-theme', nextTheme)
-    document.documentElement.setAttribute('data-theme', nextTheme)
-    if (nextTheme === 'light') {
-      document.documentElement.classList.add('light')
-      document.documentElement.classList.remove('dark')
-    } else {
-      document.documentElement.classList.add('dark')
-      document.documentElement.classList.remove('light')
-    }
-  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -114,8 +95,8 @@ export function Nav() {
         <div
           className={`relative rounded-2xl border transition-all duration-300 ${
             scrolled
-              ? 'bg-[#faf6ee]/95 dark:bg-[#1f1815]/95 border-[rgba(28,22,20,0.12)] dark:border-[rgba(245,237,224,0.15)] shadow-[0_8px_30px_rgba(40,30,20,0.08),0_1px_3px_rgba(0,0,0,0.02)] dark:shadow-[0_12px_36px_rgba(0,0,0,0.5)] backdrop-blur-md py-2.5 px-4 sm:px-6'
-              : 'bg-[#faf6ee]/85 dark:bg-[#1f1815]/85 border-[rgba(28,22,20,0.08)] dark:border-[rgba(245,237,224,0.12)] shadow-[0_4px_20px_-4px_rgba(40,30,20,0.06)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.4)] backdrop-blur-md py-3 px-4 sm:px-6'
+              ? 'bg-white/95 border-[rgba(11,31,58,0.12)] shadow-[0_8px_30px_rgba(11,31,58,0.08),0_1px_3px_rgba(0,0,0,0.02)] backdrop-blur-md py-2.5 px-4 sm:px-6'
+              : 'bg-white/90 border-[rgba(11,31,58,0.08)] shadow-[0_4px_20px_-4px_rgba(11,31,58,0.06)] backdrop-blur-md py-3 px-4 sm:px-6'
           }`}
         >
           <nav className="flex items-center justify-between" aria-label="Main Navigation">
@@ -256,19 +237,8 @@ export function Nav() {
               })}
             </ul>
 
-            {/* Action Group: Theme Toggle, CTA, Mobile Hamburger */}
+            {/* Action Group: CTA & Mobile Hamburger */}
             <div className="flex items-center gap-2 sm:gap-2.5">
-              {/* Theme Toggle Button */}
-              <button
-                type="button"
-                onClick={toggleTheme}
-                className="flex h-9 w-9 items-center justify-center rounded-lg border border-border/80 bg-card/80 text-foreground transition-colors hover:border-primary hover:text-primary cursor-pointer"
-                title={`Switch to ${theme === 'dark' ? 'Light Modern' : 'Dark Espresso'} Theme`}
-                aria-label="Toggle theme"
-              >
-                {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-              </button>
-
               {/* Start a Project CTA */}
               <Link
                 href="/contact"
@@ -300,7 +270,7 @@ export function Nav() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -8, scale: 0.98 }}
               transition={{ duration: 0.22, ease: 'easeOut' }}
-              className="mt-2 rounded-2xl border border-border/80 bg-[#faf6ee]/98 dark:bg-[#1f1815]/98 backdrop-blur-xl p-5 shadow-2xl lg:hidden max-h-[calc(100vh-6rem)] overflow-y-auto"
+              className="mt-2 rounded-2xl border border-border/80 bg-white/98 backdrop-blur-xl p-5 shadow-2xl lg:hidden max-h-[calc(100vh-6rem)] overflow-y-auto"
             >
               <div className="flex flex-col gap-4">
                 <div className="flex items-center justify-between border-b border-border/60 pb-3">
@@ -318,21 +288,27 @@ export function Nav() {
 
                     return (
                       <li key={l.href} className="flex flex-col">
-                        <div className="flex items-center justify-between border-b border-border/40 pb-2">
+                        <div className="border-b border-border/40 pb-2">
                           <Link
                             href={l.href}
                             onClick={() => setOpen(false)}
-                            className={`font-serif-editorial text-xl transition-colors ${
+                            className={`group flex items-baseline justify-between w-full transition-colors ${
                               isActive || isChildActive
                                 ? 'text-primary font-medium'
                                 : 'text-foreground hover:text-primary'
                             }`}
                           >
-                            <span>{l.label}</span>
+                            <span className="font-serif-editorial text-xl">{l.label}</span>
+                            <span
+                              className={`font-mono-tech text-xs tabular-nums select-none transition-colors ${
+                                isActive || isChildActive
+                                  ? 'text-primary font-bold'
+                                  : 'text-muted-foreground group-hover:text-primary'
+                              }`}
+                            >
+                              0{i + 1}
+                            </span>
                           </Link>
-                          <span className="font-mono-tech text-xs text-muted-foreground">
-                            0{i + 1}
-                          </span>
                         </div>
 
                         {l.children && (
@@ -370,14 +346,6 @@ export function Nav() {
                   })}
                 </ul>
                 <div className="pt-2 flex flex-col gap-2.5">
-                  <button
-                    type="button"
-                    onClick={toggleTheme}
-                    className="flex items-center justify-between w-full rounded-lg border border-border/80 bg-card/70 px-4 py-2.5 font-mono-tech text-xs uppercase tracking-widest text-foreground cursor-pointer"
-                  >
-                    <span>Theme: {theme === 'dark' ? 'Dark Espresso' : 'Light Modern'}</span>
-                    {theme === 'dark' ? <Sun className="h-4 w-4 text-primary" /> : <Moon className="h-4 w-4 text-primary" />}
-                  </button>
                   <Link
                     href="/contact"
                     onClick={() => setOpen(false)}
