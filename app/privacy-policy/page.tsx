@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import { Nav } from '@/components/pecsa/nav'
-import { SideNav } from '@/components/pecsa/side-nav'
 import { BuildWithUs } from '@/components/pecsa/build-with-us'
 import { Footer } from '@/components/pecsa/footer'
 
@@ -13,7 +12,6 @@ export default function PrivacyPolicyPage() {
   return (
     <main className="relative min-h-screen overflow-x-hidden pt-20 bg-background text-foreground">
       <Nav />
-      <SideNav />
 
       <section className="bg-background py-16 sm:py-20 border-b border-border tech-grid-bg">
         <div className="mx-auto max-w-7xl px-6 sm:px-10">
@@ -47,12 +45,17 @@ export default function PrivacyPolicyPage() {
             <p>
               For all official inquiries regarding privacy or data handling, please contact PECSA IT Solutions directly:
             </p>
-            <ul className="mt-3 space-y-1 font-mono-tech text-xs text-foreground/90">
+            <ul className="mt-3 space-y-1.5 font-mono-tech text-xs text-foreground/90">
               <li>• Company: PECSA IT Solutions</li>
-              <li>• Location: Nagpur, Maharashtra, India</li>
+              <li>• Address: B Wing, Priyadarshini College of Engineering, Hingna, Nagpur – 440016, Maharashtra, India.</li>
+              <li>• Phone:{' '}
+                <a href="tel:+919420421326" className="text-primary underline font-bold">
+                  9420421326
+                </a>
+              </li>
               <li>• Email:{' '}
-                <a href="mailto:contact@pecsa.in" className="text-primary underline font-bold">
-                  contact@pecsa.in
+                <a href="mailto:pecsaitsolutions@gmail.com" className="text-primary underline font-bold">
+                  pecsaitsolutions@gmail.com
                 </a>
               </li>
             </ul>

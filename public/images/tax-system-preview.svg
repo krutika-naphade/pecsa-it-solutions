@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="taxBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1329" />
+      <stop offset="100%" stop-color="#141e3a" />
+    </linearGradient>
+    <linearGradient id="taxCardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#162344" />
+      <stop offset="100%" stop-color="#0e1830" />
+    </linearGradient>
+    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="500" fill="url(#taxBgGrad)" />
+
+  <!-- Window Header -->
+  <rect x="0" y="0" width="800" height="42" fill="#080e1e" />
+  <circle cx="24" cy="21" r="5" fill="#ef4444" opacity="0.8" />
+  <circle cx="40" cy="21" r="5" fill="#f59e0b" opacity="0.8" />
+  <circle cx="56" cy="21" r="5" fill="#10b981" opacity="0.8" />
+
+  <!-- Address Bar -->
+  <rect x="80" y="10" width="460" height="22" rx="4" fill="#131e38" />
+  <text x="96" y="25" fill="#93c5fd" font-family="monospace" font-size="11">https://tax.pecsa.app/dashboard</text>
+
+  <!-- Top Banner / App Bar -->
+  <rect x="24" y="60" width="752" height="54" rx="8" fill="url(#taxCardGrad)" stroke="#1e2f56" stroke-width="1" />
+  <!-- Receipt / Tax Icon -->
+  <rect x="40" y="73" width="28" height="28" rx="6" fill="#f59e0b" opacity="0.2" />
+  <path d="M46 77 L62 77 L62 97 L58 94 L54 97 L50 94 L46 97 Z M50 82 L58 82 M50 86 L58 86 M50 90 L55 90" stroke="#f59e0b" stroke-width="1.8" fill="none" stroke-linejoin="round" />
+  <text x="80" y="86" fill="#f8fafc" font-family="sans-serif" font-weight="700" font-size="14">Gram Panchayat Tax Management System</text>
+  <text x="80" y="101" fill="#94a3b8" font-family="sans-serif" font-size="10">Simplifying Tax Administration Through Technology</text>
+
+  <!-- Under Development Pill -->
+  <rect x="600" y="74" width="160" height="24" rx="12" fill="#451a03" stroke="#f59e0b" stroke-width="1" />
+  <circle cx="614" cy="86" r="3.5" fill="#f59e0b" />
+  <text x="626" y="90" fill="#fde68a" font-family="monospace" font-size="10" font-weight="700">UNDER DEVELOPMENT</text>
+
+  <!-- Metrics Row (4 Cards) -->
+  <!-- Card 1 -->
+  <rect x="24" y="126" width="176" height="76" rx="6" fill="url(#taxCardGrad)" stroke="#1e2f56" stroke-width="1" />
+  <text x="38" y="146" fill="#94a3b8" font-family="monospace" font-size="9" font-weight="600">PROPERTY REGISTRY</text>
+  <text x="38" y="172" fill="#f8fafc" font-family="sans-serif" font-size="20" font-weight="700">1,480</text>
+  <text x="38" y="190" fill="#10b981" font-family="monospace" font-size="9">Registered Units</text>
+
+  <!-- Card 2 -->
+  <rect x="216" y="126" width="176" height="76" rx="6" fill="url(#taxCardGrad)" stroke="#1e2f56" stroke-width="1" />
+  <text x="230" y="146" fill="#94a3b8" font-family="monospace" font-size="9" font-weight="600">ANNUAL DEMAND</text>
+  <text x="230" y="172" fill="#f8fafc" font-family="sans-serif" font-size="20" font-weight="700">₹ 8,45,200</text>
+  <text x="230" y="190" fill="#60a5fa" font-family="monospace" font-size="9">Total Assessed Tax</text>
+
+  <!-- Card 3 -->
+  <rect x="408" y="126" width="176" height="76" rx="6" fill="url(#taxCardGrad)" stroke="#1e2f56" stroke-width="1" />
+  <text x="422" y="146" fill="#94a3b8" font-family="monospace" font-size="9" font-weight="600">COLLECTION STATUS</text>
+  <text x="422" y="172" fill="#10b981" font-family="sans-serif" font-size="20" font-weight="700">72.4%</text>
+  <text x="422" y="190" fill="#94a3b8" font-family="monospace" font-size="9">Digital Tracking Active</text>
+
+  <!-- Card 4 -->
+  <rect x="600" y="126" width="176" height="76" rx="6" fill="url(#taxCardGrad)" stroke="#1e2f56" stroke-width="1" />
+  <text x="614" y="146" fill="#f59e0b" font-family="monospace" font-size="9" font-weight="700">PILOT ADVISORY</text>
+  <text x="614" y="172" fill="#fde68a" font-family="sans-serif" font-size="20" font-weight="700">5+ Panchayats</text>
+  <text x="614" y="190" fill="#f59e0b" font-family="monospace" font-size="9">Gathering Requirements</text>
+
+  <!-- Main Administrative Ledger Table Preview -->
+  <rect x="24" y="214" width="752" height="262" rx="8" fill="url(#taxCardGrad)" stroke="#1e2f56" stroke-width="1" />
+  
+  <!-- Table Header -->
+  <rect x="24" y="214" width="752" height="36" rx="8" fill="#0d172e" />
+  <text x="44" y="236" fill="#93c5fd" font-family="monospace" font-size="10" font-weight="700">PROPERTY NO.</text>
+  <text x="160" y="236" fill="#93c5fd" font-family="monospace" font-size="10" font-weight="700">TAXPAYER NAME</text>
+  <text x="310" y="236" fill="#93c5fd" font-family="monospace" font-size="10" font-weight="700">PROPERTY TYPE</text>
+  <text x="450" y="236" fill="#93c5fd" font-family="monospace" font-size="10" font-weight="700">ASSESSED TAX</text>
+  <text x="580" y="236" fill="#93c5fd" font-family="monospace" font-size="10" font-weight="700">PAYMENT STATUS</text>
+  <text x="700" y="236" fill="#93c5fd" font-family="monospace" font-size="10" font-weight="700">RECEIPT</text>
+
+  <!-- Row 1 -->
+  <line x1="24" y1="286" x2="776" y2="286" stroke="#1e293b" stroke-width="1" />
+  <text x="44" y="272" fill="#e2e8f0" font-family="monospace" font-size="11">GP-NGP-0142</text>
+  <text x="160" y="272" fill="#f8fafc" font-family="sans-serif" font-size="11" font-weight="600">Ramesh S. Patil</text>
+  <text x="310" y="272" fill="#94a3b8" font-family="sans-serif" font-size="11">Residential (Plot 14)</text>
+  <text x="450" y="272" fill="#f8fafc" font-family="monospace" font-size="11">₹ 1,850.00</text>
+  <rect x="580" y="260" width="70" height="18" rx="9" fill="#064e3b" />
+  <text x="592" y="273" fill="#34d399" font-family="monospace" font-size="9" font-weight="700">COLLECTED</text>
+  <text x="706" y="272" fill="#60a5fa" font-family="monospace" font-size="10">#RCP-042</text>
+
+  <!-- Row 2 -->
+  <line x1="24" y1="332" x2="776" y2="332" stroke="#1e293b" stroke-width="1" />
+  <text x="44" y="316" fill="#e2e8f0" font-family="monospace" font-size="11">GP-NGP-0143</text>
+  <text x="160" y="316" fill="#f8fafc" font-family="sans-serif" font-size="11" font-weight="600">Shri Krishna Krishi Kendra</text>
+  <text x="310" y="316" fill="#94a3b8" font-family="sans-serif" font-size="11">Commercial (Shop 2)</text>
+  <text x="450" y="316" fill="#f8fafc" font-family="monospace" font-size="11">₹ 4,200.00</text>
+  <rect x="580" y="304" width="70" height="18" rx="9" fill="#064e3b" />
+  <text x="592" y="317" fill="#34d399" font-family="monospace" font-size="9" font-weight="700">COLLECTED</text>
+  <text x="706" y="316" fill="#60a5fa" font-family="monospace" font-size="10">#RCP-043</text>
+
+  <!-- Row 3 -->
+  <line x1="24" y1="378" x2="776" y2="378" stroke="#1e293b" stroke-width="1" />
+  <text x="44" y="360" fill="#e2e8f0" font-family="monospace" font-size="11">GP-NGP-0144</text>
+  <text x="160" y="360" fill="#f8fafc" font-family="sans-serif" font-size="11" font-weight="600">Sunita M. Gawande</text>
+  <text x="310" y="360" fill="#94a3b8" font-family="sans-serif" font-size="11">Residential (Plot 18)</text>
+  <text x="450" y="360" fill="#f8fafc" font-family="monospace" font-size="11">₹ 1,450.00</text>
+  <rect x="580" y="348" width="60" height="18" rx="9" fill="#451a03" />
+  <text x="592" y="361" fill="#fbbf24" font-family="monospace" font-size="9" font-weight="700">PENDING</text>
+  <text x="706" y="360" fill="#94a3b8" font-family="monospace" font-size="10">DEMAND SENT</text>
+
+  <!-- Row 4 -->
+  <line x1="24" y1="424" x2="776" y2="424" stroke="#1e293b" stroke-width="1" />
+  <text x="44" y="404" fill="#e2e8f0" font-family="monospace" font-size="11">GP-NGP-0145</text>
+  <text x="160" y="404" fill="#f8fafc" font-family="sans-serif" font-size="11" font-weight="600">Vijay K. Wankhede</text>
+  <text x="310" y="404" fill="#94a3b8" font-family="sans-serif" font-size="11">Open Land (Plot 03)</text>
+  <text x="450" y="404" fill="#f8fafc" font-family="monospace" font-size="11">₹ 950.00</text>
+  <rect x="580" y="392" width="70" height="18" rx="9" fill="#064e3b" />
+  <text x="592" y="405" fill="#34d399" font-family="monospace" font-size="9" font-weight="700">COLLECTED</text>
+  <text x="706" y="404" fill="#60a5fa" font-family="monospace" font-size="10">#RCP-044</text>
+
+  <!-- Bottom Development Notice Strip -->
+  <rect x="36" y="434" width="728" height="30" rx="4" fill="#1e293b" />
+  <circle cx="52" cy="449" r="4" fill="#f59e0b" />
+  <text x="64" y="453" fill="#fde68a" font-family="monospace" font-size="10" font-weight="600">ACTIVE DEVELOPMENT STATUS:</text>
+  <text x="260" y="453" fill="#cbd5e1" font-family="sans-serif" font-size="10">Shaping modules and customized workflows with requirements from 5+ Gram Panchayats.</text>
+</svg>

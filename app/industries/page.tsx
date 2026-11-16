@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import { Nav } from '@/components/pecsa/nav'
-import { SideNav } from '@/components/pecsa/side-nav'
 import { PageHeader } from '@/components/pecsa/primitives'
 import { FullVerticalsGrid } from '@/components/pecsa/verticals'
 import { WhyPecsa } from '@/components/pecsa/why-pecsa'
@@ -16,7 +15,6 @@ export default function IndustriesPage() {
   return (
     <main className="relative min-h-screen overflow-x-hidden pt-24 md:pt-28 bg-background text-foreground">
       <Nav />
-      <SideNav />
 
       {/* Standardized Page Header Banner */}
       <PageHeader

@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1329" />
+      <stop offset="100%" stop-color="#111c38" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#162344" />
+      <stop offset="100%" stop-color="#0e1830" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#60a5fa" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="500" fill="url(#bgGrad)" />
+
+  <!-- Window Header -->
+  <rect x="0" y="0" width="800" height="42" fill="#080e1e" />
+  <circle cx="24" cy="21" r="5" fill="#ef4444" opacity="0.8" />
+  <circle cx="40" cy="21" r="5" fill="#f59e0b" opacity="0.8" />
+  <circle cx="56" cy="21" r="5" fill="#10b981" opacity="0.8" />
+
+  <!-- Address Bar -->
+  <rect x="80" y="10" width="460" height="22" rx="4" fill="#131e38" />
+  <text x="96" y="25" fill="#93c5fd" font-family="monospace" font-size="11">https://panchayat.pecsa.app/portal</text>
+
+  <!-- Portal Header Bar -->
+  <rect x="24" y="60" width="752" height="54" rx="8" fill="url(#cardGrad)" stroke="#1e2f56" stroke-width="1" />
+  <!-- Emblem / Landmark Icon -->
+  <rect x="40" y="73" width="28" height="28" rx="6" fill="#3b82f6" opacity="0.2" />
+  <path d="M44 93 L64 93 M54 77 L44 83 L64 83 Z M48 83 L48 91 M54 83 L54 91 M60 83 L60 91" stroke="#60a5fa" stroke-width="1.8" fill="none" stroke-linejoin="round" />
+  <text x="80" y="86" fill="#f8fafc" font-family="sans-serif" font-weight="700" font-size="14">Digital Gram Panchayat Portal</text>
+  <text x="80" y="101" fill="#94a3b8" font-family="sans-serif" font-size="10">E-Governance System • Bringing Rural Governance Online</text>
+
+  <!-- Status Pill -->
+  <rect x="630" y="74" width="130" height="24" rx="12" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1" />
+  <circle cx="644" cy="86" r="3.5" fill="#10b981" />
+  <text x="656" y="90" fill="#93c5fd" font-family="monospace" font-size="10" font-weight="600">15+ WEBSITES LIVE</text>
+
+  <!-- Main Hero Banner inside preview -->
+  <rect x="24" y="126" width="480" height="170" rx="8" fill="url(#cardGrad)" stroke="#1e2f56" stroke-width="1" />
+  <text x="44" y="156" fill="#60a5fa" font-family="monospace" font-size="11" font-weight="700">OFFICIAL GRAM PANCHAYAT PRESENCE</text>
+  <text x="44" y="185" fill="#f8fafc" font-family="sans-serif" font-size="18" font-weight="700">Connecting Citizens &amp; Administration</text>
+  <text x="44" y="210" fill="#cbd5e1" font-family="sans-serif" font-size="11" width="400">
+    <tspan x="44" dy="0">Publish statutory notices, showcase village development works, and provide</tspan>
+    <tspan x="44" dy="16">transparent access to welfare schemes directly to rural citizens.</tspan>
+  </text>
+  <!-- Buttons -->
+  <rect x="44" y="246" width="140" height="32" rx="4" fill="url(#accentGrad)" />
+  <text x="64" y="266" fill="#ffffff" font-family="sans-serif" font-size="11" font-weight="600">Citizen Desk Portal</text>
+  <rect x="196" y="246" width="140" height="32" rx="4" fill="transparent" stroke="#3b82f6" stroke-width="1" />
+  <text x="216" y="266" fill="#93c5fd" font-family="sans-serif" font-size="11" font-weight="600">Public Notices →</text>
+
+  <!-- Side Metrics Column -->
+  <rect x="520" y="126" width="256" height="170" rx="8" fill="url(#cardGrad)" stroke="#1e2f56" stroke-width="1" />
+  <text x="540" y="152" fill="#94a3b8" font-family="monospace" font-size="10" font-weight="700">CORE MODULES</text>
+
+  <!-- Feature 1 -->
+  <rect x="540" y="165" width="216" height="34" rx="4" fill="#0b1329" stroke="#1e293b" stroke-width="1" />
+  <circle cx="556" cy="182" r="5" fill="#10b981" opacity="0.2" />
+  <text x="553" y="185" fill="#10b981" font-size="9" font-family="sans-serif">✓</text>
+  <text x="572" y="185" fill="#e2e8f0" font-family="sans-serif" font-size="11">Village Profile &amp; Demographics</text>
+
+  <!-- Feature 2 -->
+  <rect x="540" y="207" width="216" height="34" rx="4" fill="#0b1329" stroke="#1e293b" stroke-width="1" />
+  <circle cx="556" cy="224" r="5" fill="#10b981" opacity="0.2" />
+  <text x="553" y="227" fill="#10b981" font-size="9" font-family="sans-serif">✓</text>
+  <text x="572" y="227" fill="#e2e8f0" font-family="sans-serif" font-size="11">Government Welfare Schemes</text>
+
+  <!-- Feature 3 -->
+  <rect x="540" y="249" width="216" height="34" rx="4" fill="#0b1329" stroke="#1e293b" stroke-width="1" />
+  <circle cx="556" cy="266" r="5" fill="#10b981" opacity="0.2" />
+  <text x="553" y="269" fill="#10b981" font-size="9" font-family="sans-serif">✓</text>
+  <text x="572" y="269" fill="#e2e8f0" font-family="sans-serif" font-size="11">Circulars &amp; Meeting Notices</text>
+
+  <!-- Lower 3 Cards Row -->
+  <rect x="24" y="310" width="240" height="166" rx="8" fill="url(#cardGrad)" stroke="#1e2f56" stroke-width="1" />
+  <text x="44" y="336" fill="#60a5fa" font-family="monospace" font-size="10" font-weight="700">01 // ADMINISTRATIVE ACCESS</text>
+  <text x="44" y="358" fill="#f8fafc" font-family="sans-serif" font-size="14" font-weight="600">Sarpanch &amp; Gram Sevak</text>
+  <text x="44" y="380" fill="#94a3b8" font-family="sans-serif" font-size="10">
+    <tspan x="44" dy="0">Instant publishing console for village</tspan>
+    <tspan x="44" dy="14">announcements, tender notices, and</tspan>
+    <tspan x="44" dy="14">development projects.</tspan>
+  </text>
+  <rect x="44" y="424" width="200" height="32" rx="4" fill="#0b1329" />
+  <text x="56" y="444" fill="#93c5fd" font-family="monospace" font-size="10">Official Office Registry</text>
+
+  <rect x="280" y="310" width="240" height="166" rx="8" fill="url(#cardGrad)" stroke="#1e2f56" stroke-width="1" />
+  <text x="300" y="336" fill="#60a5fa" font-family="monospace" font-size="10" font-weight="700">02 // CITIZEN INTERFACE</text>
+  <text x="300" y="358" fill="#f8fafc" font-family="sans-serif" font-size="14" font-weight="600">Mobile-First Accessibility</text>
+  <text x="300" y="380" fill="#94a3b8" font-family="sans-serif" font-size="10">
+    <tspan x="300" dy="0">Lightweight responsive design built</tspan>
+    <tspan x="300" dy="14">for all rural mobile networks with</tspan>
+    <tspan x="300" dy="14">multilingual citizen access.</tspan>
+  </text>
+  <rect x="300" y="424" width="200" height="32" rx="4" fill="#0b1329" />
+  <text x="312" y="444" fill="#10b981" font-family="monospace" font-size="10">100% Mobile Responsive</text>
+
+  <rect x="536" y="310" width="240" height="166" rx="8" fill="url(#cardGrad)" stroke="#1e2f56" stroke-width="1" />
+  <text x="556" y="336" fill="#60a5fa" font-family="monospace" font-size="10" font-weight="700">03 // PROVEN IMPACT</text>
+  <text x="556" y="358" fill="#f8fafc" font-family="sans-serif" font-size="14" font-weight="600">15+ Gram Panchayats</text>
+  <text x="556" y="380" fill="#94a3b8" font-family="sans-serif" font-size="10">
+    <tspan x="556" dy="0">Successfully deployed and delivered</tspan>
+    <tspan x="556" dy="14">for rural local governance bodies</tspan>
+    <tspan x="556" dy="14">in Maharashtra, India.</tspan>
+  </text>
+  <rect x="556" y="424" width="200" height="32" rx="4" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1" />
+  <text x="576" y="444" fill="#93c5fd" font-family="monospace" font-size="10" font-weight="600">Verified Deployments</text>
+</svg>

@@ -55,17 +55,19 @@ export function BuildWithUs({ index = "06" }: { index?: string } = {}) {
               <div className="space-y-3 font-sans text-xs text-muted-foreground">
                 <div className="flex items-center gap-2.5">
                   <Mail className="h-4 w-4 text-primary shrink-0" />
-                  <a href="mailto:info@pecsa.in" className="hover:text-foreground transition-colors font-mono-tech">
-                    info@pecsa.in
+                  <a href="mailto:pecsaitsolutions@gmail.com" className="hover:text-foreground transition-colors font-mono-tech">
+                    pecsaitsolutions@gmail.com
                   </a>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Phone className="h-4 w-4 text-primary shrink-0" />
-                  <span className="font-mono-tech">+91 91754 50920</span>
+                  <a href="tel:+919420421326" className="hover:text-foreground transition-colors font-mono-tech">
+                    +91 9420421326
+                  </a>
                 </div>
                 <div className="flex items-start gap-2.5 pt-1 border-t border-border/60">
                   <MapPin className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-                  <span>Maharashtra, India • Serving Clients Worldwide</span>
+                  <span className="leading-relaxed">B Wing, Priyadarshini College of Engineering, Hingna, Nagpur – 440016, Maharashtra, India.</span>
                 </div>
               </div>
             </div>

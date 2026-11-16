@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import { Nav } from '@/components/pecsa/nav'
-import { SideNav } from '@/components/pecsa/side-nav'
 import { PageHeader } from '@/components/pecsa/primitives'
 import { FullProductsView } from '@/components/pecsa/products'
 import { BuildWithUs } from '@/components/pecsa/build-with-us'
@@ -8,14 +7,13 @@ import { Footer } from '@/components/pecsa/footer'
 
 export const metadata: Metadata = {
   title: 'Products — Flagship Software Platforms | PECSA IT Solutions',
-  description: 'Explore proprietary software platforms built by PECSA IT Solutions, including Auditool safety compliance platform and Society Management System.',
+  description: 'Explore proprietary software platforms built by PECSA IT Solutions, including Auditool safety compliance platform, Digital Gram Panchayat, and Gram Panchayat Tax System.',
 }
 
 export default function ProductsPage() {
   return (
     <main className="relative min-h-screen overflow-x-hidden pt-24 md:pt-28 bg-background text-foreground">
       <Nav />
-      <SideNav />
 
       {/* Standardized Page Header Banner */}
       <PageHeader

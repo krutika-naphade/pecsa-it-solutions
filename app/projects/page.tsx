@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import { Nav } from '@/components/pecsa/nav'
-import { SideNav } from '@/components/pecsa/side-nav'
 import { PageHeader } from '@/components/pecsa/primitives'
 import { FullProjectsList } from '@/components/pecsa/projects'
 import { BuildWithUs } from '@/components/pecsa/build-with-us'
@@ -15,7 +14,6 @@ export default function ProjectsPage() {
   return (
     <main className="relative min-h-screen overflow-x-hidden pt-24 md:pt-28 bg-background text-foreground">
       <Nav />
-      <SideNav />
 
       {/* Standardized Page Header Banner */}
       <PageHeader

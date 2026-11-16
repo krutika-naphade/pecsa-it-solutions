@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 import { Nav } from '@/components/pecsa/nav'
-import { SideNav } from '@/components/pecsa/side-nav'
 import { PageHeader } from '@/components/pecsa/primitives'
 import { WhoWeAre } from '@/components/pecsa/who-we-are'
 import { Innovation } from '@/components/pecsa/innovation'
@@ -18,7 +17,6 @@ export default function AboutPage() {
   return (
     <main className="relative min-h-screen overflow-x-hidden pt-24 md:pt-28 bg-background text-foreground">
       <Nav />
-      <SideNav />
 
       {/* Standardized Page Header Banner */}
       <PageHeader
@@ -31,7 +29,9 @@ export default function AboutPage() {
         <div className="mt-8 pt-6 border-t border-border/80 grid gap-6 sm:grid-cols-2 font-mono-tech text-xs text-muted-foreground">
           <div>
             <span className="text-primary font-bold block mb-1 uppercase tracking-widest">Engineering Hub</span>
-            <span className="text-foreground text-sm font-sans font-medium">Nagpur, Maharashtra, India</span>
+            <span className="text-foreground text-xs sm:text-sm font-sans font-medium leading-relaxed block">
+              B Wing, Priyadarshini College of Engineering, Hingna, Nagpur – 440016, Maharashtra, India.
+            </span>
           </div>
           <div>
             <span className="text-primary font-bold block mb-1 uppercase tracking-widest">Core Focus</span>

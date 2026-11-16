@@ -7,7 +7,7 @@ const NAV_LINKS = [
   { label: 'Home', href: '/' },
   { label: 'About PECSA', href: '/about' },
   { label: 'Solutions', href: '/solutions' },
-  { label: 'For Architects', href: '/for-architects/philosophy' },
+  { label: 'Architecture', href: '/architecture' },
   { label: 'Services', href: '/services' },
   { label: 'Products', href: '/products' },
   { label: 'Industries', href: '/industries' },
@@ -23,12 +23,13 @@ const SOLUTIONS_LINKS = [
   { label: 'IoT Solutions', href: '/solutions' },
   { label: 'Robotics', href: '/solutions' },
   { label: 'Digital Solutions', href: '/solutions' },
-  { label: 'Architect Portfolios (Philosophy)', href: '/for-architects/philosophy' },
+  { label: 'Architecture Portfolios', href: '/architecture' },
 ]
 
 const PRODUCTS_LINKS = [
   { label: 'Auditool', href: '/products' },
-  { label: 'Society Management System', href: '/products' },
+  { label: 'Digital Gram Panchayat', href: '/products' },
+  { label: 'Gram Panchayat Tax System', href: '/products' },
 ]
 
 const SOCIAL_LINKS = [
@@ -129,12 +130,17 @@ export function Footer() {
                 <MapPin className="h-3.5 w-3.5 text-primary shrink-0" />
                 <span>Registered Office:</span>
               </div>
-              <p>Nagpur, Maharashtra, India</p>
+              <p className="leading-relaxed">B Wing, Priyadarshini College of Engineering, Hingna, Nagpur – 440016, Maharashtra, India.</p>
 
               <p className="text-foreground font-semibold pt-2">Direct Contact:</p>
               <p>
-                <a href="mailto:contact@pecsa.in" className="hover:text-primary transition-colors">
-                  contact@pecsa.in
+                <a href="mailto:pecsaitsolutions@gmail.com" className="hover:text-primary transition-colors block">
+                  pecsaitsolutions@gmail.com
+                </a>
+              </p>
+              <p>
+                <a href="tel:+919420421326" className="hover:text-primary transition-colors font-mono-tech">
+                  +91 9420421326
                 </a>
               </p>
             </div>

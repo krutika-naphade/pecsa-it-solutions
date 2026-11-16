@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { ArrowUpRight, ArrowDown, Users, CheckCircle2 } from 'lucide-react'
+import { ArrowUpRight, CheckCircle2 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -144,26 +144,6 @@ export function Hero() {
             {/* Subtle Background Accent Offset Frame */}
             <div className="absolute -bottom-3 -right-3 -z-10 h-full w-full border border-primary/20 pointer-events-none hidden sm:block" />
           </motion.div>
-        </div>
-
-        {/* Hero Bottom Transition Bar */}
-        <div className="mt-16 pt-6 border-t border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <span className="font-mono-tech text-xs uppercase tracking-widest text-primary font-bold">
-              PECSA APPROACH //
-            </span>
-            <span className="font-sans text-xs sm:text-sm text-muted-foreground">
-              We start with your operational problem — not preconceived technology.
-            </span>
-          </div>
-
-          <a
-            href="#who-we-are"
-            className="group inline-flex items-center gap-2 font-mono-tech text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <span>Explore Who We Are</span>
-            <ArrowDown className="h-3.5 w-3.5 text-primary transition-transform group-hover:translate-y-0.5" />
-          </a>
         </div>
       </div>
     </section>

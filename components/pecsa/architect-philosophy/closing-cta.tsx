@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowUpRight, Compass, FileText, Mail, MapPin } from 'lucide-react'
+import { ArrowUpRight, Compass, FileText, Mail, MapPin, Phone } from 'lucide-react'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'motion/react'
 
@@ -97,8 +97,14 @@ export function ClosingCTASection({ onOpenBrief }: ClosingCTAProps) {
                 </span>
                 <div className="flex items-center gap-2 mt-1">
                   <Mail className="h-3.5 w-3.5 text-primary" />
-                  <a href="mailto:info@pecsa.in" className="hover:text-foreground transition-colors font-mono-tech">
-                    info@pecsa.in
+                  <a href="mailto:pecsaitsolutions@gmail.com" className="hover:text-foreground transition-colors font-mono-tech">
+                    pecsaitsolutions@gmail.com
+                  </a>
+                </div>
+                <div className="flex items-center gap-2 mt-1">
+                  <Phone className="h-3.5 w-3.5 text-primary" />
+                  <a href="tel:+919420421326" className="hover:text-foreground transition-colors font-mono-tech">
+                    +91 9420421326
                   </a>
                 </div>
               </div>

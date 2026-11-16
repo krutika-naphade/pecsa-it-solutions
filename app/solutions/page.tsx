@@ -2,7 +2,6 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { Nav } from '@/components/pecsa/nav'
-import { SideNav } from '@/components/pecsa/side-nav'
 import { PageHeader } from '@/components/pecsa/primitives'
 import { FullSolutionsList } from '@/components/pecsa/expertise'
 import { BuildWithUs } from '@/components/pecsa/build-with-us'
@@ -17,7 +16,6 @@ export default function SolutionsPage() {
   return (
     <main className="relative min-h-screen overflow-x-hidden pt-24 md:pt-28 bg-background text-foreground">
       <Nav />
-      <SideNav />
 
       {/* Standardized Page Header Banner */}
       <PageHeader
@@ -47,7 +45,7 @@ export default function SolutionsPage() {
                 Looking for Ready Software Platforms?
               </h2>
               <p className="mt-3 sm:mt-4 font-sans text-sm sm:text-base text-muted-foreground leading-relaxed">
-                Alongside custom engineering solutions, PECSA develops dedicated software platforms including <strong>Auditool</strong> (safety audit compliance) and our <strong>Society Management System</strong>.
+                Alongside custom engineering solutions, PECSA develops dedicated software platforms including <strong>Auditool</strong> (safety audit compliance), <strong>Digital Gram Panchayat</strong>, and the <strong>Gram Panchayat Tax System</strong>.
               </p>
             </div>
             <Link
@@ -77,7 +75,7 @@ export default function SolutionsPage() {
               </p>
             </div>
             <Link
-              href="/for-architects/philosophy"
+              href="/architecture"
               className="inline-flex items-center justify-center gap-2 border border-border bg-background px-6 py-3.5 font-mono-tech text-xs uppercase tracking-widest text-foreground hover:border-primary transition-all font-semibold shrink-0 w-full sm:w-auto text-center"
             >
               <span>Explore Architecture Philosophy</span>

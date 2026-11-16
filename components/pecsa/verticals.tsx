@@ -30,8 +30,8 @@ const INDUSTRIES_LIST = [
     icon: Home,
     name: 'Residential Communities',
     image: '/images/society-dashboard.jpg',
-    imageAlt: 'Society Management System user interface dashboard',
-    capabilities: ['Society Management', 'Gate Security', 'Maintenance Tracking', 'Resident Portal'],
+    imageAlt: 'Residential community operations and gate security dashboard',
+    capabilities: ['Community Operations', 'Gate Security', 'Maintenance Tracking', 'Resident Portal'],
     description: 'Connect residents, management committees, security guards, and service vendors through centralized digital management systems.',
   },
   {
@@ -103,11 +103,10 @@ export function Verticals() {
                   key={ind.id}
                   type="button"
                   onClick={() => setSelectedIdx(idx)}
-                  className={`p-3.5 text-left border transition-all cursor-pointer ${
-                    isSelected
+                  className={`p-3.5 text-left border transition-all cursor-pointer ${isSelected
                       ? 'border-primary bg-primary/10 shadow-xs'
                       : 'border-border bg-card hover:border-primary/50'
-                  }`}
+                    }`}
                 >
                   <div className="flex items-center justify-between mb-2">
                     <span className={`font-mono-tech text-[10px] font-bold ${isSelected ? 'text-primary' : 'text-muted-foreground'}`}>

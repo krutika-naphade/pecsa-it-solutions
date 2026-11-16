@@ -25,10 +25,10 @@ The application uses the Next.js App Router with static route optimization and r
 | `/services` | **Services** | Core service offerings across software engineering, cloud, embedded systems, and automation. |
 | `/solutions` | **Solutions** | End-to-end solutions tailored for enterprise workflow automation and intelligent operations. |
 | `/industries` | **Industries** | Targeted vertical solutions for manufacturing, logistics, healthcare, and smart infrastructure. |
-| `/products` | **Products** | Showcase of proprietary software platforms: **Auditool** (statutory safety audit compliance SaaS) and the **Society Management System** (residential community operations platform). |
+| `/products` | **Products** | Showcase of proprietary software platforms: **Auditool** (statutory safety audit compliance SaaS), **Digital Gram Panchayat** (rural e-governance platform), and **Gram Panchayat Tax System** (in-development municipal assessment and collection platform). |
 | `/projects` | **Projects** | Case studies of verified engineering deployments, including **Industrial Machine Telemetry & IoT** and **Architectural Studio Spatial Portfolios**. |
-| `/for-architects` | **For Architects** | Dedicated portal for architectural collaborations, spatial engineering, and interactive technology. |
-| `/for-architects/philosophy` | **Architectural Philosophy** | Deep-dive into spatial systems, interactive material explorations, and client intake modal. |
+| `/architecture` | **Architecture** | Spatial digital portfolio monograph for architectural practices translating design philosophy, materiality, and spatial sequencing into thoughtful digital experiences. |
+| `/for-architects` | **For Architects (Redirect)** | Dedicated alias redirecting to `/architecture`. |
 | `/contact` | **Contact** | Direct contact form and inquiry routing. |
 | `/privacy-policy` | **Privacy Policy** | Compliance, privacy standards, and data processing terms. |
 

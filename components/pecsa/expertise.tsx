@@ -15,7 +15,7 @@ const CAPABILITIES_LIST = [
     deliverables: ['Custom Web & Desktop Applications', 'Enterprise ERP & Operations Systems', 'Workflow-Specific Tools', 'API & Database Integration'],
     tech: ['React', 'Next.js', 'Node.js', 'Python', 'PostgreSQL'],
     contextualLink: {
-      text: 'Explore Proprietary Platforms (Auditool & Society Management)',
+      text: 'Explore Proprietary Platforms (Auditool & Digital Gram Panchayat)',
       href: '/products',
     },
   },
